@@ -47,12 +47,6 @@ class LoginController extends Controller
         return redirect('https://www.strava.com/oauth/authorize?client_id=20590&response_type=code&redirect_uri=http://nerdrunclub.app/token_exchange&state=mystate');
     }
 
-    public function callback(){
-        $user =  Socialite::driver('strava')->user();
-        $this->findOrCreateUser($user);
-
-    }
-
     public function tokenexchange(){
         $code = request()->code;
         $client = new Client();

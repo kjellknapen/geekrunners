@@ -18,6 +18,4 @@ Route::get('/', function () {
 
 Route::get('/login', 'Auth\LoginController@login');
 
-Route::get('/login/callback', 'Auth\LoginController@callback');
-
 Route::get('/token_exchange', 'Auth\LoginController@tokenexchange');
