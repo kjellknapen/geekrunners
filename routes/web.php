@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', 'Auth\LoginController@login');
+
+Route::get('/login/callback', 'Auth\LoginController@callback');
+
+Route::get('/token_exchange', 'Auth\LoginController@tokenexchange');
