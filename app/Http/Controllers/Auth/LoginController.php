@@ -43,7 +43,6 @@ class LoginController extends Controller
     }
 
     public function login(){
-        //return Socialite::driver('strava')->redirect();
         return redirect('https://www.strava.com/oauth/authorize?client_id=20590&response_type=code&redirect_uri=http://nerdrunclub.app/token_exchange&state=mystate');
     }
 
@@ -81,7 +80,8 @@ class LoginController extends Controller
                 'token' => $user->access_token,
             ]);
 
-            Auth::login($user, true);
+            $loginUser = User::where('strava_id', $userID)->first();
+            Auth::login($loginUser, true);
         }
     }
 }
