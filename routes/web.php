@@ -13,7 +13,16 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('splash');
+});
+Route::get('/dashboard', function () {
+    return view('dashboard/index');
+});
+Route::get('/leaderboards', function () {
+    return view('leaderboards/index');
+});
+Route::get('/user', function () {
+    return view('user/index');
 });
 
 Route::get('/login', 'Auth\LoginController@login');
