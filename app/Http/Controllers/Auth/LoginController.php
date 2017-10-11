@@ -60,7 +60,7 @@ class LoginController extends Controller
 
         $result= \GuzzleHttp\json_decode($res->getBody());
         $this->findOrCreateUser($result);
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     public function findOrCreateUser($user){
