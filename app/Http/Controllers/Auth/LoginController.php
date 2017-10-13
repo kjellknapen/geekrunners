@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\StravaHandler;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
@@ -43,22 +44,13 @@ class LoginController extends Controller
     }
 
     public function login(){
-        return redirect('https://www.strava.com/oauth/authorize?client_id=20590&response_type=code&redirect_uri=http://nerdrunclub.app/token_exchange&state=mystate');
+        return StravaHandler::redirect();
     }
 
     public function tokenexchange(){
         $code = request()->code;
-        $client = new Client();
-        //$url = "'https://www.strava.com/oauth/token?client_id=20594&client_secret=426f99ae57f2c243fdcc6e5fa320c011523c6161&code=".$code."'";
-        $res = $client->request('POST', 'https://www.strava.com/oauth/token', [
-            'form_params' => [
-                'client_id' => '20590',
-                'client_secret' => 'f547d41bb416342504f68b64aa24216544d3154d',
-                'code' => $code,
-            ]
-        ]);
 
-        $result= \GuzzleHttp\json_decode($res->getBody());
+        $result = StravaHandler::tokenExchange($code);
         $this->findOrCreateUser($result);
         return redirect('/dashboard');
     }

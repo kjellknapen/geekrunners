@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 */
 
 // Routes for loggedin users
-Route::middleware(['guest'])->group(function () {
+Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/dashboard', 'DashboardController@index');
     
@@ -27,11 +27,9 @@ Route::middleware(['guest'])->group(function () {
 });
 
 // Reroute if user is loggedin
-Route::middleware(['loggedin'])->group(function () {
+Route::middleware(['guest'])->group(function () {
 
-    Route::get('/', function () {
-        return view('splash');
-    });
+    Route::get('/', function () { return view('splash'); });
 
     Route::get('/login', 'Auth\LoginController@login');
 
