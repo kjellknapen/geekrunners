@@ -20,9 +20,7 @@ Route::middleware(['notloggedin'])->group(function () {
     Route::get('/leaderboards', function () {
         return view('leaderboards/index');
     });
-    Route::get('/user', function () {
-        return view('user/index');
-    });
+    Route::get('/user', 'UserController@index');
 
 });
 
