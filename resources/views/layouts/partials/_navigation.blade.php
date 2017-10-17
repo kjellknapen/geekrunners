@@ -13,6 +13,7 @@
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/leaderboards">Leaderboards</a></li>
                 <li><a href="/user">Profile</a></li>
+                <li><a href="/achievements">Achievements</a></li>
 
             </ul>
 

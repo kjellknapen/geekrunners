@@ -24,6 +24,8 @@ Route::get('/leaderboards', function () {
 Route::get('/user', function () {
     return view('user/index');
 });
+Route::get('/achievements', 'Achievements@index');
+
 
 Route::get('/login', 'Auth\LoginController@login');
 
