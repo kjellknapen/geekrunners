@@ -5,16 +5,9 @@
     @include('layouts.partials._navigation')
 
     <h1>Dashboard</h1>
-    {{--@foreach($runs as $r)--}}
-        {{--<h1>{{ $r->name }}</h1>--}}
-        {{--<h4>{{ $r->date }}</h4>--}}
-        {{--<p>{{ $r->km . " km" }}</p>--}}
-        {{--<p>{{ $r->minutes . " min"  }}</p>--}}
-        {{--<p>{{ $r->average_speed . " m/s" }}</p>--}}
-        {{--<p>{{ $r->max_speed . " m/s" }}</p>--}}
-    {{--@endforeach--}}
+    <br>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="text-align: center;">
         <h2>{{ $userStats['daysLeft'] }} days</h2>
         <p>left until the marathon</p>
         <div class="progress">
@@ -24,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default"style="text-align: center;">
         <h2>Run {{ $userStats['weeklyGoal']  }} km</h2>
         <p>your weekly goal. {{ $userStats['remaining']  }} km remaining</p>
         <div class="progress">
@@ -33,6 +26,18 @@
                 {{ ceil($userStats['weeklyDone'] / $userStats['weeklyGoal'] * 100) }}%
             </div>
         </div>
+    </div>
+    <br>
+    <div class="panel panel-default"style="text-align: center;">
+        <h2>Weekly top runners</h2>
+
+    @foreach( $topRunners as $runner)
+
+            <img style="max-width: 80px" src="{{ $runner['user']['avatar'] }}" alt="">
+            <h4>{{ $runner['user']['firstname'] }}</h4>
+            <h5>{{ $runner['km'] }} km</h5>
+            <br>
+        @endforeach
     </div>
 
 @endsection
