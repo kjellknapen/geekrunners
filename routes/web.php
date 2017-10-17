@@ -12,21 +12,26 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('splash');
-});
-Route::get('/dashboard', function () {
-    return view('dashboard/index');
-});
-Route::get('/leaderboards', function () {
-    return view('leaderboards/index');
-});
-Route::get('/user', function () {
-    return view('user/index');
+// Routes for loggedin users
+Route::middleware(['notloggedin'])->group(function () {
+
+    Route::get('/dashboard', 'DashboardController@index');
+    
+    Route::get('/leaderboards', function () {
+        return view('leaderboards/index');
+    });
+    Route::get('/user', 'UserController@index');
+
 });
 Route::get('/achievements', 'Achievements@index');
 
 
-Route::get('/login', 'Auth\LoginController@login');
+// Reroute if user is loggedin
+Route::middleware(['guest'])->group(function () {
 
-Route::get('/token_exchange', 'Auth\LoginController@tokenexchange');
+    Route::get('/', function () { return view('splash'); });
+
+    Route::get('/login', 'Auth\LoginController@login');
+
+    Route::get('/token_exchange', 'Auth\LoginController@tokenexchange');
+});
