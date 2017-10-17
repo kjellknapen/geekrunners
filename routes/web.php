@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/dashboard', 'DashboardController@index');
-    
+
     Route::get('/leaderboards', function () {
         return view('leaderboards/index');
     });
