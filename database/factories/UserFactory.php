@@ -17,9 +17,13 @@ $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'firstname' => $faker->name,
+        'lastname'=> $faker->name,
+        'gender' => 'm',
+        'avatar' => $faker->imageUrl,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'strava_id'=> str_random(10),
+        'token' => str_random(10),
         'remember_token' => str_random(10),
     ];
 });
