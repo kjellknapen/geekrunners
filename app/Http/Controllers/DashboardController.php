@@ -13,7 +13,40 @@ class DashboardController extends Controller
     //
 
     public function index(){
-        StravaHandler::retrieveActivities();
+//        StravaHandler::retrieveActivities();
+//        $result = Activities::all()->where('user_id', Auth::id());
+//
+//
+//        $year = '2017';
+//        $month = '04';
+//        $day = '22';
+//        $current_date = new DateTime(date('Y-m-d'), new DateTimeZone('Europe/Brussels'));
+//        $end_date = new DateTime("$year-$month-$day", new DateTimeZone('Europe/Brussels'));
+//        $interval = $current_date->diff($end_date);
+//        $daysLeft = $interval->format('%a');
+//
+//        $weeklyGoal =  '9';
+//        $weeklyDone = 0;
+//        $remaining = $weeklyGoal;
+//
+//        foreach ($result as $activity){
+//
+//            $Date = str_replace('/', '-', mb_substr($activity->date, 0, 10));
+//            $FirstDay = date("d-m-Y", strtotime('sunday last week'));
+//            $LastDay = date("d-m-Y", strtotime('sunday this week'));
+//
+//            if($Date > $FirstDay && $Date < $LastDay) {
+//                $weeklyDone += $activity->km;
+//            }
+//        }
+//
+//        $remaining -= $weeklyDone;
+
+
+        return view('dashboard/index', ['userStats' => $this->getUserStats()]);
+    }
+
+    function getUserStats(){
         $result = Activities::all()->where('user_id', Auth::id());
 
 
@@ -25,7 +58,7 @@ class DashboardController extends Controller
         $interval = $current_date->diff($end_date);
         $daysLeft = $interval->format('%a');
 
-        $weeklyGoal =  '9';
+        $weeklyGoal =  9;
         $weeklyDone = 0;
         $remaining = $weeklyGoal;
 
@@ -42,8 +75,13 @@ class DashboardController extends Controller
 
         $remaining -= $weeklyDone;
 
-        //dd($result);
+        $userStats = [
+            'daysLeft' => $daysLeft,
+            'weeklyGoal' => $weeklyGoal,
+            'weeklyDone' => $weeklyDone,
+            'remaining' => $remaining,
+        ];
 
-        return view('dashboard/index', ['daysLeft' => $daysLeft, 'remaining' => $remaining, 'weeklyGoal' => $weeklyGoal, 'weeklyDone' => $weeklyDone]);
+        return  $userStats;
     }
 }

@@ -15,22 +15,22 @@
     {{--@endforeach--}}
 
     <div class="panel panel-default">
-        <h2>{{ $daysLeft }} days</h2>
+        <h2>{{ $userStats['daysLeft'] }} days</h2>
         <p>left until the marathon</p>
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                 aria-valuemin="0" aria-valuemax="100" style="width:{{ (200 - $daysLeft) / 200 * 100 }}%">
-                {{ ceil((200 - $daysLeft) / 200 * 100) }}%
+                 aria-valuemin="0" aria-valuemax="100" style="width:{{ (200 - $userStats['daysLeft']) / 200 * 100 }}%">
+                {{ ceil((200 - $userStats['daysLeft']) / 200 * 100) }}%
             </div>
         </div>
     </div>
     <div class="panel panel-default">
-        <h2>Run {{ $weeklyGoal  }} km</h2>
-        <p>your weekly goal. {{ $remaining  }} km remaining</p>
+        <h2>Run {{ $userStats['weeklyGoal']  }} km</h2>
+        <p>your weekly goal. {{ $userStats['remaining']  }} km remaining</p>
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                 aria-valuemin="0" aria-valuemax="100" style="width:{{ ceil($weeklyDone / $weeklyGoal * 100) }}%">
-                {{ ceil($weeklyDone / $weeklyGoal * 100) }}%
+                 aria-valuemin="0" aria-valuemax="100" style="width:{{ ceil($userStats['weeklyDone'] / $userStats['weeklyGoal'] * 100) }}%">
+                {{ ceil($userStats['weeklyDone'] / $userStats['weeklyGoal'] * 100) }}%
             </div>
         </div>
     </div>
