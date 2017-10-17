@@ -23,6 +23,8 @@ Route::middleware(['notloggedin'])->group(function () {
     Route::get('/user', 'UserController@index');
 
 });
+Route::get('/achievements', 'Achievements@index');
+
 
 // Reroute if user is loggedin
 Route::middleware(['guest'])->group(function () {
