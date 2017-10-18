@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\NerdRunClub\Strava;
 use App\User;
+use App;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
 use DateTimeZone;
@@ -115,7 +116,6 @@ class DashboardController extends Controller
                 $token = $u->token;
 
                 $result = Strava::get($url, $token);
-
                 foreach ($result as $run) {
                     $date = strtotime($run->start_date);
                     $check_activities = Activity::all()->where('strava_id', $run->id)->first();
