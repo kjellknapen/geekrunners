@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Laravel\Socialite\Facades\Socialite;
 use App\User;
+use App\NerdRunClub\Strava;
 use Illuminate\Support\Facades\Auth;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 
 class LoginController extends Controller
 {
@@ -30,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -42,14 +40,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(){
-        return Strava::redirect();
+    public function login(Strava $strava){
+        return $strava::redirect();
     }
 
-    public function tokenexchange(){
+    public function tokenexchange(Strava $strava){
         $code = request()->code;
 
-        $result = Strava::tokenExchange($code);
+        $result = $strava::tokenExchange($code);
         $this->findOrCreateUser($result);
         return redirect('/dashboard');
     }

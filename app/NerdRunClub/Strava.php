@@ -28,25 +28,31 @@ class Strava
     }
 
     public static function redirect(){
-        return redirect('https://www.strava.com/oauth/authorize?client_id=20590&response_type=code&redirect_uri='. self::$redirect_uri .'&state=mystate&approval_prompt=force');
+        return redirect('https://www.strava.com/oauth/authorize?client_id='. self::$client_id .'&response_type=code&redirect_uri='. self::$redirect_uri .'&state=mystate');
     }
 
     public static function tokenExchange($code){
         //$url = "'https://www.strava.com/oauth/token?client_id=20594&client_secret=426f99ae57f2c243fdcc6e5fa320c011523c6161&code=".$code."'";
-        $res = self::$client->request('POST', 'https://www.strava.com/oauth/token', [
+        $url = 'https://www.strava.com/oauth/token';
+        $config = [
             'form_params' => [
                 'client_id' => self::$client_id,
                 'client_secret' => self::$client_secret,
                 'code' => $code,
             ]
-        ]);
+        ];
+        $res = self::post($url, $config);
 
-        $result= \GuzzleHttp\json_decode($res->getBody());
+        dd($res);
         return $result;
     }
 
-    public static function post(){
+    public static function post($url, $config){
+        $res = self::$client->post( $url, $config );
 
+        $result = \GuzzleHttp\json_decode($res->getBody()->getContents());
+
+        return $result;
     }
 
     public static function get( $url, $config ){
