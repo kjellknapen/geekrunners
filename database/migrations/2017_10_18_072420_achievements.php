@@ -13,7 +13,12 @@ class Achievements extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('achievements', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('achievement');
+            $table->string('img');
+            $table->rememberToken();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Achievements extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('achievements');
     }
 }
