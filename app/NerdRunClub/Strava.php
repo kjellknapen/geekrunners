@@ -43,8 +43,7 @@ class Strava
         ];
         $res = self::post($url, $config);
 
-        dd($res);
-        return $result;
+        return $res;
     }
 
     public static function post($url, $config){
