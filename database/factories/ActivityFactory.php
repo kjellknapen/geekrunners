@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Activities::class, function (Faker $faker) {
+$factory->define(App\Activity::class, function (Faker $faker) {
     return [
       'user_id'=>$faker->numberBetween($min = 1, $max = 50),
       'name'=> $faker->name,
