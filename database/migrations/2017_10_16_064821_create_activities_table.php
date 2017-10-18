@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('strava_id');
-            $table->string('date');
+            $table->dateTime('date');
             $table->string('name');
             $table->string('map_id');
             $table->float('average_speed');
