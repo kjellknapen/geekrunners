@@ -29,15 +29,9 @@
     </div>
     <br>
     <div class="panel panel-default"style="text-align: center;">
-        <h2>Weekly top runners</h2>
+        <h2>Activity feed</h2>
 
-    @foreach( $topRunners as $runner)
 
-            <img style="max-width: 80px" src="{{ $runner['user']['avatar'] }}" alt="">
-            <h4>{{ $runner['user']['firstname'] }}</h4>
-            <h5>{{ $runner['km'] }} km</h5>
-            <br>
-        @endforeach
     </div>
 
 @endsection
