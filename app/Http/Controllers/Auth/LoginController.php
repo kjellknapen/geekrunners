@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\StravaHandler;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
@@ -44,13 +43,13 @@ class LoginController extends Controller
     }
 
     public function login(){
-        return StravaHandler::redirect();
+        return Strava::redirect();
     }
 
     public function tokenexchange(){
         $code = request()->code;
 
-        $result = StravaHandler::tokenExchange($code);
+        $result = Strava::tokenExchange($code);
         $this->findOrCreateUser($result);
         return redirect('/dashboard');
     }
