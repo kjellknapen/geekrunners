@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\NerdRunClub\Strava;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
@@ -113,7 +114,7 @@ class DashboardController extends Controller
             if(ctype_digit( $u->strava_id )) {
                 $token = $u->token;
 
-                $result = App\NerdRunClub\Strava::get($url, $token);
+                $result = Strava::get($url, $token);
 
                 foreach ($result as $run) {
                     $date = strtotime($run->start_date);
