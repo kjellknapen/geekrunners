@@ -9,56 +9,52 @@
 namespace NerdRunClub;
 
 
-use GuzzleHttp\Client;
-use Psy\Util\Str;
-
 class Strava
 {
-    private static $client;
-    private static $client_id;
-    private static $client_secret;
-    private static $redirect_uri;
+    private $client;
+    private $client_id;
+    private $client_secret;
+    private $redirect_uri;
     
-    public function __construct($CID, $CSCRT, $REDURI)
+    public function __construct($CID, $CSCRT, $REDURI, $GZZLC)
     {
-        self::$client = new Client();
-        self::$client_id = $CID;
-        self::$client_secret = $CSCRT;
-        self::$redirect_uri = $REDURI;
+        $this->client = $GZZLC;
+        $this->client_id = $CID;
+        $this->client_secret = $CSCRT;
+        $this->redirect_uri = $REDURI;
     }
 
-    public static function redirect(){
-        return redirect('https://www.strava.com/oauth/authorize?client_id='. self::$client_id .'&response_type=code&redirect_uri='. self::$redirect_uri .'&state=mystate');
+    public function redirect(){
+        return redirect('https://www.strava.com/oauth/authorize?client_id='. $this->client_id .'&response_type=code&redirect_uri='. $this->redirect_uri .'&state=mystate');
     }
 
-    public static function tokenExchange($code){
-        //$url = "'https://www.strava.com/oauth/token?client_id=20594&client_secret=426f99ae57f2c243fdcc6e5fa320c011523c6161&code=".$code."'";
+    public function tokenExchange($code){
         $url = 'https://www.strava.com/oauth/token';
         $config = [
             'form_params' => [
-                'client_id' => self::$client_id,
-                'client_secret' => self::$client_secret,
+                'client_id' => $this->client_id,
+                'client_secret' => $this->client_secret,
                 'code' => $code,
             ]
         ];
-        $res = self::post($url, $config);
+        $res = $this->post($url, $config);
 
         return $res;
     }
 
-    public static function post($url, $config){
-        $res = self::$client->post( $url, $config );
+    public function post($url, $config){
+        $res = $this->client->post( $url, $config );
 
-        $result = \GuzzleHttp\json_decode($res->getBody()->getContents());
+        $result = json_decode($res->getBody()->getContents());
 
         return $result;
     }
 
-    public static function get( $url, $config ){
+    public function get( $url, $config ){
 
-        $res = self::$client->get( $url, $config );
+        $res = $this->client->get( $url, $config );
 
-        $result = \GuzzleHttp\json_decode($res->getBody()->getContents());
+        $result = json_decode($res->getBody()->getContents());
 
         return $result;
     }

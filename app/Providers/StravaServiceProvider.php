@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use GuzzleHttp\Client;
 use NerdRunClub\Strava;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +25,8 @@ class StravaServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('Strava', function ($app) {
-            return new Strava(config('services.strava.client_id'), config('services.strava.client_secret'), config('services.strava.redirect_uri'));
+            $client = new Client();
+            return new Strava(config('services.strava.client_id'), config('services.strava.client_secret'), config('services.strava.redirect_uri'), $client);
         });
     }
 }
