@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use NerdRunClub\Facades\Strava;
 
 class LoginController extends Controller
 {
@@ -40,13 +41,13 @@ class LoginController extends Controller
     }
 
     public function login(){
-        return \NerdRunClub\Strava::redirect();
+        return Strava::redirect();
     }
 
     public function tokenexchange(){
         $code = request()->code;
 
-        $result = \NerdRunClub\Strava::tokenExchange($code);
+        $result = Strava::tokenExchange($code);
         $this->findOrCreateUser($result);
         return redirect('/dashboard');
     }

@@ -19,12 +19,12 @@ class Strava
     private static $client_secret;
     private static $redirect_uri;
     
-    public function __construct()
+    public function __construct($CID, $CSCRT, $REDURI)
     {
         self::$client = new Client();
-        self::$client_id = $_ENV['STRAVA_KEY'];
-        self::$client_secret = $_ENV['STRAVA_SECRET'];
-        self::$redirect_uri = $_ENV['STRAVA_REDIRECT_URI'];
+        self::$client_id = $CID;
+        self::$client_secret = $CSCRT;
+        self::$redirect_uri = $REDURI;
     }
 
     public static function redirect(){
