@@ -6,7 +6,7 @@
  * Time: 10:31
  */
 
-namespace App\NerdRunClub;
+namespace NerdRunClub;
 
 
 class Calculations

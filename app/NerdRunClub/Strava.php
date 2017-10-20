@@ -6,7 +6,7 @@
  * Time: 11:26
  */
 
-namespace App\NerdRunClub;
+namespace NerdRunClub;
 
 
 use GuzzleHttp\Client;

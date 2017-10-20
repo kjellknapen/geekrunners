@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
-use App\NerdRunClub\Strava;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -40,14 +39,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Strava $strava){
-        return $strava::redirect();
+    public function login(){
+        return \NerdRunClub\Strava::redirect();
     }
 
-    public function tokenexchange(Strava $strava){
+    public function tokenexchange(){
         $code = request()->code;
 
-        $result = $strava::tokenExchange($code);
+        $result = \NerdRunClub\Strava::tokenExchange($code);
         $this->findOrCreateUser($result);
         return redirect('/dashboard');
     }

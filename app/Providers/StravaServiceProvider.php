@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\NerdRunClub\Strava;
 use Illuminate\Support\ServiceProvider;
 
 class StravaServiceProvider extends ServiceProvider
@@ -24,8 +23,8 @@ class StravaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Strava::class, function ($app) {
-            return new Strava();
+        $this->app->singleton(\NerdRunClub\Strava::class, function ($app) {
+            return new \NerdRunClub\Strava();
         });
     }
 }
