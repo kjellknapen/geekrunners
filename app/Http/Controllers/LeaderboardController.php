@@ -9,7 +9,7 @@ class LeaderboardController extends Controller
 {
     //
     public function index(){
-        $runners = Calculations::getTopRunners();
-        return view('leaderboards/index', ['km' => $runners]);
+        $leaderboards = Calculations::getLeaderboardStats();
+        return view('leaderboards/index', ['leaderboard' => $leaderboards]);
     }
 }

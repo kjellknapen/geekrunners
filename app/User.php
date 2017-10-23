@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'avatar', 'gender', 'strava_id', 'token'
+        'id', 'firstname', 'lastname', 'email', 'avatar', 'gender', 'strava_id', 'token'
     ];
 
     /**
@@ -27,7 +27,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function activity(){
-        return $this->hasMany('App\Activity', 'user_id');
+    public function activities(){
+        return $this->hasMany('App\Activity');
     }
 }

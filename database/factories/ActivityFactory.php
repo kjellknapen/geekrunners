@@ -7,7 +7,7 @@ $factory->define(App\Activity::class, function (Faker $faker) {
     $user_id = \App\User::all()->pluck('id');
 
     return [
-      'user_id'=> $user_id[rand(1, count($user_id))],
+      'user_id'=> $user_id[rand(1, count($user_id)-1)],
       'name'=> $faker->name,
       'strava_id'=> str_random(10),
         'date'=> new DateTime(),

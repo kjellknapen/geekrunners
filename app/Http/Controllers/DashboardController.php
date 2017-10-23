@@ -16,21 +16,8 @@ class DashboardController extends Controller
     //
 
     public function index(){
+        $topRunners = Calculations::getLeaderboardStats();
 
-//        $users = User::find(1);
-//        dd($users->firstname);
-
-        $topRunners = Calculations::getTopRunners();
-        $topRunnersResult = [];
-        foreach ($topRunners as $key=>$value){
-            array_push($topRunnersResult, [
-                'user' => User::find($key),
-                'km' => $value,
-            ]);
-        }
-
-        //dd($topRunnersResult);
-
-        return view('dashboard/index', ['userStats' => Calculations::getUserStats(), 'topRunners' => $topRunnersResult]);
+        return view('dashboard/index', ['userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers']]);
     }
 }

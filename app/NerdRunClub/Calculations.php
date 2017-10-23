@@ -10,23 +10,37 @@ namespace NerdRunClub;
 
 use App\Activity;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use NerdRunClub\Facades\Strava;
 use DateTime;
 use DateTimeZone;
 
 class Calculations
 {
+    protected static $end_date;
+
+    /**
+     * @return mixed
+     */
+    public static function getEndDate()
+    {
+        return self::$end_date;
+    }
+
+    /**
+     * @param mixed $end_date
+     */
+    public static function setEndDate($end_date)
+    {
+        self::$end_date = $end_date;
+    }
+
     public static function getUserStats(){
         $result = Activity::all()->where('user_id', Auth::id());
 
-
-        $year = '2017';
-        $month = '04';
-        $day = '22';
-        $current_date = new DateTime(date('Y-m-d'), new DateTimeZone('Europe/Brussels'));
-        $end_date = new DateTime("$year-$month-$day", new DateTimeZone('Europe/Brussels'));
-        $interval = $current_date->diff($end_date);
+        $dt = Carbon::now();
+        self::setEndDate(Carbon::create('2018', '04', '22'));
+        $interval = $dt->diff(self::getEndDate());
         $daysLeft = $interval->format('%a');
 
         $weeklyGoal =  9;
@@ -35,9 +49,9 @@ class Calculations
 
         foreach ($result as $activity){
 
-            $Date = str_replace('/', '-', mb_substr($activity->date, 0, 10));
-            $FirstDay = date("d-m-Y", strtotime('sunday last week'));
-            $LastDay = date("d-m-Y", strtotime('sunday this week'));
+            $Date = mb_substr($activity->date, 0, 10);
+            $FirstDay = new Carbon('sunday last week');
+            $LastDay = new Carbon('sunday this week');
 
             if($Date > $FirstDay && $Date < $LastDay) {
                 $weeklyDone += $activity->km;
@@ -56,52 +70,59 @@ class Calculations
         return  $userStats;
     }
 
-    public static function getTopRunners(){
+    public static function getLeaderboardStats(){
         //$result = User::all()->where('user_id', Auth::id());
 
         $users = User::all();
         $idAndWeeklyKmArray = [];
+        $idAndWeeklyTimeArray = [];
 
         foreach ($users as $user){
 
-            $activities = Activity::find('1')->user();
-            dd($activities);
-            $total = 0;
-            foreach ($activities as $activity){
-
-                $Date = str_replace('/', '-', mb_substr($activity->date, 0, 10));
-                $FirstDay = date("d-m-Y", strtotime('sunday last week'));
-                $LastDay = date("d-m-Y", strtotime('sunday this week'));
+            $totalkm = 0;
+            $totaltime = 0;
+            $fastesttime = 0;
+            $longestrun = 0;
+            foreach ($user->activities as $activity){
+                $Date = mb_substr($activity->date, 0, 10);
+                $FirstDay = new Carbon('sunday last week');
+                $LastDay = new Carbon('sunday this week');
 
                 if($Date > $FirstDay && $Date < $LastDay) {
-                    $total += $activity['km'];
+                    $totalkm += $activity->km;
+                    $totaltime += $activity->minutes;
                 }
 
-                $idAndWeeklyKmArray[$user['id']] = $total;
+                $idAndWeeklyKmArray[$user->id] = $totalkm;
+                $idAndWeeklyTimeArray[$user->id] = $totaltime;
             }
         }
 
         arsort($idAndWeeklyKmArray);
-        $result = $idAndWeeklyKmArray;
-
-        $topRunnersResult = [];
-        foreach ($result as $key=>$value){
-            array_push($topRunnersResult, [
+        arsort($idAndWeeklyTimeArray);
+        $resultKM = $idAndWeeklyKmArray;
+        $resultTime = $idAndWeeklyTimeArray;
+        $leaderboardArray = [
+            'Kilometers' => [],
+            'Time' =>[]
+        ];
+        foreach ($resultKM as $key=>$value){
+            array_push($leaderboardArray['Kilometers'], [
                 'user' => User::find($key),
                 'km' => $value,
             ]);
         }
 
-        dd($topRunnersResult);
-        return $topRunnersResult;
-
-//        foreach ($result as $key=>$value){
-//            dd($value);
-//        }
-
+        foreach ($resultTime as $key=>$value){
+            array_push($leaderboardArray['Time'], [
+                'user' => User::find($key),
+                'time' => $value,
+            ]);
+        }
+        return $leaderboardArray;
     }
 
-    public static function leaderboardTime(){
+    public static function leaderboardStats(){
 
     }
 }
