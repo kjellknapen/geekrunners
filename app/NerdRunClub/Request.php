@@ -30,17 +30,13 @@ class Request
                 $result = Strava::get($url, $config);
                 foreach ($result as $run) {
                     $date = strtotime($run->start_date);
-                    $check_activities = Activity::all()->where('strava_id', $run->id)->first();
-                    if ($check_activities || $run->max_speed > 4.5) {
-                        // Don't Save
-                    } else {
-                        Activity::create([
+                    if ($run->max_speed < 4.5) {
+                        Activity::firstOrCreate([
                             'name' => $run->name,
                             'user_id' => $u->id,
                             'strava_id' => $run->id,
                             'map_id' => $run->map->id,
-                            //'date' => date('d/m/Y H:i:s', $date),
-                            'date' => new DateTime($date),
+                            'date' => \DateTime::createFromFormat('d-m-Y H:i:s', date('d-m-Y H:i:s', $date)),
                             'average_speed' => $run->average_speed,
                             'max_speed' => $run->max_speed,
                             'km' => number_format($run->distance / 1000, 2),

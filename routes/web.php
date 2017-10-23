@@ -17,13 +17,12 @@ Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::get('/leaderboards', function () {
-        return view('leaderboards/index');
-    });
+    Route::get('/leaderboards', 'LeaderboardController@index');
     Route::get('/user', 'UserController@index');
 
+    Route::get('/achievements', 'Achievements@index');
+
 });
-Route::get('/achievements', 'Achievements@index');
 
 
 // Reroute if user is loggedin

@@ -15,7 +15,7 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('strava_id');
             $table->dateTime('date');
             $table->string('name');
@@ -25,6 +25,10 @@ class CreateActivitiesTable extends Migration
             $table->float('km');
             $table->integer('minutes');
             $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('activities', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -3,8 +3,11 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Activity::class, function (Faker $faker) {
+
+    $user_id = \App\User::all()->pluck('id');
+
     return [
-      'user_id'=>$faker->numberBetween($min = 1, $max = 50),
+      'user_id'=> $user_id[rand(1, count($user_id))],
       'name'=> $faker->name,
       'strava_id'=> str_random(10),
         'date'=> new DateTime(),

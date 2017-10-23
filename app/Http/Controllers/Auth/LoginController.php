@@ -54,23 +54,17 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user){
         $userID = (int)$user->athlete->id;
-        $authUser = User::where('strava_id', $userID)->first();
-        if ($authUser) {
-            Auth::login($authUser, true);
-            return $authUser;
-        }else{
-            User::create([
-                'firstname' => $user->athlete->firstname,
-                'lastname' => $user->athlete->lastname,
-                'gender' => $user->athlete->sex,
-                'email' => $user->athlete->email,
-                'avatar' => $user->athlete->profile,
-                'strava_id' => $userID,
-                'token' => $user->access_token,
-            ]);
+        User::firstOrCreate([
+            'firstname' => $user->athlete->firstname,
+            'lastname' => $user->athlete->lastname,
+            'gender' => $user->athlete->sex,
+            'email' => $user->athlete->email,
+            'avatar' => $user->athlete->profile,
+            'strava_id' => $userID,
+            'token' => $user->access_token,
+        ]);
 
-            $loginUser = User::where('strava_id', $userID)->first();
-            Auth::login($loginUser, true);
-        }
+        $loginUser = User::where('strava_id', $userID)->first();
+        Auth::login($loginUser, true);
     }
 }
