@@ -22,7 +22,7 @@ Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/achievements', 'Achievements@index');
 
-    Route::get('/admin', 'Admin@index');
+    Route::get('/admin', 'AdminController@index');
 
 });
 
