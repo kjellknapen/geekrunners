@@ -1,21 +1,13 @@
-<nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/dashboard">NRC</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse-2">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/leaderboards">Leaderboards</a></li>
-                <li><a href="/user">Profile</a></li>
-                <li><a href="/achievements">Achievements</a></li>
 
-            </ul>
-
-        </div>
+<nav>
+    <div class="nav-container">
+        <a href="/dashboard">
+            <img src="img/logo.svg" alt="" class="logo">
+        </a>
+        <ul>
+            <li><a {{ (Request::is('dashboard') ? 'class=active' : '') }} href="/dashboard">Dashboard</a></li>
+            <li><a {{ (Request::is('leaderboards') ? 'class=active' : '') }} href="/leaderboards">Leaderboards</a></li>
+        </ul>
+        <a class="profile-nav-link" href="/user"><img src="{{ $user->avatar }}" alt="{{ $user->id }}" class="profile-nav"></a>
+    </div>
 </nav>
