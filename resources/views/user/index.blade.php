@@ -1,8 +1,7 @@
 @extends('layouts.master')
 
-
+@include('layouts.partials._navigation')
 @section('content')
-    @include('layouts.partials._navigation')
 
     <img src="{{ $user->avatar }}" alt="{{ $user->id }}">
     <h1>{{ $user->firstname . " " . $user->lastname }}</h1>

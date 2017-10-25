@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
-use App\NerdRunClub\Strava;
 use Illuminate\Support\Facades\Auth;
+use NerdRunClub\Facades\Strava;
 
 class LoginController extends Controller
 {
@@ -40,37 +40,31 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Strava $strava){
-        return $strava::redirect();
+    public function login(){
+        return Strava::redirect();
     }
 
-    public function tokenexchange(Strava $strava){
+    public function tokenexchange(){
         $code = request()->code;
 
-        $result = $strava::tokenExchange($code);
+        $result = Strava::tokenExchange($code);
         $this->findOrCreateUser($result);
         return redirect('/dashboard');
     }
 
     public function findOrCreateUser($user){
         $userID = (int)$user->athlete->id;
-        $authUser = User::where('strava_id', $userID)->first();
-        if ($authUser) {
-            Auth::login($authUser, true);
-            return $authUser;
-        }else{
-            User::create([
-                'firstname' => $user->athlete->firstname,
-                'lastname' => $user->athlete->lastname,
-                'gender' => $user->athlete->sex,
-                'email' => $user->athlete->email,
-                'avatar' => $user->athlete->profile,
-                'strava_id' => $userID,
-                'token' => $user->access_token,
-            ]);
+        User::firstOrCreate([
+            'firstname' => $user->athlete->firstname,
+            'lastname' => $user->athlete->lastname,
+            'gender' => $user->athlete->sex,
+            'email' => $user->athlete->email,
+            'avatar' => $user->athlete->profile,
+            'strava_id' => $userID,
+            'token' => $user->access_token,
+        ]);
 
-            $loginUser = User::where('strava_id', $userID)->first();
-            Auth::login($loginUser, true);
-        }
+        $loginUser = User::where('strava_id', $userID)->first();
+        Auth::login($loginUser, true);
     }
 }

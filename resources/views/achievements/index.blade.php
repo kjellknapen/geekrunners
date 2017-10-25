@@ -2,7 +2,6 @@
 
 
 @section('content')
-    @include('layouts.partials._navigation')
     <h1>Achievements</h1>
 
     <h2>Done:</h2>
