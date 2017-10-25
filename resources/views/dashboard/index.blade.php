@@ -9,7 +9,7 @@
         <h1>Weekly goals</h1>
         <ul class="goals">
             <li>&#10007; Run 5 km in 1 session</li>
-            <li>&#10007; Practise 3 times this week</li>
+            <li>&#10007; Practise 3 times this week (0/3)</li>
             <li>&#10007; Some other goal</li>
         </ul>
     </section>
