@@ -9,15 +9,9 @@
         <h1>Weekly goals</h1>
         <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
         <ul class="goals">
-<<<<<<< HEAD
             <li>&#10007; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
             <li>&#10007; Run {{ $scheduleData['frequency_goal'] }} times this week</li>
             <li>&#10007; Run atleast {{ $scheduleData['duration_goal'] }} minutes at your own pace</li>
-=======
-            <li>&#10007; Run 5 km in 1 session</li>
-            <li>&#10007; Practise 3 times this week (0/3)</li>
-            <li>&#10007; Some other goal</li>
->>>>>>> c3194412c5dba9d9d661f46320a116bd1c98efc5
         </ul>
     </section>
 
