@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use NerdRunClub\Facades\Strava;
+use NerdRunClub\Request;
 
 class LoginController extends Controller
 {
@@ -65,5 +66,6 @@ class LoginController extends Controller
 
         $loginUser = User::where('strava_id', $userID)->first();
         Auth::login($loginUser, true);
+        Request::retrieveActivities($loginUser);
     }
 }
