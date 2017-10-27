@@ -10,6 +10,7 @@ namespace NerdRunClub;
 
 use App\Activity;
 use App\User;
+use App\Schedules;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -118,5 +119,33 @@ class Calculations
             ]);
         }
         return $leaderboardArray;
+    }
+
+    public static function getScheduleData(){
+      /*
+      $week="1";
+      $duration_goal="20";
+      $frequency_goal="2";
+      $distance_goal="8";
+      */
+
+      $schedules = Schedules::all()->where('id', rand(1,25));
+
+      foreach ($schedules as $schedule) {
+        $week = $schedule->week;
+        $duration_goal= $schedule->duration_goal;
+        $frequency_goal= $schedule->frequency_goal;
+        $distance_goal= $schedule->distance_goal;
+      }
+
+
+      $scheduleData = [
+        'week'=>$week,
+        'duration_goal'=>$duration_goal,
+        'frequency_goal'=>$frequency_goal,
+        'distance_goal'=>$distance_goal,
+      ];
+
+      return $scheduleData;
     }
 }

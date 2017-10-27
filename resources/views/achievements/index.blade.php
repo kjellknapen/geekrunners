@@ -8,7 +8,7 @@
     <ul>
         @foreach ($achievements as $achievement)
             <div>
-                <li><a href="#">{{$achievement->achievement}}</a></li>
+                <li><img src="{{$achievement->img}}" alt=""><a href="#">{{$achievement->description}}</a></li>
             </div>
         @endforeach
     </ul>

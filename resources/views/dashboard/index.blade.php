@@ -7,10 +7,11 @@
 
     <section class="half half-left">
         <h1>Weekly goals</h1>
+        <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
         <ul class="goals">
-            <li>&#10007; Run 5 km in 1 session</li>
-            <li>&#10007; Practise 3 times this week</li>
-            <li>&#10007; Some other goal</li>
+            <li>&#10007; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
+            <li>&#10007; Run {{ $scheduleData['frequency_goal'] }} times this week</li>
+            <li>&#10007; Run atleast {{ $scheduleData['duration_goal'] }} minutes at your own pace</li>
         </ul>
     </section>
 
