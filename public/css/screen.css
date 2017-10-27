@@ -102,8 +102,20 @@ section{
 }
 h1{
     color: #EC3C34;
-    font-size:3.5em;
+    font-size:3em;
     font-weight:bolder;
+}
+h2{
+    color: #EC3C34;
+    font-size:2em;
+    font-weight:bolder;
+    margin-bottom:30px;
+}
+h3{
+    color: #EC3C34;
+    font-size:1.3em;
+    font-weight:bolder;
+    margin-top:20px;
 }
 .sub-title{
     margin-top:20px;
