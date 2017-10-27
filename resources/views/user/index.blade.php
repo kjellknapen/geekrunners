@@ -21,7 +21,7 @@
                     <p><strong>{{$run->km}} km</strong></p>
                     <p>{{$run->minutes}} minutes</p>
                     <p>{{$run->average_speed}} km/u on average</p>
-                    <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($run->created_at))->diffForHumans()}}</p>
+                    <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($run->date))->diffForHumans()}}</p>
 
                 @endforeach
             </div>
