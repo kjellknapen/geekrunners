@@ -3,22 +3,27 @@
 @include('layouts.partials._navigation')
 @section('content')
 
-    <img src="{{ $user->avatar }}" alt="{{ $user->id }}">
-    <h1>{{ $user->firstname . " " . $user->lastname }}</h1>
 
-    <h3>Activities</h3>
 
-    <br>
+    <section class="profile-top">
+        <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
+        <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
+    </section>
 
-    <div class="panel panel-default" style="text-align: center;">
-        <h4>Weekly stats</h4>
+        <section class="half half-left">
+            <h2>This week</h2>
+            <p>Total distance: </p>
+            <p>Total time: </p>
+            <br><br>
+            <h2>Activities</h2>
 
-        <p>Total distance xkm</p>
-        <p>Longest run xkm</p>
-        <p>Average speed xkm/h</p>
-        <hr>
-        <p>Last run xdays ago</p>
 
-    </div>
+        </section>
+
+        <section class="half half-right">
+            <h2>Achievements</h2>
+        </section>
+
+
 
 @endsection

@@ -1,0 +1,24 @@
+section .left{
+    width:50%;
+    float: left;
+    display: block;
+    text-align: center;
+
+}
+section .right{
+    width:50%;
+    float: right;
+    display: block;
+    text-align: center;
+
+}
+section{
+    overflow: hidden;
+}
+.profile-big{
+    border-radius: 100%;
+    max-width:180px;
+}
+.profile-top{
+    text-align: center;
+}
