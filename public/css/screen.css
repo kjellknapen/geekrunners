@@ -3,6 +3,15 @@ body{
     font-family: 'Roboto Slab', serif;
     color: #373737;
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
 nav a{
     color: #373737;
 }
