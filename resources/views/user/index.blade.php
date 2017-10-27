@@ -14,9 +14,17 @@
             <h2>This week</h2>
             <p>Total distance: </p>
             <p>Total time: </p>
-            <br><br>
-            <h2>Activities</h2>
+            <br><br><br>
+            <h2>Activity</h2>
+            <div class="activity">
+                @foreach($runs as $run)
+                    <p><strong>{{$run->km}} km</strong></p>
+                    <p>{{$run->minutes}} minutes</p>
+                    <p>{{$run->average_speed}} km/u on average</p>
+                    <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($run->created_at))->diffForHumans()}}</p>
 
+                @endforeach
+            </div>
 
         </section>
 

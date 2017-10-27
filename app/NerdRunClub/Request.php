@@ -34,7 +34,7 @@ class Request
                         'strava_id' => $run->id,
                         'map_id' => $run->map->id,
                         'date' => new Carbon($run->start_date),
-                        'average_speed' => $run->average_speed,
+                        'average_speed' => $run->average_speed*3.6,
                         'max_speed' => $run->max_speed,
                         'km' => number_format($run->distance / 1000, 2),
                         'minutes' => floor($run->elapsed_time / 60),

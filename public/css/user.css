@@ -22,3 +22,18 @@ section{
 .profile-top{
     text-align: center;
 }
+strong{
+    font-weight:600;
+    font-size:1.5em;
+    padding-bottom:8px;
+    display: block;
+}
+.activity{
+    border:1px solid #f0f0f0;
+    padding:10px;
+    margin-bottom:20px;
+}
+.time-ago{
+    margin-top: 10px;
+    color: #b4b4b4;
+}
