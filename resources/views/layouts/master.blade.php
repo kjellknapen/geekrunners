@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/screen.css">
+    <link rel="stylesheet" href="/css/leaderboards.css">
 
 </head>
 <body>
