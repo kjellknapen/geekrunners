@@ -54,11 +54,10 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user){
         $userID = (int)$user->athlete->id;
-        User::firstOrCreate([
+        User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
             'gender' => $user->athlete->sex,
-            'email' => $user->athlete->email,
             'avatar' => $user->athlete->profile,
             'strava_id' => $userID,
             'token' => $user->access_token,
