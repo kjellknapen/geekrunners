@@ -12,9 +12,7 @@ class UserController extends Controller
     //
     public function index(){
         $result = Activity::take(5)->where('user_id', Auth::id())->get();
-        $leaderboards = Calculations::getLeaderboardStats();
 
-        $result = Activity::all()->where('user_id', Auth::id());
         $user = Auth::user();
         return view("user.index", ['user' => $user, 'runs' => $result]);
     }
