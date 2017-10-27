@@ -13,8 +13,6 @@ use App\User;
 use App\Schedules;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use DateTime;
-use DateTimeZone;
 
 class Calculations
 {
@@ -121,10 +119,6 @@ class Calculations
             ]);
         }
         return $leaderboardArray;
-    }
-
-    public static function leaderboardStats(){
-
     }
 
     public static function getScheduleData(){

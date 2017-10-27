@@ -38,8 +38,13 @@
         <hr>
     @endforeach
     </div>
+@endsection
 
+<<<<<<< HEAD
     </section>
 
+=======
+@section('scripts')
+>>>>>>> 44bff0bfff4626b67b73af93132a864023f34904
     <script src="/js/leaderboardsfilter.js"></script>
 @endsection
