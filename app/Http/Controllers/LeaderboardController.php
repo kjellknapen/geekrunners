@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use NerdRunClub\Calculations;
 use Illuminate\Support\Facades\Auth;
+use NerdRunClub\Facades\Strava;
 
 class LeaderboardController extends Controller
 {

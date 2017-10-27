@@ -32,6 +32,8 @@
         <hr>
     @endforeach
     </div>
+@endsection
 
+@section('scripts')
     <script src="/js/leaderboardsfilter.js"></script>
 @endsection

@@ -2,11 +2,14 @@
 
 namespace App\Console;
 
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use NerdRunClub\Request;
 
 class Kernel extends ConsoleKernel
 {
+    protected $u;
     /**
      * The Artisan commands provided by your application.
      *
@@ -26,6 +29,14 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $users = User::all();
+
+        foreach ($users as $u){
+            $this->u = $u;
+            $schedule->call(function () {
+                Request::retrieveActivities($this->u);
+            })->hourly();
+        }
     }
 
     /**
