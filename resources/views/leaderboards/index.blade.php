@@ -7,8 +7,8 @@
     <h1>Leaderboards</h1>
         <p class="sub-title"> Weekly nerd ranking! </p>
         <select class="leaderboards-filter" name="leaderboardfilter" id="filter">
-            <option value="Km">Most Km</option>
-            <option value="Time">Most Time</option>
+            <option value="Km">Total distance</option>
+            <option value="Time">Total time</option>
         </select>
 
 
