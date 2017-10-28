@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    private $user;
+
     public function index()
     {
-      $user = Auth::user();
-      return view('admin.index', ['user' => $user]);
+      return view('admin.index');
+    }
+
+    public function setCurrentEvent(){
+        return view('admin.event');
     }
 }

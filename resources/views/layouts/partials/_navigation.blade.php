@@ -2,7 +2,7 @@
 <nav>
     <div class="nav-container">
         <a href="/dashboard">
-            <img src="img/logo.svg" alt="" class="logo">
+            <img src="/img/logo.svg" alt="" class="logo">
         </a>
         <ul>
             <li><a {{ (Request::is('dashboard') ? 'class=active' : '') }} href="/dashboard">Dashboard</a></li>

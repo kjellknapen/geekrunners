@@ -11,7 +11,6 @@ class UserController extends Controller
     //
     public function index(){
         $result = Activity::all()->where('user_id', Auth::id());
-        $user = Auth::user();
-        return view("user.index", ['user' => $user, 'runs' => $result]);
+        return view("user.index", ['runs' => $result]);
     }
 }

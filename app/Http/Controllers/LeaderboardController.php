@@ -13,8 +13,6 @@ class LeaderboardController extends Controller
     public function index(){
         $leaderboards = Calculations::getLeaderboardStats();
 
-        $user = Auth::user();
-
-        return view('leaderboards/index', ['leaderboard' => $leaderboards, 'user' => $user]);
+        return view('leaderboards/index', ['leaderboard' => $leaderboards]);
     }
 }
