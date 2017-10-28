@@ -45,14 +45,19 @@ class Calculations
         return $daysLeft;
     }
 
-    public static function currentWeek(){
+    public static function currentWeek()
+    {
         $event = Event::all()->where('id', 1)->first();
         $dt = Carbon::now();
-        self::setEndDate(Carbon::createFromFormat("Y-m-d", $event->start_date));
-        $interval = $dt->diffInWeeks(self::getEndDate());
-        $weekNumber = $interval + 1;
+        if (!empty($event)) {
+            self::setEndDate(Carbon::createFromFormat("Y-m-d", $event->start_date));
+            $interval = $dt->diffInWeeks(self::getEndDate());
+            $weekNumber = $interval + 1;
 
-        return $weekNumber;
+            return $weekNumber;
+        }else{
+            return false;
+        }
     }
 
     public static function getUserStats(){

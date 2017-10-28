@@ -17,8 +17,11 @@ class DashboardController extends Controller
 
     public function index(){
         $topRunners = Calculations::getLeaderboardStats();
-        $event = Calculations::daysLeft();
         $currentWeek = Calculations::currentWeek();
-        return view('dashboard/index', ['event' => $event, 'userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => Calculations::getScheduleData($currentWeek)]);
+        if($currentWeek != false){
+            $event = Calculations::daysLeft();
+            return view('dashboard/index', ['event' => $event, 'userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => Calculations::getScheduleData($currentWeek)]);
+        }
+        return view('dashboard.index', ['userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers']]);
     }
 }

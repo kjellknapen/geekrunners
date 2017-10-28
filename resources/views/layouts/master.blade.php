@@ -20,7 +20,9 @@
 
 </head>
 <body>
-
+    @isset($user)
+        @include('layouts.partials._navigation')
+    @endisset
     <div class="wrap">
         @yield('content')
     </div>
