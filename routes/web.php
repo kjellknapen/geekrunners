@@ -27,6 +27,8 @@ Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/admin/event', 'AdminController@setCurrentEvent');
 
+    Route::post('/admin/event', 'AdminController@saveEvent');
+
 });
 
 
