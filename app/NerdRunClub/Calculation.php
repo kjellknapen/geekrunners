@@ -15,7 +15,7 @@ use App\Schedules;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class Calculations
+class Calculation
 {
     protected static $end_date;
 
