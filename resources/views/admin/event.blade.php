@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="/css/admin.css">
 @endsection
 
-@include('layouts.partials._navigation')
 @section('content')
 
     @isset($saved)
