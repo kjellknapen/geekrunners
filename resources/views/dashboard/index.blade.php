@@ -3,7 +3,7 @@
 @section('content')
 
 
-    @isset($event, $scheduleDate)
+    @isset($event)
         <section class="half half-left">
             <h1>Weekly goals</h1>
             <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
