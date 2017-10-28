@@ -9,6 +9,7 @@
 namespace NerdRunClub;
 
 use App\Activity;
+use App\Event;
 use App\User;
 use App\Schedules;
 use Carbon\Carbon;
@@ -32,6 +33,26 @@ class Calculations
     public static function setEndDate($end_date)
     {
         self::$end_date = $end_date;
+    }
+    
+    public static function daysLeft(){
+        $event = Event::all()->where('id', 1)->first();
+        $dt = Carbon::now();
+        self::setEndDate(Carbon::createFromFormat("Y-m-d", $event->event_date));
+        $interval = $dt->diff(self::getEndDate());
+        $daysLeft = $interval->format('%a');
+
+        return $daysLeft;
+    }
+
+    public static function currentWeek(){
+        $event = Event::all()->where('id', 1)->first();
+        $dt = Carbon::now();
+        self::setEndDate(Carbon::createFromFormat("Y-m-d", $event->start_date));
+        $interval = $dt->diffInWeeks(self::getEndDate());
+        $weekNumber = $interval + 1;
+
+        return $weekNumber;
     }
 
     public static function getUserStats(){
@@ -121,7 +142,7 @@ class Calculations
         return $leaderboardArray;
     }
 
-    public static function getScheduleData(){
+    public static function getScheduleData($weekID){
       /*
       $week="1";
       $duration_goal="20";
@@ -129,7 +150,7 @@ class Calculations
       $distance_goal="8";
       */
 
-      $schedules = Schedules::all()->where('id', rand(1,25));
+      $schedules = Schedules::all()->where('id', $weekID);
 
       foreach ($schedules as $schedule) {
         $week = $schedule->week;

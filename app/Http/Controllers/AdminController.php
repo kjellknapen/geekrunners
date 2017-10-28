@@ -16,18 +16,22 @@ class AdminController extends Controller
     }
 
     public function setCurrentEvent(){
-        return view('admin.event');
+        $event = Event::find(1);
+        return view('admin.event', ['event' => $event]);
     }
 
     public function saveEvent(Request $request){
-        if(!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('location'))) {
+        if(!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('start-date')) && !empty($request->input('location'))) {
             Event::updateOrCreate(['id' => 1],[
                 'name' => $request->input('event-name'),
                 'event_date' => $request->input('event-date'),
+                'start_date' => $request->input('start-date'),
                 'location' => $request->input('location')
             ]);
-            return view('admin.event', ['saved' => true]);
+            $event = Event::find(1);
+            return view('admin.event', ['event' => $event, 'saved' => true]);
         }
-        return view('admin.event', ['saved' => false]);
+        $event = Event::find(1);
+        return view('admin.event', ['event' => $event, 'saved' => false]);
     }
 }

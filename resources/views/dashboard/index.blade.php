@@ -16,9 +16,9 @@
     </section>
 
     <section class="half half-right">
-        <h1>{{ $userStats['daysLeft'] }} days</h1>
+        <h1>{{ $event }} days</h1>
         <p class="sub-title">left until the marathon</p>
-        <div style="background: linear-gradient(to right, #ff9a95 {{ ceil((200 - $userStats['daysLeft']) / 200 * 100) }}%,white {{ ceil((200 - $userStats['daysLeft']) / 200 * 100) }}%);" class='percentageFill'></div>
+        <div style="background: linear-gradient(to right, #ff9a95 {{ ceil((200 - $event) / 200 * 100) }}%,white {{ ceil((200 - $event) / 200 * 100) }}%);" class='percentageFill'></div>
     </section>
 
     <section>
