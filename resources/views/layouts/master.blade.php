@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/screen.css">
     <link rel="stylesheet" href="/css/leaderboards.css">
     <link rel="stylesheet" href="/css/user.css">
+    @yield('stylesheets')
 
 </head>
 <body>

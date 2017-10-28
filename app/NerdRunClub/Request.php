@@ -27,13 +27,13 @@ class Request
 
             $result = Strava::get($url, $config);
             foreach ($result as $run) {
-                if ($run->max_speed < 4.5) {
+                if ($run->max_speed < 5.5) {
                     Activity::firstOrCreate(['strava_id' => $run->id],[
                         'name' => $run->name,
                         'user_id' => $u->id,
                         'map_id' => $run->map->id,
                         'date' => new Carbon($run->start_date),
-                        'average_speed' => $run->average_speed,
+                        'average_speed' => $run->average_speed*3.6,
                         'max_speed' => $run->max_speed,
                         'km' => number_format($run->distance / 1000, 2),
                         'minutes' => floor($run->elapsed_time / 60),

@@ -18,11 +18,16 @@ Route::middleware(['notloggedin'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 
     Route::get('/leaderboards', 'LeaderboardController@index');
+
     Route::get('/user', 'UserController@index');
 
     Route::get('/achievements', 'Achievements@index');
 
     Route::get('/admin', 'AdminController@index');
+
+    Route::get('/admin/event', 'AdminController@setCurrentEvent');
+
+    Route::post('/admin/event', 'AdminController@saveEvent');
 
 });
 

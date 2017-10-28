@@ -17,8 +17,8 @@ class DashboardController extends Controller
 
     public function index(){
         $topRunners = Calculations::getLeaderboardStats();
-        $user = Auth::user();
-
-        return view('dashboard/index', ['user' => $user, 'userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => Calculations::getScheduleData()]);
+        $event = Calculations::daysLeft();
+        $currentWeek = Calculations::currentWeek();
+        return view('dashboard/index', ['event' => $event, 'userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => Calculations::getScheduleData($currentWeek)]);
     }
 }
