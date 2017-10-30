@@ -33,8 +33,8 @@ class Kernel extends ConsoleKernel
 
         foreach ($users as $u){
             $this->u = $u;
-            $schedule->call(function () {
-                Request::retrieveActivities($this->u);
+            $schedule->call(function (Request $stravaRequest) {
+                $stravaRequest::retrieveActivities($this->u);
             })->hourly();
         }
     }

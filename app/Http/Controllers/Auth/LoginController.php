@@ -53,7 +53,7 @@ class LoginController extends Controller
         return redirect('/dashboard');
     }
 
-    public function findOrCreateUser($user){
+    public function findOrCreateUser($user, Request $request){
         $userID = (int)$user->athlete->id;
         User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
@@ -66,6 +66,6 @@ class LoginController extends Controller
 
         $loginUser = User::where('strava_id', $userID)->first();
         Auth::login($loginUser, true);
-        Request::retrieveActivities($loginUser);
+        $request::retrieveActivities($loginUser);
     }
 }

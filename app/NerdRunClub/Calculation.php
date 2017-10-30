@@ -17,54 +17,80 @@ use Illuminate\Support\Facades\Auth;
 
 class Calculation
 {
-    protected static $end_date;
+    protected $end_date;
+    protected $start_date;
+
+    public function __construct()
+    {
+        $this->setEndDate();
+        $this->setStartDate();
+    }
 
     /**
      * @return mixed
      */
-    public static function getEndDate()
+    public function getStartDate()
     {
-        return self::$end_date;
+        return $this->start_date;
+    }
+
+    /**
+     * @param mixed $start_date
+     */
+    public function setStartDate()
+    {
+        $event = Event::all()->where('id', 1)->first();
+        if (!empty($event)) {
+            $this->start_date = Carbon::createFromFormat("Y-m-d", $event->start_date);
+        }else{
+            $this->start_date = false;
+        }
+    }
+    /**
+     * @return mixed
+     */
+    public function getEndDate()
+    {
+        return $this->end_date;
     }
 
     /**
      * @param mixed $end_date
      */
-    public static function setEndDate($end_date)
+    public function setEndDate()
     {
-        self::$end_date = $end_date;
+        $event = Event::all()->where('id', 1)->first();
+        if (!empty($event)) {
+            $this->end_date = Carbon::createFromFormat("Y-m-d", $event->event_date);
+        }else{
+            $this->end_date = false;
+        }
     }
     
-    public static function daysLeft(){
-        $event = Event::all()->where('id', 1)->first();
+    public function daysLeft(){
         $dt = Carbon::now();
-        self::setEndDate(Carbon::createFromFormat("Y-m-d", $event->event_date));
+        self::setEndDate();
         $interval = $dt->diff(self::getEndDate());
         $daysLeft = $interval->format('%a');
 
         return $daysLeft;
     }
 
-    public static function currentWeek()
+    public function currentWeek()
     {
-        $event = Event::all()->where('id', 1)->first();
         $dt = Carbon::now();
-        if (!empty($event)) {
-            self::setEndDate(Carbon::createFromFormat("Y-m-d", $event->start_date));
-            $interval = $dt->diffInWeeks(self::getEndDate());
-            $weekNumber = $interval + 1;
+        $this->setStartDate();
+        $interval = $dt->diffInWeeks($this->getStartDate());
+        $weekNumber = $interval + 1;
 
-            return $weekNumber;
-        }else{
-            return false;
-        }
+        return $weekNumber;
     }
 
-    public static function getUserStats(){
+    public function getUserStats(){
         $result = Activity::all()->where('user_id', Auth::id());
 
         $dt = Carbon::now();
-        self::setEndDate(Carbon::create('2018', '04', '22'));
+        self::setEndDate();
         $interval = $dt->diff(self::getEndDate());
         $daysLeft = $interval->format('%a');
 
@@ -95,7 +121,7 @@ class Calculation
         return  $userStats;
     }
 
-    public static function getLeaderboardStats(){
+    public function getLeaderboardStats(){
         //$result = User::all()->where('user_id', Auth::id());
 
         $users = User::all();
@@ -147,7 +173,7 @@ class Calculation
         return $leaderboardArray;
     }
 
-    public static function getScheduleData($weekID){
+    public function getScheduleData($weekID){
       /*
       $week="1";
       $duration_goal="20";
