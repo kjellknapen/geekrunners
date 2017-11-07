@@ -9,37 +9,88 @@
 namespace NerdRunClub;
 
 use App\Activity;
+use App\Event;
 use App\User;
+use App\Schedules;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use DateTime;
-use DateTimeZone;
 
-class Calculations
+class Calculation
 {
-    protected static $end_date;
+    protected $end_date;
+    protected $start_date;
+
+    public function __construct()
+    {
+        $this->setEndDate();
+        $this->setStartDate();
+    }
 
     /**
      * @return mixed
      */
-    public static function getEndDate()
+    public function getStartDate()
     {
-        return self::$end_date;
+        return $this->start_date;
+    }
+
+    /**
+     * @param mixed $start_date
+     */
+    public function setStartDate()
+    {
+        $event = Event::all()->where('id', 1)->first();
+        if (!empty($event)) {
+            $this->start_date = Carbon::createFromFormat("Y-m-d", $event->start_date);
+        }else{
+            $this->start_date = false;
+        }
+    }
+    /**
+     * @return mixed
+     */
+    public function getEndDate()
+    {
+        return $this->end_date;
     }
 
     /**
      * @param mixed $end_date
      */
-    public static function setEndDate($end_date)
+    public function setEndDate()
     {
-        self::$end_date = $end_date;
+        $event = Event::all()->where('id', 1)->first();
+        if (!empty($event)) {
+            $this->end_date = Carbon::createFromFormat("Y-m-d", $event->event_date);
+        }else{
+            $this->end_date = false;
+        }
+    }
+    
+    public function daysLeft(){
+        $dt = Carbon::now();
+        self::setEndDate();
+        $interval = $dt->diff(self::getEndDate());
+        $daysLeft = $interval->format('%a');
+
+        return $daysLeft;
     }
 
-    public static function getUserStats(){
+    public function currentWeek()
+    {
+        $dt = Carbon::now();
+        $this->setStartDate();
+        $interval = $dt->diffInWeeks($this->getStartDate());
+        $weekNumber = $interval + 1;
+
+        return $weekNumber;
+    }
+
+    public function getUserStats(){
         $result = Activity::all()->where('user_id', Auth::id());
 
         $dt = Carbon::now();
-        self::setEndDate(Carbon::create('2018', '04', '22'));
+        self::setEndDate();
         $interval = $dt->diff(self::getEndDate());
         $daysLeft = $interval->format('%a');
 
@@ -70,7 +121,7 @@ class Calculations
         return  $userStats;
     }
 
-    public static function getLeaderboardStats(){
+    public function getLeaderboardStats(){
         //$result = User::all()->where('user_id', Auth::id());
 
         $users = User::all();
@@ -122,7 +173,31 @@ class Calculations
         return $leaderboardArray;
     }
 
-    public static function leaderboardStats(){
+    public function getScheduleData($weekID){
+      /*
+      $week="1";
+      $duration_goal="20";
+      $frequency_goal="2";
+      $distance_goal="8";
+      */
 
+      $schedules = Schedules::all()->where('id', $weekID);
+
+      foreach ($schedules as $schedule) {
+        $week = $schedule->week;
+        $duration_goal= $schedule->duration_goal;
+        $frequency_goal= $schedule->frequency_goal;
+        $distance_goal= $schedule->distance_goal;
+      }
+
+
+      $scheduleData = [
+        'week'=>$week,
+        'duration_goal'=>$duration_goal,
+        'frequency_goal'=>$frequency_goal,
+        'distance_goal'=>$distance_goal,
+      ];
+
+      return $scheduleData;
     }
 }

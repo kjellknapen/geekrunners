@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use App\NerdRunClub\Strava;
-use App\User;
 use App;
-use Illuminate\Support\Facades\Auth;
-use DateTime;
-use DateTimeZone;
-use NerdRunClub\Calculations;
+use NerdRunClub\Calculation;
 
 class DashboardController extends Controller
 {
     //
 
-    public function index(){
-        $topRunners = Calculations::getLeaderboardStats();
-        $user = Auth::user();
+    public function index(Calculation $calculations){
+        $topRunners = $calculations->getLeaderboardStats();
 
-        return view('dashboard/index', ['user' => $user, 'userStats' => Calculations::getUserStats(), 'topRunners' => $topRunners['Kilometers']]);
+        if($calculations->getEndDate() != false || $calculations->getEndDate() != null){
+            $currentWeek = $calculations->currentWeek();
+            $event = $calculations->daysLeft();
+            return view('dashboard/index', ['event' => $event, 'userStats' => $calculations->getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
+        }
+        return view('dashboard.index', ['topRunners' => $topRunners['Kilometers']]);
     }
 }

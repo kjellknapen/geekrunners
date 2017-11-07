@@ -1,24 +1,36 @@
 @extends('layouts.master')
 
-@include('layouts.partials._navigation')
 @section('content')
 
-    <img src="{{ $user->avatar }}" alt="{{ $user->id }}">
-    <h1>{{ $user->firstname . " " . $user->lastname }}</h1>
 
-    <h3>Activities</h3>
 
-    <br>
+    <section class="profile-top">
+        <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
+        <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
+    </section>
 
-    <div class="panel panel-default" style="text-align: center;">
-        <h4>Weekly stats</h4>
+        <section class="half half-left">
+            <h2>This week</h2>
+            <p>Total distance: {{$userStats['distance']}} km</p>
+            <p>Total time: {{$userStats['time']}} minutes</p>
+            <p>Total runs: {{$userStats['total']}}</p>
+            <br><br><br>
+            <h2>Activity</h2>
+                @foreach($runs as $run)
+                <div class="activity">
+                    <p><strong>{{$run->km}} km</strong></p>
+                    <p>{{$run->minutes}} minutes</p>
+                    <p>{{$run->average_speed}} km/u on average</p>
+                    <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($run->date))->diffForHumans()}}</p>
+                </div>
+                @endforeach
 
-        <p>Total distance xkm</p>
-        <p>Longest run xkm</p>
-        <p>Average speed xkm/h</p>
-        <hr>
-        <p>Last run xdays ago</p>
+        </section>
 
-    </div>
+        <section class="half half-right">
+            <h2>Achievements</h2>
+        </section>
+
+
 
 @endsection

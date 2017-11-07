@@ -19,7 +19,7 @@ class CreateActivitiesTable extends Migration
             $table->string('strava_id');
             $table->dateTime('date');
             $table->string('name');
-            $table->string('map_id');
+            $table->string('map_id')->nullable();
             $table->float('average_speed');
             $table->float('max_speed');
             $table->float('km');

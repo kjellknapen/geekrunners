@@ -3,10 +3,22 @@ body{
     font-family: 'Roboto Slab', serif;
     color: #373737;
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
 nav a{
     color: #373737;
 }
 nav a:hover{
+    text-decoration: none;
+}
+nav a{
     text-decoration: none;
 }
 .wrap{
@@ -78,20 +90,32 @@ section{
     border:1px solid #f0f0f0;
 }
 .half{
-    width:45%;
+    width:47%;
     float: left;
     clear: none;
 }
 .half-left{
-
+    float: left;
 }
 .half-right{
-    margin-left:10%;
+    float: right;
 }
 h1{
     color: #EC3C34;
-    font-size:3.5em;
+    font-size:3em;
     font-weight:bolder;
+}
+h2{
+    color: #EC3C34;
+    font-size:2em;
+    font-weight:bolder;
+    margin-bottom:30px;
+}
+h3{
+    color: #EC3C34;
+    font-size:1.3em;
+    font-weight:bolder;
+    margin-top:20px;
 }
 .sub-title{
     margin-top:20px;
@@ -100,6 +124,8 @@ h1{
 .goals{
     font-weight:bold;
     margin-top:20px;
+    color: #ff9a95;
+    font-size:1.2em;
 }
 p{
     line-height:1.5em;
@@ -109,7 +135,46 @@ p{
 }
 
 .percentageFill{
-    margin-top:29px;
+    margin-top:38px;
     height:20px;
     border:1px solid #f0f0f0;
+}
+@media screen and (max-width: 960px) {
+    .half{
+        width:100%;
+    }
+    .wrap{
+        margin-top:100px;
+    }
+    section{
+        margin-bottom:40px;
+    }
+}
+@media screen and (max-width: 530px) {
+    .logo{
+        display: none;
+    }
+    .nav-container{
+        padding-left:15px;
+        padding-right:15px;
+    }
+    .wrap{
+        padding-left:15px;
+        padding-right:15px;
+    }
+    nav ul{
+        margin-left:0;
+    }
+    nav ul li{
+        margin-left:15px;
+    }
+    nav ul li:first-of-type{
+        margin-left:0;
+    }
+    h1{
+        font-size:2em;
+    }
+    .goals{
+        font-size:1.1em;
+    }
 }

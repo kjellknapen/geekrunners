@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 
+@include('layouts.partials._navigation')
 @section('content')
-    @include('layouts.partials._navigation')
 
     <h1>Dashboard</h1>
 

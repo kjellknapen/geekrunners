@@ -9,20 +9,25 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/screen.css">
+    <link rel="stylesheet" href="/css/leaderboards.css">
+    <link rel="stylesheet" href="/css/user.css">
+    @yield('stylesheets')
 
 </head>
 <body>
-
+    @isset($user)
+        @include('layouts.partials._navigation')
+    @endisset
     <div class="wrap">
         @yield('content')
     </div>
 
 </body>
+@yield('scripts')
 </html>
 

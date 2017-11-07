@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class RedirectNotLoggedIn
 {
@@ -19,6 +20,7 @@ class RedirectNotLoggedIn
         if(!Auth::check()){
             return redirect('/');
         }
+        View::share('user', Auth::user());
         return $next($request);
     }
 }

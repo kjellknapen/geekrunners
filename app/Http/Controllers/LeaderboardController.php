@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use NerdRunClub\Calculations;
-use Illuminate\Support\Facades\Auth;
+use NerdRunClub\Calculation;
 
 class LeaderboardController extends Controller
 {
     //
-    public function index(){
-        $leaderboards = Calculations::getLeaderboardStats();
+    public function index(Calculation $calculation){
+        $leaderboards = $calculation->getLeaderboardStats();
 
-        $user = Auth::user();
-
-        return view('leaderboards/index', ['leaderboard' => $leaderboards, 'user' => $user]);
+        return view('leaderboards/index', ['leaderboard' => $leaderboards]);
     }
 }
