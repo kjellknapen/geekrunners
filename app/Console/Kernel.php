@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\StravaActivityCall;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -33,12 +34,9 @@ class Kernel extends ConsoleKernel
 
         foreach ($users as $u){
             $this->u = $u;
-            
-            if(ctype_digit( $u->strava_id )) {
-                $schedule->call(function (Request $stravaRequest) {
-                    $stravaRequest::retrieveActivities($this->u);
-                })->everyFiveMinutes();
-            }
+                $schedule->call(function () {
+                    StravaActivityCall::dispatch($this->u);
+                })->everyFifteenMinutes();
         }
     }
 
