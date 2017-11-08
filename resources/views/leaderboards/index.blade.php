@@ -21,7 +21,15 @@
     @foreach($leaderboard['Kilometers'] as $key =>  $r)
         <div id="km-item" class="leaderboards-data">
             <p>{{ $key+1 }}</p>
-            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname }}</p>
+            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname
+            }}
+                @if($r['user']->medals>0)
+
+                    &#x1f3c5;<span class="medal-counter">{{'('.$r['user']->medals.')'}}</span>
+
+                @endif
+
+            </p>
             <p>{{ $r['km'] . " km"}}</p>
         </div>
         <hr>
