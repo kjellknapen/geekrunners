@@ -2,28 +2,37 @@
 
 @section('content')
 
-<form>
-  <div class="week_schedule">
-
-  </div>
-  <div class="form-group">
+<form action="{{ action('AdminController@saveshedule') }}" method="post">
+  {{ csrf_field() }}
+  <div class="form-group col-xs-3">
     <label for="week">week</label>
-    <input type="number" class=".col-xs-2" name="week" id="week">
+    <input type="number" class="form-control" name="week" id="week" placeholder="Week number?">
   </div>
-  <div class="form-group">
+  <div class="form-group col-xs-3">
     <label for="duration">Duration goal for this week?</label>
-    <input type="text" class="form-control" id="duration" name="duration" placeholder="Duration goal?">
+    <input type="number" class="form-control" id="duration" name="duration" placeholder="Duration goal?">
   </div>
-  <div class="form-group">
+  <div class="form-group col-xs-3">
     <label for="distance">Distance goal for this week?</label>
-    <input type="text" class="form-control" id="distance" name="distance" placeholder="Distance goal?">
+    <input type="number" class="form-control" id="distance" name="distance" placeholder="Distance goal?">
   </div>
-  <div class="form-group">
+  <div class="form-group col-xs-3">
     <label for="distance">Frequency goal for this week?</label>
-    <input type="text" class="form-control" id="distance" name="distance" placeholder="Frequency goal?">
+    <input type="number" class="form-control" id="frequency" name="frequency" placeholder="Frequency goal?">
   </div>
-  <button type="button" class="btn btn-default">Add week </button>
+  <input type="submit" class="btn btn-default" value="add week"> </button>
 </form>
+
+<div class="current_shedule">
+  @foreach($shedules as $shedule)
+    <div class="shedule-week">
+      <p class="shedule-part col-xs-3">week: {{$shedule['week']}}</p>
+      <p class="shedule-part col-xs-3">duration goal: {{$shedule['duration_goal']}} minutes</p>
+      <p class="shedule-part col-xs-3">distance goal: {{$shedule['distance_goal']}} km</p>
+      <p class="shedule-part col-xs-3">frequency goal: Run {{$shedule['frequency_goal']}} times this week</p>
+    </div>
+  @endforeach
+</div>
 
 
 @endsection

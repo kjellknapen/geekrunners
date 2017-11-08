@@ -53,7 +53,8 @@ class LoginController extends Controller
         return redirect('/dashboard');
     }
 
-    public function findOrCreateUser($user, Request $request){
+    public function findOrCreateUser($user){
+        $request = app()->make('Request');
         $userID = (int)$user->athlete->id;
         User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,

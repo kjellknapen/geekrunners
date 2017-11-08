@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Schedules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use NerdRunClub\Calculation;
@@ -13,8 +14,25 @@ class AdminController extends Controller
 
     public function index()
     {
-      return view('admin.index');
+      $shedules = schedules::all();
+      return view('admin.index', ['shedules' => $shedules]);
     }
+
+    public function saveshedule(Request $request){
+      if(!empty($request->input('week')) && !empty($request->input('duration')) &&  !empty($request->input('distance')) &&  !empty($request->input('frequency'))) {
+          schedules::create(
+           ['week' => $request->input('week'),
+            'duration_goal' => $request->input('duration'),
+            'distance_goal' => $request->input('distance'),
+            'frequency_goal'=> $request->input('frequency')
+          ]);
+          $shedules = schedules::all();
+          return view('admin.index', ['shedules' => $shedules]);
+      }
+      $shedules = schedules::all();
+      return view('admin.index', ['shedules' => $shedules]);
+    }
+
 
     public function setCurrentEvent(){
         $event = Event::find(1);
