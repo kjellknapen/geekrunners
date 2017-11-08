@@ -17,7 +17,7 @@ Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::get('/leaderboards', 'LeaderboardController@index');
+    Route::get('/leaderboard', 'LeaderboardController@index');
 
     Route::get('/user', 'UserController@index');
 
