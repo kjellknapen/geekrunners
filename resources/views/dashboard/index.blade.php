@@ -16,14 +16,28 @@
 
         <section class="half half-right">
             <h1>{{ $event }} days</h1>
-            <p class="sub-title">left until the marathon</p>
+            <p class="sub-title">Left until '{{$eventName[0]}}'</p>
             <div style="background: linear-gradient(to right, #ff9a95 {{ ceil((200 - $event) / 200 * 100) }}%,white {{ ceil((200 - $event) / 200 * 100) }}%);" class='percentageFill'></div>
         </section>
     @endisset
 
     <section>
         <h1>Activity feed</h1>
-        <p class="sub-title">recent activities from all users here</p>
+        <p class="sub-title">Recent runs from your fellow nerds</p><br><br><br>
+        @foreach($activityfeed as $activity)
+            <div class="activity">
+                <p><strong>{{$activity->km}} km</strong></p>
+                <p>{{$activity->minutes}} minutes</p>
+                <p>{{$activity->average_speed}} km/u on average</p>
+                <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($activity->date))->diffForHumans()}}</p>
+                <div class="activity-user-info">
+                    <p>{{$activity->user['firstname']}}</p>
+                    <div class="img-container">
+                    <img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}">
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </section>
 
 @endsection

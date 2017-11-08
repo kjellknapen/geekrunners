@@ -140,6 +140,39 @@ p{
     height:20px;
     border:1px solid #f0f0f0;
 }
+
+.activity-user-info{
+    position: absolute;
+    top:15px;
+    right:15px;
+    display: inline-block;
+    text-align: right;
+}
+
+.activity-user-info img {
+    min-width: 100%;
+    width:100%;
+    height:100%;
+}
+
+
+.activity-user-info .img-container {
+    border-radius: 100%;
+    overflow: hidden;
+    width:30px;
+    height:30px;
+    float: right;
+
+}
+
+.activity-user-info p {
+    margin-bottom:5px;
+    font-size:.8em;
+    color: #ff9a95;
+
+}
+
+
 @media screen and (max-width: 960px) {
     .half{
         width:100%;

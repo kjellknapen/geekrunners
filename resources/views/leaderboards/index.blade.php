@@ -4,7 +4,7 @@
 @section('content')
 
     <section>
-    <h1>Leaderboards</h1>
+    <h1>Leaderboard</h1>
         <p class="sub-title"> Weekly nerd ranking! </p>
         <select class="leaderboards-filter" name="leaderboardfilter" id="filter">
             <option value="Km">Total distance</option>
