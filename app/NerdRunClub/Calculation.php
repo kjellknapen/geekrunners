@@ -76,6 +76,28 @@ class Calculation
         return $daysLeft;
     }
 
+    public function saveMedals(){
+        $leaderboards = $this->getLeaderboardStats();
+
+        $topKilometers = array_slice($leaderboards['Kilometers'], 0, 5, true);
+        foreach ($topKilometers as $i){
+            $id = $i['user']['id'];
+            $user = User::find($id);
+            $currentMedals = $user->medals;
+            $user->medals = $currentMedals + 1;
+            $user->save();
+        }
+
+        $topTime = array_slice($leaderboards['Time'], 0, 5, true);
+        foreach ($topTime as $i){
+            $id = $i['user']['id'];
+            $user = User::find($id);
+            $currentMedals = $user->medals;
+            $user->medals = $currentMedals + 1;
+            $user->save();
+        }
+    }
+
     public function currentWeek()
     {
         $dt = Carbon::now();
