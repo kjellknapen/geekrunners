@@ -32,4 +32,9 @@ class UserController extends Controller
         
         return view("user.index", ['runs' => $result, 'userStats' => $userStats]);
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
 }

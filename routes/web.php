@@ -31,6 +31,8 @@ Route::middleware(['notloggedin'])->group(function () {
 
     Route::post('/admin/event', 'AdminController@saveEvent');
 
+    Route::get('/logout', 'UserController@logout');
+
 });
 
 

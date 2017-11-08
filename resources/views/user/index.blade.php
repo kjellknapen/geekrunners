@@ -5,6 +5,7 @@
 
 
     <section class="profile-top">
+        <a href="/logout" class="logout leaderboards-filter">Logout</a>
         <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
         <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
     </section>
