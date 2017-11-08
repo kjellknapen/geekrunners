@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Activity;
+use App\Event;
 use NerdRunClub\Calculation;
 
 class DashboardController extends Controller
@@ -15,7 +17,9 @@ class DashboardController extends Controller
         if($calculations->getEndDate() != false || $calculations->getEndDate() != null){
             $currentWeek = $calculations->currentWeek();
             $event = $calculations->daysLeft();
-            return view('dashboard/index', ['event' => $event, 'userStats' => $calculations->getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
+            $eventName = Event::take(1)->pluck('name');
+            $activityfeed = Activity::take(5)->get();
+            return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event, 'userStats' => $calculations->getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
         }
         return view('dashboard.index', ['topRunners' => $topRunners['Kilometers']]);
     }

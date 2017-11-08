@@ -26,10 +26,10 @@
 <div class="current_shedule">
   @foreach($shedules as $shedule)
     <div class="shedule-week">
-      <p class="shedule-part col-xs-3">week: {{$shedule['week']}}</p>
-      <p class="shedule-part col-xs-3">duration goal: {{$shedule['duration_goal']}} minutes</p>
-      <p class="shedule-part col-xs-3">distance goal: {{$shedule['distance_goal']}} km</p>
-      <p class="shedule-part col-xs-3">frequency goal: Run {{$shedule['frequency_goal']}} times this week</p>
+      <p class="shedule-part col-xs-3">{{$shedule['week']}}</p>
+      <p class="shedule-part col-xs-3">{{$shedule['duration_goal']}} minutes</p>
+      <p class="shedule-part col-xs-3">{{$shedule['distance_goal']}} km</p>
+      <p class="shedule-part col-xs-3">{{$shedule['frequency_goal']}} times this week</p>
     </div>
   @endforeach
 </div>
