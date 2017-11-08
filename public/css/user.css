@@ -45,6 +45,14 @@ strong {
   color: #b4b4b4;
 }
 
+.medal-profile{
+  position: absolute;
+  left:50%;
+  top:50%;
+  font-size:1.3em;
+  transform: translate(45px,45px);
+}
+
 .logout:link,
 .logout:visited,
 .logout:hover,
