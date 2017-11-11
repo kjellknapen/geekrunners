@@ -2427,3 +2427,51 @@ Parse error: syntax error, unexpected 'protected' (T_PROTECTED) in /home/vagrant
 [2017-11-08 10:45:05] Processing: App\Jobs\StravaActivityCall
 [2017-11-08 10:45:05] Failed:     App\Jobs\StravaActivityCall
 [2017-11-08 10:45:05] Failed:     App\Jobs\StravaActivityCall
+
+                                                                               
+  [Illuminate\Database\QueryException]                                         
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (111) (  
+  SQL: select * from `users`)                                                  
+                                                                               
+
+                                                                             
+  [PDOException]                                                             
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (111)  
+                                                                             
+
+
+                                                                               
+  [Illuminate\Database\QueryException]                                         
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (101) (  
+  SQL: select * from `users`)                                                  
+                                                                               
+
+                                                                             
+  [PDOException]                                                             
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (101)  
+                                                                             
+
+
+                                                                               
+  [Illuminate\Database\QueryException]                                         
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (101) (  
+  SQL: select * from `users`)                                                  
+                                                                               
+
+                                                                             
+  [PDOException]                                                             
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (101)  
+                                                                             
+
+
+                                                                               
+  [Illuminate\Database\QueryException]                                         
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (101) (  
+  SQL: select * from `users`)                                                  
+                                                                               
+
+                                                                             
+  [PDOException]                                                             
+  SQLSTATE[HY000] [2003] Can't connect to MySQL server on '127.0.0.1' (101)  
+                                                                             
+
