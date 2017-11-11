@@ -133,6 +133,17 @@ p{
 }
 .goals li{
     line-height:1.5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.goal-completed{
+    color: #66cc70;
+}
+
+.activity{
+    position: relative;
 }
 
 .percentageFill{
@@ -169,7 +180,40 @@ p{
     margin-bottom:5px;
     font-size:.8em;
     color: #ff9a95;
+}
 
+.completed-users{
+    font:inherit;
+    font-weight: bold;
+    font-size:0.8em;
+    margin-top: 25px ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.img-completed{
+    overflow: hidden;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    margin-right: -5px;
+}
+
+.img-completed:last-child{
+    margin-right: 0;
+}
+
+.img-completed img{
+    height: 100%;
+}
+
+.ul-users{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
 }
 
 

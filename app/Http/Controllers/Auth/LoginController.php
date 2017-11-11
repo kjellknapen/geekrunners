@@ -50,7 +50,7 @@ class LoginController extends Controller
 
         $result = Strava::tokenExchange($code);
         $this->findOrCreateUser($result);
-        return redirect('/dashboard');
+        return redirect('/job');
     }
 
     public function findOrCreateUser($user){

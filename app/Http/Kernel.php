@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\NoJobYet;
 use App\Http\Middleware\RedirectNotLoggedIn;
+use App\Http\Middleware\TeacherLoggedIn;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -59,5 +61,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'notloggedin' => RedirectNotLoggedIn::class,
+        'checkifteacher' => TeacherLoggedIn::class,
+        'nojob' => NoJobYet::class,
     ];
 }

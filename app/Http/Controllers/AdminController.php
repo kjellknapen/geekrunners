@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\AdminPassword;
 use App\Event;
 use App\Schedules;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use NerdRunClub\Calculation;
 
 class AdminController extends Controller
@@ -54,5 +57,38 @@ class AdminController extends Controller
         }
         $event = Event::find(1);
         return view('admin.event', ['event' => $event, 'saved' => false]);
+    }
+
+    public function chooseJob(){
+        return view('admin.choosejob');
+    }
+
+    public function saveJob(Request $request){
+        if(!empty($request->input('job'))) {
+            if($request->input('job') == "Teacher"){
+                return view('admin.password');
+            }else{
+                User::where('id', Auth::id())->update([
+                    'job' => $request->input('job')
+                ]);
+            }
+            return redirect('/dashboard');
+        }elseif(empty($request->input('password')) && empty($request->input('job'))){
+            return view('admin.choosejob', ['error' => "You didn't select anything"]);
+        }else{
+            if(!empty($request->input('password'))){
+                $hashed = AdminPassword::find(1)->password;
+                if(Hash::check($request->input('password'), $hashed)){
+                    User::where('id', Auth::id())->update([
+                        'job' => 'Teacher'
+                    ]);
+                    return redirect('/admin');
+                }else{
+                    return view('admin.password', ['error' => "Wrong Password"]);
+                }
+            }else{
+                return view('admin.password', ['error' => "Password can't be empty"]);
+            }
+        }
     }
 }

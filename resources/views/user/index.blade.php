@@ -5,6 +5,7 @@
 
 
     <section class="profile-top">
+        <span class="medal-profile" title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$user->medals.')'}}</span></span>
         <a href="/logout" class="logout leaderboards-filter">Logout</a>
         <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
         <h3>{{ $user->firstname . " " . $user->lastname }}</h3>

@@ -21,7 +21,14 @@
     @foreach($leaderboard['Kilometers'] as $key =>  $r)
         <div id="km-item" class="leaderboards-data">
             <p>{{ $key+1 }}</p>
-            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname }}</p>
+            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
+                @if($r['user']->medals>0)
+
+                    <span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>
+
+                @endif
+
+            </p>
             <p>{{ $r['km'] . " km"}}</p>
         </div>
         <hr>
@@ -32,7 +39,16 @@
     @foreach($leaderboard['Time'] as $key =>  $r)
         <div id="time-item" class="leaderboards-data">
             <p>{{ $key+1 }}</p>
-            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname }}</p>
+
+            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
+                @if($r['user']->medals>0)
+
+                    <span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>
+
+                @endif
+
+            </p>
+
             <p>{{ $r['time'] . " minutes"}}</p>
         </div>
         <hr>

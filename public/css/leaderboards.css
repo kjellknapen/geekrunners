@@ -18,6 +18,11 @@
 .leaderboards-data--nerd{
     margin:0 20px;
 }
+.medal-counter{
+    font-size:.65em;
+    color: #f18480;
+    margin-left: -3px;
+}
 
 @media screen and (max-width: 530px) {
     .leaderboards-data{

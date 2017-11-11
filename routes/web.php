@@ -23,15 +23,28 @@ Route::middleware(['notloggedin'])->group(function () {
 
     Route::get('/achievements', 'Achievements@index');
 
-    Route::get('/admin', 'AdminController@index');
-
-    Route::post('/admin', 'AdminController@saveshedule');
-
-    Route::get('/admin/event', 'AdminController@setCurrentEvent');
-
-    Route::post('/admin/event', 'AdminController@saveEvent');
-
     Route::get('/logout', 'UserController@logout');
+
+    // Routes only for users withouth a student of teacher
+    Route::middleware(['nojob'])->group(function () {
+
+        Route::get('/job', 'AdminController@chooseJob');
+
+        Route::post('/job', 'AdminController@saveJob');
+
+    });
+
+    // Routes only for teacher
+    Route::middleware(['checkifteacher'])->group(function () {
+
+        Route::get('/admin', 'AdminController@index');
+
+        Route::post('/admin', 'AdminController@saveshedule');
+
+        Route::get('/admin/event', 'AdminController@setCurrentEvent');
+
+        Route::post('/admin/event', 'AdminController@saveEvent');
+    });
 
 });
 
