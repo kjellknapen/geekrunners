@@ -142,6 +142,10 @@ p{
     color: #66cc70;
 }
 
+.activity{
+    position: relative;
+}
+
 .percentageFill{
     margin-top:38px;
     height:20px;
@@ -176,7 +180,6 @@ p{
     margin-bottom:5px;
     font-size:.8em;
     color: #ff9a95;
-
 }
 
 .completed-users{
