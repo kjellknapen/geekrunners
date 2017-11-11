@@ -107,7 +107,7 @@
                 <p>{{$activity->average_speed}} km/u on average</p>
                 <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($activity->date))->diffForHumans()}}</p>
                 <div class="activity-user-info">
-                    <p>{{$activity->user['firstname']}}</p>
+                    <p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p>
                     <div class="img-container">
                     <img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}">
                     </div>
