@@ -16,10 +16,13 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
+    $mOrF = ['male', 'female'];
+    $rand = rand(0,1);
+    $gender = $mOrF[$rand];
     return [
-        'firstname' => $faker->name,
-        'lastname'=> $faker->name,
-        'gender' => 'm',
+        'firstname' => $faker->firstName($gender),
+        'lastname'=> $faker->lastName,
+        'gender' => $gender,
         'job' => 'Student',
         'avatar' => $faker->imageUrl,
         'email' => $faker->unique()->safeEmail,
