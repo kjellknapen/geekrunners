@@ -37,20 +37,11 @@ strong {
   border: 1px solid #f0f0f0;
   padding: 10px;
   margin-bottom: 20px;
-  position: relative;
 }
 
 .time-ago {
   margin-top: 10px;
   color: #b4b4b4;
-}
-
-.medal-profile{
-  position: absolute;
-  left:50%;
-  top:50%;
-  font-size:1.3em;
-  transform: translate(45px,45px);
 }
 
 .logout:link,

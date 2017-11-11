@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/admin.css": "/css/admin.css",
     "/css/user.css": "/css/user.css",
+    "/css/progressbar.css": "/css/progressbar.css",
     "/js/leaderboardsfilter.js": "/js/leaderboardsfilter.js"
 }

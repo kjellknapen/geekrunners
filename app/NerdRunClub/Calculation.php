@@ -203,23 +203,64 @@ class Calculation
       $distance_goal="8";
       */
 
-      $schedules = Schedules::all()->where('id', $weekID);
+        $schedules = Schedules::all()->where('id', $weekID);
 
-      foreach ($schedules as $schedule) {
-        $week = $schedule->week;
-        $duration_goal= $schedule->duration_goal;
-        $frequency_goal= $schedule->frequency_goal;
-        $distance_goal= $schedule->distance_goal;
-      }
+        foreach ($schedules as $schedule) {
+            $week = $schedule->week;
+            $duration_goal= $schedule->duration_goal;
+            $frequency_goal= $schedule->frequency_goal;
+            $distance_goal= $schedule->distance_goal;
+        }
 
+        $result = $this->userScheduleDate(Auth::user(), $distance_goal, $frequency_goal, $duration_goal);
+        $users_completed = [];
+        foreach (User::all() as $user){
+            $usersresults = $this->userScheduleDate($user, $distance_goal, $frequency_goal, $duration_goal);
+            if($usersresults['duration_progress'] >= 100 && $usersresults['frequency_progress'] >= 100 && $usersresults['distance_progress'] >= 100){
+                array_push($users_completed, $user);
+            }
+        }
 
-      $scheduleData = [
-        'week'=>$week,
-        'duration_goal'=>$duration_goal,
-        'frequency_goal'=>$frequency_goal,
-        'distance_goal'=>$distance_goal,
-      ];
+        $scheduleData = [
+            'week'=>$week,
+            'duration_goal'=>$duration_goal,
+            'duration_completed'=>$result['duration_progress'],
+            'frequency_goal'=>$frequency_goal,
+            'frequency_completed'=>$result['frequency_progress'],
+            'distance_goal'=>$distance_goal,
+            'distance_completed'=>$result['distance_progress'],
+            'users_completed'=>$users_completed,
+        ];
 
-      return $scheduleData;
+        return $scheduleData;
+    }
+
+    public function userScheduleDate($user, $distance, $frequency, $duration){
+        $runs = 0;
+        $minutes = 0;
+        $longest = 0;
+        foreach ($user->activities as $activity){
+            $runs += 1;
+            $Date = mb_substr($activity->date, 0, 10);
+            $FirstDay = new Carbon('sunday last week');
+            $LastDay = new Carbon('sunday this week');
+
+            if($Date > $FirstDay && $Date < $LastDay) {
+                $minutes += $activity->minutes;
+                if($activity->km > $longest){
+                    $longest = $activity->km;
+                }
+            }
+        }
+
+        $distance_progress = round(($longest !== 0 ? ($longest / $distance) : 0) * 100);
+        $duration_progress = round(($minutes !== 0 ? ($minutes / $duration) : 0) * 100);
+        $frequency_progress = round(($runs !== 0 ? ($runs / $frequency) : 0) * 100);
+
+        return $result = [
+          'distance_progress' => $distance_progress,
+          'frequency_progress' => $frequency_progress,
+          'duration_progress' => $duration_progress
+        ];
     }
 }
