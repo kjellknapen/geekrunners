@@ -17,6 +17,7 @@ class CreateUserAchievementsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('achievement_id');
+            $table->boolean('done');
         });
     }
 

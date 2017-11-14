@@ -262,4 +262,12 @@ class Calculation
           'duration_progress' => $duration_progress
         ];
     }
+
+    public function achievementsDone(){
+
+    }
+
+    public function achievementsTodo(){
+
+    }
 }

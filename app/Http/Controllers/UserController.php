@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Activity;
+use Illuminate\Support\Facades\DB;
 use NerdRunClub\Calculations;
 
 
@@ -29,8 +30,9 @@ class UserController extends Controller
             $userStats['distance'] += $activity->km;
             $userStats['time'] += $activity->minutes;
         }
+        $achievementsDone = DB::table('achievements')->get();
         
-        return view("user.index", ['runs' => $result, 'userStats' => $userStats]);
+        return view("user.index", ['runs' => $result, 'userStats' => $userStats, 'achievements' => $achievementsDone]);
     }
 
     public function logout(){

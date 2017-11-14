@@ -9,11 +9,11 @@ class Achievements extends Controller
 {
     public function index()
     {
-        $achievements = DB::table('achievements')->get();
+        $achievementsDone = DB::table('achievements')->get();
 
         return view('achievements.index',
             [
-                'achievements' => $achievements,
+                'achievements' => $achievementsDone,
             ]
         );
     }
