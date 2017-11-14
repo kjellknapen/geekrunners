@@ -1,13 +1,11 @@
 @extends('layouts.master')
 
 
-@section('content')
-
-    <h1>NerdRunClub</h1>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <a href="/login"><button type="button" class="btn btn-warning">Strava Login</button></a>
-        </div>
+<div class="splash">
+    <div class="center">
+        <h1 class="nerdun-title">NerdRunClub</h1>
+            <div class="panel-body">
+                <a href="/login" class="strava-login"><button type="button" class="btn btn-lg">Login with Strava</button></a>
+            </div>
     </div>
-
-@endsection
+</div>

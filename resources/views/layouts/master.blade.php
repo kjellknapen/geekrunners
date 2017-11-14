@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/leaderboards.css">
     <link rel="stylesheet" href="/css/user.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/splash.css">
     @yield('stylesheets')
 
 </head>

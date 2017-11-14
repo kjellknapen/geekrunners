@@ -1,0 +1,45 @@
+.nerdun-title{
+    text-align: center;
+    padding: 20px 0;
+}
+
+.strava-login button{
+    margin: auto;
+    display: block;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #ff8a90;
+    color: #ff8a90;
+    transition: 0.3s;
+}
+
+.strava-login button:hover{
+    background-color: #ff8a90;
+    color: #fff;
+    text-decoration: none;
+}
+
+.strava-login:hover{
+    text-decoration: none;
+}
+
+.center{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.splash{
+    background-image: url(../img/background-splash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
