@@ -35,14 +35,10 @@ class Kernel extends ConsoleKernel
 
         foreach ($users as $u){
             $this->u = $u;
-                $schedule->call(function () {
-                    StravaActivityCall::dispatch($this->u);
-                })->everyFifteenMinutes();
+            $schedule->call(function () {
+                StravaActivityCall::dispatch($this->u);
+            });
         }
-
-        $schedule->call(function (Calculation $calculation){
-            $calculation->saveMedals();
-        })->weeklyOn(7, '23:59');
     }
 
     /**

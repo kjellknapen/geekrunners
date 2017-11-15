@@ -36,8 +36,10 @@
         <section class="half half-right">
             <h2>Achievements</h2>
             @foreach ($achievements as $achievement)
-                <div>
-                    <li><img src="{{$achievement->img}}" alt="" width="50px" height="50px"><a href="#">{{$achievement->description}}</a></li>
+                <div class="achievements">
+                    <ul>
+                    <li><img src="{{$achievement->img}}" alt="" width="50px" height="50px"><a href="#"></a></li>
+                    </ul>
                 </div>
             @endforeach
         </section>

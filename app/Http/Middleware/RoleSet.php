@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 
-class RedirectNotLoggedIn
+class RoleSet
 {
     /**
      * Handle an incoming request.
@@ -17,11 +16,9 @@ class RedirectNotLoggedIn
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::check()){
-            return redirect('/');
+        if(Auth::user()->role != null){
+            return redirect('/dashboard');
         }
-        
-        View::share('user', Auth::user());
         return $next($request);
     }
 }

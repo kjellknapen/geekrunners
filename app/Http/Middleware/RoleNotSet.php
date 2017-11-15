@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class NoJobYet
+class RoleNotSet
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class NoJobYet
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->job != null){
-            return redirect('/dashboard');
+        if(Auth::user()->role == null || Auth::user()->role == "" || empty(Auth::user()->role)){
+            return redirect('/job');
         }
         return $next($request);
     }

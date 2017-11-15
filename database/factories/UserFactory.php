@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'firstname' => $faker->firstName($gender),
         'lastname'=> $faker->lastName,
         'gender' => $gender,
-        'job' => 'Student',
+        'role' => 'Student',
         'avatar' => $faker->imageUrl,
         'email' => $faker->unique()->safeEmail,
         'strava_id'=> str_random(10),
