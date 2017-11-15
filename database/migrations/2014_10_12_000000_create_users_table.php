@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('medals1')->default(0);
             $table->integer('medals2')->default(0);
             $table->integer('medals3')->default(0);
-            $table->string('job')->nullable();
+            $table->string('role')->nullable();
             $table->string('gender');
             $table->string('avatar');
             $table->string('email')->unique();
