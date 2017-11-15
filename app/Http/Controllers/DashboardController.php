@@ -14,8 +14,7 @@ class DashboardController extends Controller
     public function index(Calculation $calculations){
         $topRunners = $calculations->getLeaderboardStats();
         $activityfeed = Activity::take(5)->get();
-
-
+        
         if($calculations->getEndDate() != false || $calculations->getEndDate() != null){
             $currentWeek = $calculations->currentWeek();
             $event = $calculations->daysLeft();

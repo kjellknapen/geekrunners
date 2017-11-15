@@ -56,3 +56,16 @@ strong {
   color: #EC3C34;
 }
 
+.medal-profile {
+  position: absolute;
+  -webkit-transform: translate(100px, -66%);
+          transform: translate(100px, -66%);
+  left: 50%;
+  top: 50%;
+  font-size: 1.25em;
+}
+
+.medal-profile div {
+  padding: 5px 0;
+}
+

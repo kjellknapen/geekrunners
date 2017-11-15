@@ -79,23 +79,44 @@ class Calculation
     public function saveMedals(){
         $leaderboards = $this->getLeaderboardStats();
 
-        $topKilometers = array_slice($leaderboards['Kilometers'], 0, 5, true);
-        foreach ($topKilometers as $i){
-            $id = $i['user']['id'];
-            $user = User::find($id);
-            $currentMedals = $user->medals;
-            $user->medals = $currentMedals + 1;
-            $user->save();
-        }
+        $id = $leaderboards['Kilometers'][0]['user']['id'];
+        $user = User::find($id);
+        $currentMedals = $user->medals1;
+        $user->medals1 = $currentMedals + 1;
+        $user->save();
 
-        $topTime = array_slice($leaderboards['Time'], 0, 5, true);
-        foreach ($topTime as $i){
-            $id = $i['user']['id'];
-            $user = User::find($id);
-            $currentMedals = $user->medals;
-            $user->medals = $currentMedals + 1;
-            $user->save();
-        }
+        $id = $leaderboards['Kilometers'][1]['user']['id'];
+        $user = User::find($id);
+        $currentMedals = $user->medals2;
+        $user->medals2 = $currentMedals + 1;
+        $user->save();
+
+        $id = $leaderboards['Kilometers'][2]['user']['id'];
+        $user = User::find($id);
+        $currentMedals = $user->medals3;
+        $user->medals3 = $currentMedals + 1;
+        $user->save();
+
+        //
+
+        $id = $leaderboards['Time'][0]['user']['id'];
+        $user = User::find($id);
+        $currentMedals = $user->medals1;
+        $user->medals1 = $currentMedals + 1;
+        $user->save();
+
+        $id = $leaderboards['Time'][1]['user']['id'];
+        $user = User::find($id);
+        $currentMedals = $user->medals2;
+        $user->medals2 = $currentMedals + 1;
+        $user->save();
+
+        $id = $leaderboards['Time'][2]['user']['id'];
+        $user = User::find($id);
+        $currentMedals = $user->medals3;
+        $user->medals3 = $currentMedals + 1;
+        $user->save();
+
     }
 
     public function currentWeek()
