@@ -82,7 +82,7 @@ class AdminController extends Controller
                     User::where('id', Auth::id())->update([
                         'role' => 'Teacher'
                     ]);
-                    return redirect('/admin');
+                    return redirect('/dashboard');
                 }else{
                     return view('admin.password', ['error' => "Wrong Password"]);
                 }

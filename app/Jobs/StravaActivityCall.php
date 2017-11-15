@@ -29,7 +29,7 @@ class StravaActivityCall implements ShouldQueue
      *
      * @return void
      */
-    public function handle($u, Request $request)
+    public function handle($u, $request)
     {
         if(ctype_digit( $u->strava_id )) {
             $stravaRequest = $request;

@@ -6,7 +6,6 @@ use App\Jobs\StravaActivityCall;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use NerdRunClub\Calculation;
 use NerdRunClub\Request;
 
 class Kernel extends ConsoleKernel
@@ -35,8 +34,8 @@ class Kernel extends ConsoleKernel
 
         foreach ($users as $u){
             $this->u = $u;
-            $schedule->call(function () {
-                StravaActivityCall::dispatch($this->u);
+            $schedule->call(function (Request $request) {
+                StravaActivityCall::dispatch($this->u, $request);
             });
         }
     }
