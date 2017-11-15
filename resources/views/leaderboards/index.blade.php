@@ -20,7 +20,15 @@
     <div id="Km" class="leaderboard">
     @foreach($leaderboard['Kilometers'] as $key =>  $r)
         <div id="km-item" class="leaderboards-data">
-            <p>{{ $key+1 }}</p>
+            @if($key == 0)
+                <p>{{ $key+1 }} &#129351;</p>
+            @elseif($key == 1)
+                <p>{{ $key+1 }} &#129352;</p>
+            @elseif($key == 2)
+                <p>{{ $key+1 }} &#129353;</p>
+            @else
+                <p>{{ $key+1 }}</p>
+            @endif
             <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
                 {{--@if($r['user']->medals>0)--}}
 
