@@ -15,22 +15,24 @@ use Illuminate\Http\Request;
 // Routes for loggedin users
 Route::middleware(['notloggedin'])->group(function () {
 
-    Route::get('/dashboard', 'DashboardController@index');
-
-    Route::get('/leaderboard', 'LeaderboardController@index');
-
-    Route::get('/user', 'UserController@index');
-
-    Route::get('/achievements', 'Achievements@index');
-
-    Route::get('/logout', 'UserController@logout');
-
     // Routes only for users withouth a student of teacher
-    Route::middleware(['nojob'])->group(function () {
+    Route::middleware(['roleset'])->group(function () {
+        Route::get('/role', 'AdminController@chooseRole');
 
-        Route::get('/job', 'AdminController@chooseJob');
+        Route::post('/role', 'AdminController@saveRole');
+    });
 
-        Route::post('/job', 'AdminController@saveJob');
+    Route::middleware(['rolenotset'])->group(function () {
+
+        Route::get('/dashboard', 'DashboardController@index');
+
+        Route::get('/leaderboard', 'LeaderboardController@index');
+
+        Route::get('/user', 'UserController@index');
+
+        Route::get('/achievements', 'Achievements@index');
+
+        Route::get('/logout', 'UserController@logout');
 
     });
 

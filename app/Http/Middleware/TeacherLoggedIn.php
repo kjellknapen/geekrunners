@@ -16,7 +16,7 @@ class TeacherLoggedIn
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->job != "Teacher"){
+        if(Auth::user()->role != "Teacher"){
             return redirect('/dashboard');
         }
         return $next($request);

@@ -59,28 +59,28 @@ class AdminController extends Controller
         return view('admin.event', ['event' => $event, 'saved' => false]);
     }
 
-    public function chooseJob(){
-        return view('admin.choosejob');
+    public function chooseRole(){
+        return view('admin.chooserole');
     }
 
-    public function saveJob(Request $request){
-        if(!empty($request->input('job'))) {
-            if($request->input('job') == "Teacher"){
+    public function saveRole(Request $request){
+        if(!empty($request->input('role'))) {
+            if($request->input('role') == "Teacher"){
                 return view('admin.password');
             }else{
                 User::where('id', Auth::id())->update([
-                    'job' => $request->input('job')
+                    'role' => $request->input('role')
                 ]);
             }
             return redirect('/dashboard');
-        }elseif(empty($request->input('password')) && empty($request->input('job'))){
-            return view('admin.choosejob', ['error' => "You didn't select anything"]);
+        }elseif(empty($request->input('password')) && empty($request->input('role'))){
+            return view('admin.chooserole', ['error' => "You didn't select anything"]);
         }else{
             if(!empty($request->input('password'))){
                 $hashed = AdminPassword::find(1)->password;
                 if(Hash::check($request->input('password'), $hashed)){
                     User::where('id', Auth::id())->update([
-                        'job' => 'Teacher'
+                        'role' => 'Teacher'
                     ]);
                     return redirect('/admin');
                 }else{

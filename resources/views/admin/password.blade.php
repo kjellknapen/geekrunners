@@ -10,7 +10,7 @@
         <p class="alert alert-danger">{{ $error }}</p>
     @endisset
     <div>
-    <form action="{{ action('AdminController@saveJob') }}" method="post">
+    <form action="{{ action('AdminController@saveRole') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="password">Teacher's Password</label>
