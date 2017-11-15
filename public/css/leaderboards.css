@@ -8,6 +8,7 @@
 
 .leaderboards-data{
     width:100%; text-align: left; display: flex; flex-direction: row; justify-content: space-between;
+    position: relative;
 }
 .leaderboards-data--head{
     font-weight:bold;
@@ -19,9 +20,34 @@
     margin:0 20px;
 }
 .medal-counter{
-    font-size:.65em;
+    font-size:.7em;
     color: #f18480;
-    margin-left: -3px;
+    margin-left: -2px;
+}
+
+.leaderboards-data:nth-child(-n+6) p:first-of-type:after{
+    position: absolute;
+    opacity:.4;
+    left:12px;
+    content: "🥉";
+}
+
+.leaderboards-data:nth-child(-n+3) p:first-of-type:after{
+    position: absolute;
+    opacity:.4;
+    left:12px;
+    content: "🥈";
+}
+
+.leaderboards-data:nth-child(-n+1) p:first-of-type:after{
+    position: absolute;
+    opacity:.4;
+    left:12px;
+    content: "🥇";
+}
+
+section .leaderboards-data--head p:first-of-type:after{
+    content: " "!important;
 }
 
 @media screen and (max-width: 530px) {

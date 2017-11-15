@@ -56,7 +56,20 @@ strong {
   color: #EC3C34;
 }
 
-.achievements ul li{
+.medal-profile {
+  position: absolute;
+  -webkit-transform: translate(100px, -66%);
+          transform: translate(100px, -66%);
+  left: 50%;
+  top: 50%;
+  font-size: 1.25em;
+}
+
+.medal-profile div {
+  padding: 5px 0;
+}
+
+.achievements ul li {
   list-style-type: none;
   width: 50px;
   height: 50px;

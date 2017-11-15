@@ -22,11 +22,11 @@
         <div id="km-item" class="leaderboards-data">
             <p>{{ $key+1 }}</p>
             <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
-                @if($r['user']->medals>0)
+                {{--@if($r['user']->medals>0)--}}
 
-                    <span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>
+                    {{--<span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>--}}
 
-                @endif
+                {{--@endif--}}
 
             </p>
             <p>{{ $r['km'] . " km"}}</p>
@@ -41,11 +41,11 @@
             <p>{{ $key+1 }}</p>
 
             <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
-                @if($r['user']->medals>0)
+                {{--@if($r['user']->medals>0)--}}
 
-                    <span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>
+                    {{--<span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>--}}
 
-                @endif
+                {{--@endif--}}
 
             </p>
 
