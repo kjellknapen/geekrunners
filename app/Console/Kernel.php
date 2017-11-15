@@ -8,6 +8,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use NerdRunClub\Calculation;
 use NerdRunClub\Request;
+use Illuminate\Database\Schema
 
 class Kernel extends ConsoleKernel
 {
@@ -31,6 +32,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+	if(Schema::hasTable('users')){
         $users = User::all();
 
         foreach ($users as $u){
@@ -39,6 +41,7 @@ class Kernel extends ConsoleKernel
                 StravaActivityCall::dispatch($this->u);
             });
         }
+	}
     }
 
     /**
