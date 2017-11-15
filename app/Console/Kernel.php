@@ -6,9 +6,9 @@ use App\Jobs\StravaActivityCall;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Schema;
 use NerdRunClub\Calculation;
 use NerdRunClub\Request;
-use Illuminate\Database\Schema
 
 class Kernel extends ConsoleKernel
 {
