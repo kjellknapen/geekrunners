@@ -1,42 +1,45 @@
-section .left{
-  width:50%;
+section .left {
+  width: 50%;
   float: left;
   display: block;
   text-align: center;
-
 }
-section .right{
-  width:50%;
+
+section .right {
+  width: 50%;
   float: right;
   display: block;
   text-align: center;
-
 }
-section{
+
+section {
   overflow: hidden;
 }
-.profile-big{
+
+.profile-big {
   border-radius: 100%;
-  max-width:180px;
+  max-width: 180px;
 }
 
-.profile-top{
+.profile-top {
   text-align: center;
   position: relative;
 }
 
-strong{
-  font-weight:600;
-  font-size:1.4em;
-  padding-bottom:8px;
+strong {
+  font-weight: 600;
+  font-size: 1.4em;
+  padding-bottom: 8px;
   display: block;
 }
-.activity{
-  border:1px solid #f0f0f0;
-  padding:10px;
-  margin-bottom:20px;
+
+.activity {
+  border: 1px solid #f0f0f0;
+  padding: 10px;
+  margin-bottom: 20px;
 }
-.time-ago{
+
+.time-ago {
   margin-top: 10px;
   color: #b4b4b4;
 }
@@ -44,11 +47,33 @@ strong{
 .logout:link,
 .logout:visited,
 .logout:hover,
-.logout:active{
+.logout:active {
   position: absolute;
-  top:0;
-  right:0;
-  margin:30px;
+  top: 0;
+  right: 0;
+  margin: 30px;
   text-decoration: none;
   color: #EC3C34;
+}
+
+
+.medal-profile{
+  position: absolute;
+  transform: translate(100px,-66%);
+  left:50%;
+  top:50%;
+  font-size:1.25em;
+}
+
+.medal-profile div{
+  padding:5px 0;
+}
+
+
+.achievements ul li{
+  list-style-type: none;
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 10px;
 }
