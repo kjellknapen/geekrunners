@@ -56,3 +56,11 @@ strong {
   color: #EC3C34;
 }
 
+.achievements ul li{
+  list-style-type: none;
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 10px;
+}
+
