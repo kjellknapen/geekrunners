@@ -25,6 +25,11 @@
     margin-left: -2px;
 }
 
+.medal{
+    position: absolute;
+    margin-left:5px;
+}
+
 /*.leaderboards-data:nth-child(-n+6) p:first-of-type:after{*/
     /*position: absolute;*/
     /*opacity:.4;*/
