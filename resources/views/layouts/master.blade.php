@@ -29,6 +29,9 @@
         @yield('content')
     </div>
 
+    <div class="go-to-event">
+        <a href="/admin/event">add event</a>
+    </div>
 </body>
 @yield('scripts')
 </html>
