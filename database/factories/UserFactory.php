@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'lastname'=> $faker->lastName,
         'gender' => $gender,
         'role' => 'Student',
-        'avatar' => $faker->imageUrl,
+        'avatar' => $faker->imageUrl($width = 500, $height = 500),
         'email' => $faker->unique()->safeEmail,
         'strava_id'=> str_random(10),
         'token' => str_random(10),

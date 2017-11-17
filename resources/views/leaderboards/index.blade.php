@@ -20,7 +20,15 @@
     <div id="Km" class="leaderboard">
     @foreach($leaderboard['Kilometers'] as $key =>  $r)
         <div id="km-item" class="leaderboards-data">
-            <p>{{ $key+1 }}</p>
+            @if($key == 0)
+                <p>{{ $key+1 }}<span class="medal">&#129351;</span></p>
+            @elseif($key == 1)
+                <p>{{ $key+1 }}<span class="medal">&#129352;</span></p>
+            @elseif($key == 2)
+                <p>{{ $key+1 }}<span class="medal">&#129353;</span></p>
+            @else
+                <p>{{ $key+1 }}</p>
+            @endif
             <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
                 {{--@if($r['user']->medals>0)--}}
 
@@ -38,7 +46,15 @@
     <div id="Time" class="leaderboard">
     @foreach($leaderboard['Time'] as $key =>  $r)
         <div id="time-item" class="leaderboards-data">
-            <p>{{ $key+1 }}</p>
+            @if($key == 0)
+                <p>{{ $key+1 }}<span class="medal">&#129351;</span></p>
+            @elseif($key == 1)
+                <p>{{ $key+1 }}<span class="medal">&#129352;</span></p>
+            @elseif($key == 2)
+                <p>{{ $key+1 }}<span class="medal">&#129353;</span></p>
+            @else
+                <p>{{ $key+1 }}</p>
+            @endif
 
             <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
                 {{--@if($r['user']->medals>0)--}}
