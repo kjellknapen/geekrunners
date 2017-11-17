@@ -29,9 +29,13 @@
         @yield('content')
     </div>
 
-    <div class="go-to-event">
-        <a href="/admin/event">add event</a>
-    </div>
+    @isset($user)
+        @if($user->role == "Teacher")
+            <div class="go-to-event">
+                <a href="/admin/event">add event</a>
+            </div>
+        @endif
+    @endisset
 </body>
 @yield('scripts')
 </html>
