@@ -17,7 +17,7 @@ class RoleNotSet
     public function handle($request, Closure $next)
     {
         if(Auth::user()->role == null || Auth::user()->role == "" || empty(Auth::user()->role)){
-            return redirect('/job');
+            return redirect('/role');
         }
         return $next($request);
     }
