@@ -291,4 +291,59 @@ class Calculation
     public function achievementsTodo(){
 
     }
+
+    //check The schedules and calculate if you completed them.
+    public function weeklyGoalsTree($currentweek){
+        $schedules = Schedules::all();
+        $activities = Auth::user()->activities;
+        $date = $this->getStartDate()->toDateTimeString();
+        $carbonStartDate = new Carbon($date);
+        $carbonEndDate = new Carbon($date);
+
+        // Loop true schedules
+        $weekTree = [];
+        $startdate = $carbonStartDate->startOfWeek()->subDay(1);
+        $enddate = $carbonEndDate->endOfWeek();
+        $addDaysStart = 0;
+        $addDaysEnd = 0;
+
+        foreach($schedules as $schedule){
+            //Calculate only for the weeks before current week and current week
+            $distance_progress = false;
+            $duration_progress = false;
+            $frequency_progress = false;
+
+            $runs = 0;
+            $minutes = 0;
+            $longest = 0;
+            if($schedule->id <= $currentweek){
+                $startdate->addDays($addDaysStart);
+                $enddate->addDays($addDaysEnd);
+                foreach ($activities as $activity){
+                    $activityDate = new Carbon($activity->date);
+
+                    if($activityDate > $startdate && $activityDate < $enddate){
+                        $runs += 1;
+                        $minutes += $activity->minutes;
+                        if($activity->km > $longest){
+                            $longest = $activity->km;
+                        }
+                    }
+                    $distance_progress = round(($longest !== 0 ? ($longest / $schedule->distance_goal) : 0) * 100);
+                    $duration_progress = round(($minutes !== 0 ? ($minutes / $schedule->duration_goal) : 0) * 100);
+                    $frequency_progress = round(($runs !== 0 ? ($runs / $schedule->frequency_goal) : 0) * 100);
+                }
+            }
+            if($duration_progress >= 100 && $frequency_progress >= 100 && $distance_progress >= 100){
+                $weekTree[$schedule->id] = "completed";
+            }elseif($duration_progress == false && $distance_progress == false && $frequency_progress == false ){
+                $weekTree[$schedule->id] = "inprogress";
+            }elseif($duration_progress < 100 || $frequency_progress || 100 && $distance_progress < 100){
+                $weekTree[$schedule->id] = "failed";
+            }
+            $addDaysStart = 7;
+            $addDaysEnd = 7;
+        }
+        return $weekTree;
+    }
 }

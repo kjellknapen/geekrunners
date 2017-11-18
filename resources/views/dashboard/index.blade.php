@@ -8,6 +8,37 @@
 
 
     @isset($event)
+        <div class="goal-tree">
+            @foreach($weekTree as $key => $week)
+                @if($key == "1")
+                    @if($week == "completed")
+                        <img src="img/tree-start-completed.svg" alt="treestart">
+                    @elseif($week == "failed")
+                        <img src="img/tree-start-failed.svg" alt="treestart">
+                    @else
+                        <img src="img/tree-start-grey.svg" alt="treestart">
+                    @endif
+                @elseif($key == count($weekTree) || $key == 25)
+                    @if($week == "completed")
+                        <img src="img/tree-end-completed.svg" alt="treeend">
+                    @elseif($week == "failed")
+                        <img src="img/tree-end-failed.svg" alt="treeend">
+                    @else
+                        <img src="img/tree-end-grey.svg" alt="treeend">
+                    @endif
+                @elseif($key > 25)
+
+                @else
+                    @if($week == "completed")
+                        <img src="img/tree-center-completed.svg" alt="treecenter">
+                    @elseif($week == "failed")
+                        <img src="img/tree-center-failed.svg" alt="treecenter">
+                    @else
+                        <img src="img/tree-center-grey.svg" alt="treecenter">
+                    @endif
+                @endif
+            @endforeach
+        </div>
         <section class="half half-left">
             <h1>Weekly goals</h1>
             <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>

@@ -19,7 +19,7 @@ class DashboardController extends Controller
             $currentWeek = $calculations->currentWeek();
             $event = $calculations->daysLeft();
             $eventName = Event::take(1)->pluck('name');
-            return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event, 'userStats' => $calculations->getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
+            return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event,'weekTree' => $calculations->weeklyGoalsTree($currentWeek),  'userStats' => $calculations->getUserStats(), 'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
         }
         return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed]);
     }
