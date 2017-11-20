@@ -14,7 +14,7 @@ class UserController extends Controller
     //
     public function index(){
 
-        $result = Activity::take(5)->where('user_id', Auth::id())->get();
+        $result = Activity::orderBy('updated_at','DESC')->take(5)->where('user_id', Auth::id())->get();
         $userStats = [
             'total' => 0,
             'distance' => 0,
