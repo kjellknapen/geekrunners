@@ -66,7 +66,19 @@ class AdminController extends Controller
     public function saveRole(Request $request){
         if(!empty($request->input('role'))) {
             if($request->input('role') == "Teacher"){
-                return view('admin.password');
+                if(!empty($request->input('password'))){
+                    $hashed = AdminPassword::find(1)->password;
+                    if(Hash::check($request->input('password'), $hashed)){
+                        User::where('id', Auth::id())->update([
+                            'role' => 'Teacher'
+                        ]);
+                        return redirect('/dashboard');
+                    }else{
+                        return view('admin.chooserole', ['error' => "Wrong Password"]);
+                    }
+                }else{
+                    return view('admin.chooserole', ['error' => "Password can't be empty"]);
+                }
             }else{
                 User::where('id', Auth::id())->update([
                     'role' => $request->input('role')
@@ -76,19 +88,7 @@ class AdminController extends Controller
         }elseif(empty($request->input('password')) && empty($request->input('role'))){
             return view('admin.chooserole', ['error' => "You didn't select anything"]);
         }else{
-            if(!empty($request->input('password'))){
-                $hashed = AdminPassword::find(1)->password;
-                if(Hash::check($request->input('password'), $hashed)){
-                    User::where('id', Auth::id())->update([
-                        'role' => 'Teacher'
-                    ]);
-                    return redirect('/dashboard');
-                }else{
-                    return view('admin.password', ['error' => "Wrong Password"]);
-                }
-            }else{
-                return view('admin.password', ['error' => "Password can't be empty"]);
-            }
+            return view('admin.chooserole', ['error' => "Hmm something went wrong"]);
         }
     }
 }

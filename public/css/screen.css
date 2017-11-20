@@ -252,6 +252,10 @@ p{
     height:20px;
 }
 
+.password-field{
+    display: none;
+}
+
 @media screen and (max-width: 960px) {
     .half{
         width:100%;
