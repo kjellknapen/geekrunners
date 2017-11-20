@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "162fa7e8c12734e15bbb2622d9bcb957",
+    "content-hash": "70f08374308c48210b00c066e3ab46bc",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1531,6 +1531,50 @@
                 "shell"
             ],
             "time": "2017-11-04T16:06:49+00:00"
+        },
+        {
+            "name": "pushpad/pushpad-php",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pushpad/pushpad-php.git",
+                "reference": "d4e81feab1827aa2679728a2357859edbe5a94f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pushpad/pushpad-php/zipball/d4e81feab1827aa2679728a2357859edbe5a94f8",
+                "reference": "d4e81feab1827aa2679728a2357859edbe5a94f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pushpad\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pushpad",
+                    "homepage": "https://pushpad.xyz"
+                }
+            ],
+            "description": "Pushpad PHP Library",
+            "homepage": "https://pushpad.xyz",
+            "keywords": [
+                "api",
+                "push notifications",
+                "pushpad"
+            ],
+            "time": "2017-11-03T13:00:57+00:00"
         },
         {
             "name": "ramsey/uuid",
