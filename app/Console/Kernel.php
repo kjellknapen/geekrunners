@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
             $this->u = $u;
             $schedule->call(function (Request $request) {
                 StravaActivityCall::dispatch($this->u, $request);
-            });
+            })->everyFifteenMinutes();
         }
 	}
     }

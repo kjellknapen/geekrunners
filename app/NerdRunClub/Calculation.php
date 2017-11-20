@@ -316,7 +316,7 @@ class Calculation
             $runs = 0;
             $minutes = 0;
             $longest = 0;
-            if($schedule->id <= $currentweek){
+            if($schedule->id < $currentweek){
                 $startdate->addDays($addDaysStart);
                 $enddate->addDays($addDaysEnd);
                 foreach ($activities as $activity){
@@ -329,10 +329,10 @@ class Calculation
                             $longest = $activity->km;
                         }
                     }
-                    $distance_progress = round(($longest !== 0 ? ($longest / $schedule->distance_goal) : 0) * 100);
-                    $duration_progress = round(($minutes !== 0 ? ($minutes / $schedule->duration_goal) : 0) * 100);
-                    $frequency_progress = round(($runs !== 0 ? ($runs / $schedule->frequency_goal) : 0) * 100);
                 }
+                $distance_progress = round(($longest !== 0 ? ($longest / $schedule->distance_goal) : 0) * 100);
+                $duration_progress = round(($minutes !== 0 ? ($minutes / $schedule->duration_goal) : 0) * 100);
+                $frequency_progress = round(($runs !== 0 ? ($runs / $schedule->frequency_goal) : 0) * 100);
             }
             if($duration_progress >= 100 && $frequency_progress >= 100 && $distance_progress >= 100){
                 $weekTree[$schedule->id] = "completed";
