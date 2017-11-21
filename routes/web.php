@@ -17,9 +17,11 @@ Route::middleware(['notloggedin'])->group(function () {
 
     // Routes only for users withouth a student of teacher
     Route::middleware(['roleset'])->group(function () {
+
         Route::get('/role', 'AdminController@chooseRole');
 
         Route::post('/role', 'AdminController@saveRole');
+        
     });
 
     Route::middleware(['rolenotset'])->group(function () {
