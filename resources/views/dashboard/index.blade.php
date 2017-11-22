@@ -112,9 +112,9 @@
                 <ul class="ul-users">
                 @foreach($scheduleData['users_completed'] as $key => $cuser)
                     @if($key <= 9)
-                        <li class="img-completed"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li>
+                            <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
                     @elseif($key == 10)
-                        <li class="img-completed"><img src="/img/Other-users-icon.png" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li>
+                            <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="/img/Other-users-icon.png" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
                     @endif
                 @endforeach
                 </ul>
@@ -138,9 +138,9 @@
                 <p>{{$activity->average_speed}} km/u on average</p>
                 <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($activity->date))->diffForHumans()}}</p>
                 <div class="activity-user-info">
-                    <p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p>
+                    <a href="/user/{{$activity->user['id']}}"><p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p></a>
                     <div class="img-container">
-                    <img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}">
+                        <a href="/user/{{$activity->user['id']}}"><img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}"></a>
                     </div>
                 </div>
             </div>

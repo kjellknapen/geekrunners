@@ -29,7 +29,7 @@
             @else
                 <p>{{ $key+1 }}</p>
             @endif
-            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
+            <p class="leaderboards-data--nerd"><a href="/user/{{$r['user']->id}}">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}</a>
                 {{--@if($r['user']->medals>0)--}}
 
                     {{--<span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>--}}
@@ -56,7 +56,7 @@
                 <p>{{ $key+1 }}</p>
             @endif
 
-            <p class="leaderboards-data--nerd">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}
+            <p class="leaderboards-data--nerd"><a href="/user/{{$r['user']->id}}">{{ $r['user']->firstname . ' ' . $r['user']->lastname}}</a>
                 {{--@if($r['user']->medals>0)--}}
 
                     {{--<span title="Amount of weekly top 5's"> &#x1f3c5;<span title="Amount of weekly top 5's" class="medal-counter">{{'('.$r['user']->medals.')'}}</span></span>--}}
