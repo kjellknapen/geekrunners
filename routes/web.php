@@ -21,7 +21,7 @@ Route::middleware(['notloggedin'])->group(function () {
         Route::get('/role', 'AdminController@chooseRole');
 
         Route::post('/role', 'AdminController@saveRole');
-        
+
     });
 
     Route::middleware(['rolenotset'])->group(function () {
@@ -37,6 +37,10 @@ Route::middleware(['notloggedin'])->group(function () {
         Route::get('/achievements', 'Achievements@index');
 
         Route::get('/logout', 'UserController@logout');
+
+        Route::get('/enablemail', 'UserController@enableMail');
+
+        Route::get('/disablemail', 'UserController@disableMail');
 
     });
 

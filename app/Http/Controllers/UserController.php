@@ -71,4 +71,20 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function enableMail(){
+        User::find(Auth::id())->update([
+            'notifications' => true
+        ]);
+
+        return redirect("/user");
+    }
+
+    public function disableMail(){
+        User::find(Auth::id())->update([
+            'notifications' => false
+        ]);
+
+        return redirect("/user");
+    }
 }
