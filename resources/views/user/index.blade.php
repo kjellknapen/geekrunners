@@ -14,6 +14,11 @@
         <a href="/logout" class="logout leaderboards-filter">Logout</a>
         <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
         <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
+        @if($user->notifications == false)
+            <a href="/enablemail">Enable Mail Notifications</a>
+        @else
+            <a href="/disablemail">Disable Mail Notifications</a>
+        @endif
     </section>
 
         <section class="half half-left">
