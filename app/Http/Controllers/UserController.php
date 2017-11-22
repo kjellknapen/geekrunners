@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Activity;
@@ -38,5 +39,21 @@ class UserController extends Controller
     public function logout(){
         Auth::logout();
         return redirect('/');
+    }
+
+    public function enableMail(){
+        User::find(Auth::id())->update([
+            'notifications' => true
+        ]);
+
+        return redirect("/user");
+    }
+
+    public function disableMail(){
+        User::find(Auth::id())->update([
+            'notifications' => false
+        ]);
+
+        return redirect("/user");
     }
 }

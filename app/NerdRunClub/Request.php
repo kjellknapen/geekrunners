@@ -27,7 +27,7 @@ class Request
 
             $result = Strava::get($url, $config);
             foreach ($result as $run) {
-                if ($run->max_speed < 5.5) {
+                if ($run->max_speed < 5.5 && $run->average_speed < 5.5) {
                     Activity::firstOrCreate(['strava_id' => $run->id],[
                         'name' => $run->name,
                         'user_id' => $u->id,

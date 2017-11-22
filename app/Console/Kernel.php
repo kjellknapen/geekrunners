@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\StravaActivityCall;
+use App\Notifications\WeeklyGoalMail;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -34,7 +35,10 @@ class Kernel extends ConsoleKernel
 	if(Schema::hasTable('users')){
         $users = User::all();
 
+        $schedule->command("send:mail")->fridays();
+        
         foreach ($users as $u){
+
             $this->u = $u;
             $schedule->call(function (Request $request) {
                 StravaActivityCall::dispatch($this->u, $request);

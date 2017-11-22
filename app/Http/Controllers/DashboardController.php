@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Activity;
 use App\Event;
+use Illuminate\Support\Facades\Auth;
 use NerdRunClub\Calculation;
 
 class DashboardController extends Controller
