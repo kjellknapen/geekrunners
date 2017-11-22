@@ -5,7 +5,7 @@
 
     <section>
     <h1>Leaderboard</h1>
-        <p class="sub-title"> Weekly nerd ranking! </p>
+        <p class="sub-title"> Weekly geek ranking! </p>
         <select class="leaderboards-filter" name="leaderboardfilter" id="filter">
             <option value="Km">Total distance</option>
             <option value="Time">Total time</option>
@@ -14,7 +14,7 @@
 
     <div class="leaderboards-data leaderboards-data--head">
         <p>Nr.</p>
-        <p>Nerd</p>
+        <p>Geek</p>
         <p>Performance</p>
     </div>
     <div id="Km" class="leaderboard">
