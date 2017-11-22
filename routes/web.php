@@ -32,6 +32,8 @@ Route::middleware(['notloggedin'])->group(function () {
 
         Route::get('/user', 'UserController@index');
 
+        Route::get('/user/{user}', 'UserController@show');
+
         Route::get('/achievements', 'Achievements@index');
 
         Route::get('/logout', 'UserController@logout');

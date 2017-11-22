@@ -44,7 +44,7 @@
             <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
             <ul class="goals">
                 @if($scheduleData['distance_completed'] >= 100)
-                    <li class="goal-completed">&#10003; Reach {{ $scheduleData['distance_goal'] }} km in 1 session.</li>
+                    <li class="goal-completed">&#10003; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
                 @elseif($scheduleData['distance_completed'] <= 0)
                     <li>&#10007; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
                 @else
@@ -65,7 +65,7 @@
                     </li>
                 @endif
                 @if($scheduleData['frequency_completed'] >= 100)
-                    <li class="goal-completed">&#10003; Run {{ $scheduleData['frequency_goal'] }} times this week.</li>
+                    <li class="goal-completed">&#10003; Run {{ $scheduleData['frequency_goal'] }} times this week</li>
                 @elseif($scheduleData['frequency_completed'] <= 0)
                     <li>&#10007; Run {{ $scheduleData['frequency_goal'] }} times this week</li>
                 @else
@@ -86,9 +86,9 @@
                     </li>
                 @endif
                 @if($scheduleData['duration_completed'] >= 100)
-                    <li class="goal-completed">&#10003; Run atleast {{ $scheduleData['duration_goal'] }} minutes at your own pace</li>
+                    <li class="goal-completed">&#10003; Run at least {{ $scheduleData['duration_goal'] }} minutes this week</li>
                 @elseif($scheduleData['duration_completed'] <= 0)
-                    <li>&#10007; Run atleast {{ $scheduleData['duration_goal'] }} minutes at your own pace</li>
+                    <li>&#10007; Run at least {{ $scheduleData['duration_goal'] }} minutes this week</li>
                 @else
                     <li>
                         <div class="radial-progress" data-progress="{{ $scheduleData['duration_completed'] }}">
@@ -103,7 +103,7 @@
                             </div>
                             <div class="inset"></div>
                         </div>
-                        <p>Run atleast {{ $scheduleData['duration_goal'] }} minutes at your own pace</p>
+                        <p>Run at least {{ $scheduleData['duration_goal'] }} minutes this week</p>
                     </li>
                 @endif
             </ul>
@@ -112,9 +112,9 @@
                 <ul class="ul-users">
                 @foreach($scheduleData['users_completed'] as $key => $cuser)
                     @if($key <= 9)
-                        <li class="img-completed"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li>
+                            <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
                     @elseif($key == 10)
-                        <li class="img-completed"><img src="/img/Other-users-icon.png" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li>
+                            <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="/img/Other-users-icon.png" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
                     @endif
                 @endforeach
                 </ul>
@@ -130,7 +130,7 @@
 
     <section>
         <h1>Activity feed</h1>
-        <p class="sub-title">Recent runs from your fellow nerds</p><br><br><br>
+        <p class="sub-title">Recent runs from your fellow geeks</p><br><br><br>
         @foreach($activityfeed as $activity)
             <div class="activity">
                 <p><strong>{{$activity->km}} km</strong></p>
@@ -138,9 +138,9 @@
                 <p>{{$activity->average_speed}} km/u on average</p>
                 <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($activity->date))->diffForHumans()}}</p>
                 <div class="activity-user-info">
-                    <p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p>
+                    <a href="/user/{{$activity->user['id']}}"><p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p></a>
                     <div class="img-container">
-                    <img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}">
+                        <a href="/user/{{$activity->user['id']}}"><img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}"></a>
                     </div>
                 </div>
             </div>
