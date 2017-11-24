@@ -21,11 +21,11 @@
     @foreach($leaderboard['Kilometers'] as $key =>  $r)
         <div id="km-item" class="leaderboards-data">
             @if($key == 0)
-                <p>{{ $key+1 }}<span class="medal">&#129351;</span></p>
+                <p>{{ $key+1 }}<span class="medal"><img src="/img/medals/gold-medal.png" alt="" class="medal-img"></span></p>
             @elseif($key == 1)
-                <p>{{ $key+1 }}<span class="medal">&#129352;</span></p>
+                <p>{{ $key+1 }}<span class="medal"><img src="/img/medals/silver-medal.png" alt="" class="medal-img"></span></p>
             @elseif($key == 2)
-                <p>{{ $key+1 }}<span class="medal">&#129353;</span></p>
+                <p>{{ $key+1 }}<span class="medal"><img src="/img/medals/bronze-medal.png" alt="" class="medal-img"></span></p>
             @else
                 <p>{{ $key+1 }}</p>
             @endif
@@ -47,11 +47,11 @@
     @foreach($leaderboard['Time'] as $key =>  $r)
         <div id="time-item" class="leaderboards-data">
             @if($key == 0)
-                <p>{{ $key+1 }}<span class="medal">&#129351;</span></p>
+                <p>{{ $key+1 }}<span class="medal"><img src="/img/medals/gold-medal.png" alt="" class="medal-img"></span></p>
             @elseif($key == 1)
-                <p>{{ $key+1 }}<span class="medal">&#129352;</span></p>
+                <p>{{ $key+1 }}<span class="medal"><img src="/img/medals/silver-medal.png" alt="" class="medal-img"></span></p>
             @elseif($key == 2)
-                <p>{{ $key+1 }}<span class="medal">&#129353;</span></p>
+                <p>{{ $key+1 }}<span class="medal"><img src="/img/medals/bronze-medal.png" alt="" class="medal-img"></span></p>
             @else
                 <p>{{ $key+1 }}</p>
             @endif

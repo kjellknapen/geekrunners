@@ -6,10 +6,9 @@
 
     <section class="profile-top">
         <div class="medal-profile" title="Weekly medals">
-            <div>&#129351;<span class="medal-counter">{{'('.$otheruser->medals1.')'}}</span><br></div>
-            <div>&#129352;<span class="medal-counter">{{'('.$otheruser->medals2.')'}}</span><br></div>
-            <div>
-                &#129353;<span class="medal-counter">{{'('.$otheruser->medals3.')'}}</span><br></div>
+            <div><img src="/img/medals/gold-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals1.')'}}</span><br></div>
+            <div><img src="/img/medals/silver-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals2.')'}}</span><br></div>
+            <div><img src="/img/medals/bronze-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals3.')'}}</span><br></div>
         </div>
         <img class="profile-big" src="{{ $otheruser->avatar }}" alt="{{ $otheruser->id }}">
         <h3>{{ $otheruser->firstname . " " . $otheruser->lastname }}</h3>
