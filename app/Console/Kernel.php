@@ -34,8 +34,6 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 	if(Schema::hasTable('users')){
         $users = User::all();
-
-        $schedule->command("send:mail")->fridays();
         
         foreach ($users as $u){
 

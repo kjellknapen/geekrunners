@@ -6,14 +6,13 @@
 
     <section class="profile-top">
         <div class="medal-profile" title="Weekly medals">
-            <div>&#129351;<span class="medal-counter">{{'('.$user->medals1.')'}}</span><br></div>
-            <div>&#129352;<span class="medal-counter">{{'('.$user->medals2.')'}}</span><br></div>
+            <div>&#129351;<span class="medal-counter">{{'('.$otheruser->medals1.')'}}</span><br></div>
+            <div>&#129352;<span class="medal-counter">{{'('.$otheruser->medals2.')'}}</span><br></div>
             <div>
-                &#129353;<span class="medal-counter">{{'('.$user->medals3.')'}}</span><br></div>
+                &#129353;<span class="medal-counter">{{'('.$otheruser->medals3.')'}}</span><br></div>
         </div>
-        <a href="/logout" class="logout leaderboards-filter">Logout</a>
-        <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
-        <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
+        <img class="profile-big" src="{{ $otheruser->avatar }}" alt="{{ $otheruser->id }}">
+        <h3>{{ $otheruser->firstname . " " . $otheruser->lastname }}</h3>
     </section>
 
     <section class="half half-left">
