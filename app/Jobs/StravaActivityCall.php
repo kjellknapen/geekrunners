@@ -14,14 +14,15 @@ class StravaActivityCall implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $u;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($u)
     {
-        //
+        $this->u = $u;
     }
 
     /**
@@ -29,11 +30,9 @@ class StravaActivityCall implements ShouldQueue
      *
      * @return void
      */
-    public function handle($u, $request)
+    public function handle()
     {
-        if(ctype_digit( $u->strava_id )) {
-            $stravaRequest = $request;
-            $stravaRequest::retrieveActivities($u);
-        }
+        $stravaRequest = app()->make('Request');
+        $stravaRequest::retrieveActivities($this->u);
     }
 }

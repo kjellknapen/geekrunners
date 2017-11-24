@@ -18,24 +18,9 @@ class AdminController extends Controller
     public function index()
     {
       $shedules = schedules::all();
-      return view('admin.index', ['shedules' => $shedules]);
+      $event = Event::find(1);
+      return view('admin.index', ['shedules' => $shedules, 'event' => $event]);
     }
-
-    public function saveshedule(Request $request){
-      if(!empty($request->input('week')) && !empty($request->input('duration')) &&  !empty($request->input('distance')) &&  !empty($request->input('frequency'))) {
-          schedules::create(
-           ['week' => $request->input('week'),
-            'duration_goal' => $request->input('duration'),
-            'distance_goal' => $request->input('distance'),
-            'frequency_goal'=> $request->input('frequency')
-          ]);
-          $shedules = schedules::all();
-          return view('admin.index', ['shedules' => $shedules]);
-      }
-      $shedules = schedules::all();
-      return view('admin.index', ['shedules' => $shedules]);
-    }
-
 
     public function setCurrentEvent(){
         $event = Event::find(1);
@@ -43,6 +28,7 @@ class AdminController extends Controller
     }
 
     public function saveEvent(Request $request, Calculation $calculation){
+        $shedules = schedules::all();
         if(!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('start-date')) && !empty($request->input('location'))) {
             Event::updateOrCreate(['id' => 1],[
                 'name' => $request->input('event-name'),
@@ -53,10 +39,10 @@ class AdminController extends Controller
             $event = Event::find(1);
             $calculation->setEndDate();
             $calculation->setStartDate();
-            return view('admin.event', ['event' => $event, 'saved' => true]);
+            return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => true]);
         }
         $event = Event::find(1);
-        return view('admin.event', ['event' => $event, 'saved' => false]);
+        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => false]);
     }
 
     public function chooseRole(){
