@@ -42,25 +42,39 @@ class LoginController extends Controller
     }
 
     public function login(){
+        // Redirect to strava to login
         return Strava::redirect();
     }
 
     public function tokenexchange(){
+        // Save code
         $code = request()->code;
 
+        // Send code to strava to request token en get user
         $result = Strava::tokenExchange($code);
+
+        // Put user un function to save it
         $this->findOrCreateUser($result);
+
+        // Redirect to /role where the user can choose his/her role
         return redirect('/role');
     }
 
     public function findOrCreateUser($user){
+        // Make a variable for /NerdRunClub/Request trough service providers
         $request = app()->make('Request');
+
+        // Get the user id from strava
         $userID = (int)$user->athlete->id;
+        // Check if the user has an avatar if not assign one to him/her
         if($user->athlete->profile != "avatar/athlete/large.png" && $user->athlete->profile != "" && $user->athlete->profile != null){
             $avatar = $user->athlete->profile;
         }else{
+            // Generate an avatar that always stays the same but is differnt for every user
             $avatar = "https://api.adorable.io/avatars/285/" . $user->athlete->email;
         }
+
+        // Check if the user exits otherwise create it
         User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
@@ -70,8 +84,11 @@ class LoginController extends Controller
             'token' => $user->access_token,
         ]);
 
+        // Get the user that was just made
         $loginUser = User::where('strava_id', $userID)->first();
+        // Login this user
         Auth::login($loginUser, true);
+        // Get all the users activities
         $request::retrieveActivities($loginUser);
     }
 }
