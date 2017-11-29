@@ -62,7 +62,7 @@ class UserController extends Controller
         }
         $achievementsDone = DB::table('achievements')->get();
 
-        return view("user.user", ['user'=> $user, 'runs' => $result, 'userStats' => $userStats, 'achievements' => $achievementsDone]);
+        return view("user.user", ['otheruser'=> $user, 'runs' => $result, 'userStats' => $userStats, 'achievements' => $achievementsDone]);
 
 
     }

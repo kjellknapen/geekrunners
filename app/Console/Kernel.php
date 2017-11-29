@@ -32,19 +32,6 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-	if(Schema::hasTable('users')){
-        $users = User::all();
-
-        $schedule->command("send:mail")->fridays();
-        
-        foreach ($users as $u){
-
-            $this->u = $u;
-            $schedule->call(function (Request $request) {
-                StravaActivityCall::dispatch($this->u, $request);
-            })->everyFifteenMinutes();
-        }
-	}
     }
 
     /**

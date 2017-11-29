@@ -56,11 +56,16 @@ class LoginController extends Controller
     public function findOrCreateUser($user){
         $request = app()->make('Request');
         $userID = (int)$user->athlete->id;
+        if($user->athlete->profile != "avatar/athlete/large.png" && $user->athlete->profile != "" && $user->athlete->profile != null){
+            $avatar = $user->athlete->profile;
+        }else{
+            $avatar = "https://api.adorable.io/avatars/285/" . $user->athlete->email;
+        }
         User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
             'gender' => $user->athlete->sex,
-            'avatar' => $user->athlete->profile,
+            'avatar' => $avatar,
             'strava_id' => $userID,
             'token' => $user->access_token,
         ]);

@@ -8,12 +8,10 @@
         <div class="medal-profile" title="Weekly medals">
             <div><img src="/img/medals/gold-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals1.')'}}</span><br></div>
             <div><img src="/img/medals/silver-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals2.')'}}</span><br></div>
-            <div>
-                <img src="/img/medals/bronze-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals3.')'}}</span><br></div>
+            <div><img src="/img/medals/bronze-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals3.')'}}</span><br></div>
         </div>
-        <a href="/logout" class="logout leaderboards-filter">Logout</a>
-        <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
-        <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
+        <img class="profile-big" src="{{ $otheruser->avatar }}" alt="{{ $otheruser->id }}">
+        <h3>{{ $otheruser->firstname . " " . $otheruser->lastname }}</h3>
     </section>
 
     <section class="half half-left">

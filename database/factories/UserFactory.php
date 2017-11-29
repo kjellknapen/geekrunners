@@ -19,13 +19,14 @@ $factory->define(App\User::class, function (Faker $faker) {
     $mOrF = ['male', 'female'];
     $rand = rand(0,1);
     $gender = $mOrF[$rand];
+    $mail = $faker->unique()->safeEmail;
     return [
         'firstname' => $faker->firstName($gender),
         'lastname'=> $faker->lastName,
         'gender' => $gender,
         'role' => 'Student',
-        'avatar' => $faker->imageUrl($width = 500, $height = 500),
-        'email' => $faker->unique()->safeEmail,
+        'avatar' => "https://api.adorable.io/avatars/285/" . $mail,
+        'email' => $mail,
         'strava_id'=> str_random(10),
         'token' => str_random(10),
         'remember_token' => str_random(10),

@@ -33,7 +33,7 @@
     @isset($user)
         @if($user->role == "Teacher")
             <div class="go-to-event">
-                <a href="/admin/event">add event</a>
+                <a href="/admin">add event</a>
             </div>
         @endif
     @endisset
