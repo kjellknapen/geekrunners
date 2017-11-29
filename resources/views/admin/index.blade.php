@@ -13,8 +13,8 @@
     <p class="event-fail">Something went wrong, try again!</p>
   @endif
   @endisset
-  <h1>Set Event</h1>
-  <form action="{{ action('AdminController@saveEvent') }}" method="post">
+  <h1 class="admin-title">Set Event</h1>
+  <form class="admin-form" action="{{ action('AdminController@saveEvent') }}" method="post">
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -35,11 +35,17 @@
     </div>
     <input type="submit" class="btn btn-default" value="Set Event">
   </form>
-
+  <br>
   <hr>
 
-<h1>Schedules</h1>
+<h1 class="admin-title">Goals</h1>
 <div class="current_shedule">
+  <div class="shedule-week schedule-head">
+    <p class="shedule-part col-xs-3">Week</p>
+    <p class="shedule-part col-xs-3">Duration (total)</p>
+    <p class="shedule-part col-xs-3">Distance (session)</p>
+    <p class="shedule-part col-xs-3">Frequency goal</p>
+  </div>
   @foreach($shedules as $shedule)
     <div class="shedule-week">
       <p class="shedule-part col-xs-3">{{$shedule['week']}}</p>

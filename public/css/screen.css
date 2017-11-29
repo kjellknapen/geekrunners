@@ -241,16 +241,19 @@ p{
 
 .goal-tree{
     margin: 0 0 40px 0;
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    /*max-width: 100%;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*flex-wrap: nowrap;*/
+    /*justify-content: center;*/
+    display: inline-block;
+    overflow-x: scroll;
 }
 
 .goal-tree img{
     height:20px;
 }
+
 
 .password-field{
     display: none;
