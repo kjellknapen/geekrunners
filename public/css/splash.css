@@ -1,6 +1,6 @@
 .nerdun-title{
     text-align: center;
-    padding: 0 0 30px 0;
+    padding: 0px 0 40px 0;
 }
 
 .strava-login button{
@@ -10,6 +10,18 @@
     border: 1px solid #ff8a90;
     color: white;
     transition: 0.3s;
+}
+
+.strava-login button:active{
+    color: white;
+}
+
+.strava-login button:visited{
+    color: white;
+}
+
+.strava-login button:focus{
+    color: white;
 }
 
 .geek-button{
@@ -73,4 +85,12 @@
 }
 .splash-p{
     margin-bottom:10px;
+}
+.splash-logo{
+
+    opacity:.3;
+    width:20%;
+    display: block;
+    margin:auto;    margin-bottom:30px;
+
 }
