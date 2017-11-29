@@ -18,7 +18,7 @@
                     @else
                         <img src="img/tree-start-grey.svg" alt="treestart">
                     @endif
-                @elseif($key == count($weekTree) || $key == 25)
+                @elseif($key == count($weekTree))
                     @if($week == "completed")
                         <img src="img/tree-end-completed.svg" alt="treeend">
                     @elseif($week == "failed")
@@ -26,8 +26,6 @@
                     @else
                         <img src="img/tree-end-grey.svg" alt="treeend">
                     @endif
-                @elseif($key > 25)
-
                 @else
                     @if($week == "completed")
                         <img src="img/tree-center-completed.svg" alt="treecenter">
