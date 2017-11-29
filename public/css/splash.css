@@ -12,6 +12,20 @@
     transition: 0.3s;
 }
 
+.geek-button{
+    display: block;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #ff8a90;
+    color: #ff8a90;
+    transition: 0.3s;
+    margin-top:20px;
+}
+.geek-button:hover{
+    background-color: #ff8a90;
+    color: #fff;
+    text-decoration: none;
+}
+
 .strava-login button:hover{
     background-color: #ff8a90;
     color: #fff;
