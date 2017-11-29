@@ -242,17 +242,24 @@ p{
 .goal-tree{
     margin: 0 0 40px 0;
     /*max-width: 100%;*/
-    /*display: flex;*/
+    display: flex;
     /*flex-direction: row;*/
     /*flex-wrap: nowrap;*/
     /*justify-content: center;*/
-    display: inline-block;
     overflow-x: scroll;
+    overflow-y: hidden;
+    background-color: white;
+    border:1px solid #f0f0f0;
+    box-sizing: border-box;
+    padding:18px 5px 15px 5px;
 }
 
 .goal-tree img{
     height:20px;
+    display: inline-block;
 }
+
+
 
 
 .password-field{
