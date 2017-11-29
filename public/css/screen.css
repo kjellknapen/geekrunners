@@ -198,7 +198,17 @@ p{
     width: 15px;
     height: 15px;
     position: relative;
-    margin-right: -5px;
+    margin:0 5px;
+    opacity:1;
+    transition: .3s ease;
+}
+
+.img-completed:hover{
+    -webkit-transform: scale(1.7);
+    -moz-transform: scale(1.7);
+    -ms-transform: scale(1.7);
+    -o-transform: scale(1.7);
+    transform: scale(1.7);
 }
 
 .img-completed:last-child{

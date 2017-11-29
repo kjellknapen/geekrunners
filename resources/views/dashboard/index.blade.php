@@ -110,7 +110,7 @@
                 <ul class="ul-users">
                 @foreach($scheduleData['users_completed'] as $key => $cuser)
                     @if($key <= 9)
-                            <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
+                            <a href="/user/{{$cuser->id}}"><li class="img-completed tooltip" title="{{$cuser->firstname  . ' '  . $cuser->lastname}}"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
                     @elseif($key == 10)
                             <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="/img/Other-users-icon.png" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
                     @endif
@@ -145,4 +145,11 @@
         @endforeach
     </section>
 
+@endsection
+
+
+@section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/tooltipster.bundle.min.js"></script>
+    <script src="/js/dashboard.js"></script>
 @endsection

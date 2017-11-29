@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/user.css">
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/splash.css">
+    <link rel="stylesheet" href="/css/tooltipster.bundle.min.css">
     @yield('stylesheets')
 
 </head>

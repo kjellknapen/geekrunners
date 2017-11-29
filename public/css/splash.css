@@ -6,9 +6,9 @@
 .strava-login button{
     margin: auto;
     display: block;
-    background-color: rgba(0,0,0,0);
+    background-color: #fc4c02;
     border: 1px solid #ff8a90;
-    color: #ff8a90;
+    color: white;
     transition: 0.3s;
 }
 
@@ -56,7 +56,7 @@
     max-width:420px;
     padding:40px;
     background-color: #fff;
-    border:5px solid #f0f0f0;    text-align: center;
+    border:5px solid #ebebeb;    text-align: center;
 
 }
 
