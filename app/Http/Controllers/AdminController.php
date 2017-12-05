@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use NerdRunClub\Calculation;
+use NerdRunClub\ScheduleCalculations;
 
 class AdminController extends Controller
 {
@@ -17,6 +18,13 @@ class AdminController extends Controller
 
     public function index()
     {
+
+      $calc = new ScheduleCalculations();
+      $event = Event::find(1);
+      if ($event) {
+        schedules::truncate();
+        $calc->create_schedule();
+      }
       $shedules = schedules::all();
       $event = Event::find(1);
       return view('admin.index', ['shedules' => $shedules, 'event' => $event]);
@@ -34,6 +42,7 @@ class AdminController extends Controller
                 'name' => $request->input('event-name'),
                 'event_date' => $request->input('event-date'),
                 'start_date' => $request->input('start-date'),
+                'distance' => $request->input('distance'),
                 'location' => $request->input('location')
             ]);
             $event = Event::find(1);
@@ -77,4 +86,6 @@ class AdminController extends Controller
             return view('admin.chooserole', ['error' => "Hmm something went wrong"]);
         }
     }
+
+
 }
