@@ -15,6 +15,7 @@ class UserController extends Controller
     //
     public function index(){
 
+        // Get the users activities
         $result = Activity::orderBy('updated_at','DESC')->take(5)->where('user_id', Auth::id())->get();
         $userStats = [
             'total' => 0,
@@ -25,6 +26,7 @@ class UserController extends Controller
         $from = new Carbon('sunday last week');
         $to = new Carbon('sunday this week');
 
+        // Calculate the user stats for his runs
         $thisWeeksActivities = Activity::all()->where('user_id', Auth::id())->where('date', '>' , $from)->where('date', '<' , $to);
         foreach ($thisWeeksActivities as $activity){
             $userStats['total'] += 1;
@@ -68,23 +70,26 @@ class UserController extends Controller
     }
 
     public function logout(){
+        // Logout the user
         Auth::logout();
         return redirect('/');
     }
 
     public function enableMail(){
+        // Enable mail notifications
         User::find(Auth::id())->update([
             'notifications' => true
         ]);
 
-        return redirect("/user");
+        return "hello";
     }
 
     public function disableMail(){
+        // Disable mail notification
         User::find(Auth::id())->update([
             'notifications' => false
         ]);
 
-        return redirect("/user");
+        return "hello";
     }
 }

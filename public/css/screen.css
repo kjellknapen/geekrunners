@@ -276,6 +276,30 @@ p{
     display: none;
 }
 
+.halloffame-winners{
+    max-height: 550px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.halloffame{
+    align-self: center;
+    width:48%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.halloffame .img-halloffame{
+    width: 100px;
+}
+
+.img-halloffame .profile-big{
+    width: 100%;
+}
+
 @media screen and (max-width: 960px) {
     .half{
         width:100%;

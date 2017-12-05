@@ -64,6 +64,7 @@ class LoginController extends Controller
         // Make a variable for /NerdRunClub/Request trough service providers
         $request = app()->make('Request');
 
+        $noavatar = false;
         // Get the user id from strava
         $userID = (int)$user->athlete->id;
         // Check if the user has an avatar if not assign one to him/her
@@ -72,6 +73,7 @@ class LoginController extends Controller
         }else{
             // Generate an avatar that always stays the same but is differnt for every user
             $avatar = "https://api.adorable.io/avatars/285/" . $user->athlete->email;
+            $noavatar = true;
         }
 
         // Check if the user exits otherwise create it
@@ -80,6 +82,7 @@ class LoginController extends Controller
             'lastname' => $user->athlete->lastname,
             'gender' => $user->athlete->sex,
             'avatar' => $avatar,
+            'noavatar' => $noavatar,
             'strava_id' => $userID,
             'token' => $user->access_token,
         ]);

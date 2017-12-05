@@ -4,6 +4,8 @@
     "/css/admin.css": "/css/admin.css",
     "/css/user.css": "/css/user.css",
     "/css/progressbar.css": "/css/progressbar.css",
+    "/css/toggle.css": "/css/toggle.css",
     "/js/password.js": "/js/password.js",
+    "/js/mail.js": "/js/mail.js",
     "/js/leaderboardsfilter.js": "/js/leaderboardsfilter.js"
 }

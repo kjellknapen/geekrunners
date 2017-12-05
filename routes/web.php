@@ -38,9 +38,11 @@ Route::middleware(['notloggedin'])->group(function () {
 
         Route::get('/logout', 'UserController@logout');
 
-        Route::get('/enablemail', 'UserController@enableMail');
+        Route::post('/enablemail', 'UserController@enableMail');
 
-        Route::get('/disablemail', 'UserController@disableMail');
+        Route::post('/disablemail', 'UserController@disableMail');
+
+        Route::get('/halloffame', 'LeaderboardController@halloffame');
 
     });
 

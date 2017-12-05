@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->boolean('notifications')->default(false);
             $table->string('gender');
             $table->string('avatar');
+            $table->boolean('noavatar')->default(false);
             $table->string('email')->unique();
             $table->string('strava_id');
             $table->string('token');

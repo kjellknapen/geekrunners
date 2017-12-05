@@ -67,6 +67,7 @@ class Calculation
         }
     }
     
+    // Calculate the days that are left
     public function daysLeft(){
         $dt = Carbon::now();
         self::setEndDate();
@@ -76,6 +77,7 @@ class Calculation
         return $daysLeft;
     }
 
+    // Save the medals at the end of the week
     public function saveMedals(){
         $leaderboards = $this->getLeaderboardStats();
 
@@ -119,6 +121,7 @@ class Calculation
 
     }
 
+    // Get the current week
     public function currentWeek()
     {
         $dt = Carbon::now();
@@ -293,9 +296,9 @@ class Calculation
     }
 
     //check The schedules and calculate if you completed them.
-    public function weeklyGoalsTree($currentweek){
+    public function weeklyGoalsTree($user, $currentweek){
         $schedules = Schedules::all();
-        $activities = Auth::user()->activities;
+        $activities = $user->activities;
         $date = $this->getStartDate()->toDateTimeString();
         $carbonStartDate = new Carbon($date);
         $carbonEndDate = new Carbon($date);

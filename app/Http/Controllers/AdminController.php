@@ -79,21 +79,25 @@ class AdminController extends Controller
                         ]);
                         return redirect('/dashboard');
                     }else{
-                        // G
+                        // Give Error of wrong pass
                         return view('admin.chooserole', ['error' => "Wrong Password"]);
                     }
                 }else{
+                    // Give error of empty pass
                     return view('admin.chooserole', ['error' => "Password can't be empty"]);
                 }
             }else{
+                // Save users role as student
                 User::where('id', Auth::id())->update([
                     'role' => $request->input('role')
                 ]);
             }
             return redirect('/dashboard');
         }elseif(empty($request->input('password')) && empty($request->input('role'))){
+            // Error for not selecting anything
             return view('admin.chooserole', ['error' => "You didn't select anything"]);
         }else{
+            // Error if something else was wrong
             return view('admin.chooserole', ['error' => "Hmm something went wrong"]);
         }
     }

@@ -1,7 +1,15 @@
 @extends('layouts.master')
 
-@section('content')
+@section('stylesheets')
+    <link rel="stylesheet" href="/css/toggle.css">
+@endsection
 
+@section('content')
+    @if($user->noavatar)
+    <section>
+        <p>Looks like you don't have a profile picture? Upload one on Strava <a href="https://www.strava.com/settings/profile" target="_blank" class="leaderboards-filter">here!</a></p>
+    </section>
+    @endif
 
 
     <section class="profile-top">
@@ -14,10 +22,17 @@
         <a href="/logout" class="logout leaderboards-filter">Logout</a>
         <img class="profile-big" src="{{ $user->avatar }}" alt="{{ $user->id }}">
         <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
+        {{ csrf_field() }}
         @if($user->notifications == false)
-            <a href="/enablemail">Enable Mail Notifications</a>
+            <h4 class="maillabel">Enable Email</h4>
+            <p class="info-text">If you want to get email notifications about your goals, turn them on right here!</p>
+            <input type="checkbox" id="cb1" class="tgl tgl-light">
+            <label for="cb1" class="tgl-btn"></label>
         @else
-            <a href="/disablemail">Disable Mail Notifications</a>
+            <h4 class="maillabel">Disable Email</h4>
+            <p class="info-text">If you don't want to get email notifications about your goals, turn them off right here!</p>
+            <input type="checkbox" id="cb1" class="tgl tgl-light" checked>
+            <label for="cb1" class="tgl-btn"></label>
         @endif
     </section>
 
@@ -46,4 +61,8 @@
 
 
 
+@endsection
+
+@section('scripts')
+    <script src="/js/mail.js"></script>
 @endsection

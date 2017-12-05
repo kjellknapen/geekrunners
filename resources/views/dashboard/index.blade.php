@@ -8,6 +8,7 @@
 
 
     @isset($event)
+    @if($today->diffInDays($endDate) != 0)
         <div class="goal-tree">
             @foreach($weekTree as $key => $week)
                 @if($key == "1")
@@ -124,6 +125,42 @@
             <p class="sub-title">Left until '{{$eventName[0]}}'</p>
             <div style="background: linear-gradient(to right, #ff9a95 {{ ceil((200 - $event) / 200 * 100) }}%,white {{ ceil((200 - $event) / 200 * 100) }}%);" class='percentageFill'></div>
         </section>
+        @else
+        <section>
+            <h1>Today is D-day</h1>
+            <p class="sub-title">We have ran for the {{ $eventName[0] }}</p><br><br><br>
+            <p>The winners of this event were</p>
+            <div class="event-winners">
+                <div class="activity halloffame">
+                    <div class="halloffame-info">
+                        <h1>First</h1>
+                        <a href="/user/21"><h3>John Doe</h3></a>
+                    </div>
+                    <div class="img-halloffame">
+                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnDoe.png" alt="John Doe"></a>
+                    </div>
+                </div>
+                <div class="activity halloffame">
+                    <div class="halloffame-info">
+                        <h1>Second</h1>
+                        <a href="/user/21"><h3>John Doe</h3></a>
+                    </div>
+                    <div class="img-halloffame">
+                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/John@Doe.png" alt="John Doe"></a>
+                    </div>
+                </div>
+                <div class="activity halloffame">
+                    <div class="halloffame-info">
+                        <h1>Third</h1>
+                        <a href="/user/21"><h3>John Doe</h3></a>
+                    </div>
+                    <div class="img-halloffame">
+                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnnyDoe.png" alt="John Doe"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endif
     @endisset
 
     <section>
