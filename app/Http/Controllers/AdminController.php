@@ -18,13 +18,6 @@ class AdminController extends Controller
 
     public function index()
     {
-
-      $calc = new ScheduleCalculations();
-      $event = Event::find(1);
-      if ($event) {
-        schedules::truncate();
-        $calc->create_schedule();
-      }
       $shedules = schedules::all();
       $event = Event::find(1);
       return view('admin.index', ['shedules' => $shedules, 'event' => $event]);
@@ -38,6 +31,9 @@ class AdminController extends Controller
     public function saveEvent(Request $request, Calculation $calculation){
         $shedules = schedules::all();
         if(!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('start-date')) && !empty($request->input('location'))) {
+          //can't start training for an event in the past!
+          if ($request->input('start-date')<$request->input('event-date')) {
+
             Event::updateOrCreate(['id' => 1],[
                 'name' => $request->input('event-name'),
                 'event_date' => $request->input('event-date'),
@@ -48,10 +44,19 @@ class AdminController extends Controller
             $event = Event::find(1);
             $calculation->setEndDate();
             $calculation->setStartDate();
-            return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => true]);
+            $calc = new ScheduleCalculations();
+            schedules::truncate();
+            $calc->create_schedule();
+            $shedules = schedules::all();
+            return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "check"]);
         }
+        else {
+          $event = Event::find(1);
+          return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "past"]);
+        }
+      }
         $event = Event::find(1);
-        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => false]);
+        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "empty"]);
     }
 
     public function chooseRole(){

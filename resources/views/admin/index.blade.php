@@ -7,8 +7,12 @@
 @section('content')
 
   @isset($saved)
-  @if($saved)
+  @if($saved == "check")
     <p class="event-succes">The event has been updated!</p>
+  @elseif($saved == "empty")
+      <p class="event-fail">Fill in all the fields!</p>
+  @elseif($saved == "past")
+      <p class="event-fail">You can't train for something that's already over by then!</p>
   @else
     <p class="event-fail">Something went wrong, try again!</p>
   @endif
