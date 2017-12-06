@@ -14,6 +14,16 @@ class DashboardController extends Controller
     //
 
     public function index(Calculation $calculations){
+
+
+
+        //TEMP
+
+
+
+
+
+
         // Get leaderboard stats
         $topRunners = $calculations->getLeaderboardStats();
         // Activities voor activity feed
@@ -46,6 +56,14 @@ class DashboardController extends Controller
                     'topRunners' => $topRunners['Kilometers']]);
             }
         }
+
+
+
+
+
+
+
+
 
         return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed]);
     }

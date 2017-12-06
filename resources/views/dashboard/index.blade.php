@@ -165,22 +165,53 @@
             <p>The winners of this event were</p>
 
 
-                <div class="halloffame-winners">
-                    @foreach($topthree_dday as $key => $three)
-                        <div class="halloffame placed-{{$three["place"]}}">
 
-                            <div class="img-halloffame">
-                                <a href="#"><img class="profile-big" src="{{$three["user"]->avatar}}" alt="{{$three["user"]->firstname.' '.$three["user"]->lastname}}"></a>
-                            </div>
-                            <div class="halloffame-info">
-                                <a href="/user/{{$three["user"]->id}}"><h3>{{$three["user"]->firstname.' '.$three["user"]->lastname }}</h3></a>
-                                <p>{{ $three["completed"] }} completed</p>
-                            </div>
+
+                <div class="halloffame-winners">
+                    {{--@foreach($topthreedday as $key => $three)--}}
+                        {{--<div class="halloffame placed-{{$three["place"]}}">--}}
+
+                            {{--<div class="img-halloffame">--}}
+                                {{--<a href="#"><img class="profile-big" src="{{$three["user"]->avatar}}" alt="{{$three["user"]->firstname.' '.$three["user"]->lastname}}"></a>--}}
+                            {{--</div>--}}
+                            {{--<div class="halloffame-info">--}}
+                                {{--<a href="/user/{{$three["user"]->id}}"><h3>{{$three["user"]->firstname.' '.$three["user"]->lastname }}</h3></a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endforeach--}}
+
+
+                    <div class="halloffame placed-1">
+
+                        <div class="img-halloffame">
+                            <a href="#"><img class="profile-big" src="http://cdn1-www.craveonline.com/assets/uploads/2015/04/HideoKojima.jpg"></a>
                         </div>
-                    @endforeach
+                        <div class="halloffame-info">
+                            <a href="#"><h3>John Doe</h3></a>
+                        </div>
+                    </div>
+                    <div class="halloffame placed-2">
+
+                        <div class="img-halloffame">
+                            <a href="#"><img class="profile-big" src="http://cdn1-www.craveonline.com/assets/uploads/2015/04/HideoKojima.jpg"></a>
+                        </div>
+                        <div class="halloffame-info">
+                            <a href="#"><h3>John Doi</h3></a>
+                        </div>
+                    </div>
+                    <div class="halloffame placed-3">
+
+                        <div class="img-halloffame">
+                            <a href="#"><img class="profile-big" src="http://cdn1-www.craveonline.com/assets/uploads/2015/04/HideoKojima.jpg"></a>
+                        </div>
+                        <div class="halloffame-info">
+                            <a href="#"><h3>John Doeo</h3></a>
+                        </div>
+                    </div>
+
+
                     <img src="/img/stage-01.png" class="hall-stage" alt="stage">
                 </div>
-
 
 
 
