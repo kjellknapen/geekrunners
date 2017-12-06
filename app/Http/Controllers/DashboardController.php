@@ -29,12 +29,22 @@ class DashboardController extends Controller
 
         // Check if an enddate is set
         if($calculations->getEndDate() != false || $calculations->getEndDate() != null){
+              $today = Carbon::now();
+              $enddate = $calculations->getEndDate();
+              $diff = $today->diffInDays($enddate);
               //load the weektree & weekly goals
               $currentWeek = $calculations->currentWeek();
+            if($currentWeek < count(App\Schedules::all())){
               $event = $calculations->daysLeft();
               $eventName = Event::take(1)->pluck('name');
-              return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event,'weekTree' => $calculations->weeklyGoalsTree(Auth::user(), $currentWeek),  'userStats' => $calculations->getUserStats(), 'endDate' => $calculations->getEndDate(), "today" => Carbon::now(),
+              return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event,'weekTree' => $calculations->weeklyGoalsTree(Auth::user(), $currentWeek),  'userStats' => $calculations->getUserStats(), 'D_Day' => false,
              'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
+            }else{
+                $event = $calculations->daysLeft();
+                $eventName = Event::take(1)->pluck('name');
+                return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event, 'D_Day' => true, 'diff' => $diff,
+                    'topRunners' => $topRunners['Kilometers']]);
+            }
         }
 
         return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed]);

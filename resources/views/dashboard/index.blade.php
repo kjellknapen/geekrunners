@@ -5,10 +5,8 @@
 @endsection
 
 @section('content')
-
-
     @isset($event)
-    @if($today->diffInDays($endDate) > 0)
+    @if($D_Day == false)
         <div class="goal-tree">
             @foreach($weekTree as $key => $week)
                 @if($key == "1")
@@ -127,7 +125,11 @@
         </section>
         @else
         <section>
-            <h1>Today is D-day</h1>
+            @if($diff == 0)
+                <h1>Today is D-day</h1>
+            @else
+                <h1>We Passed D-day</h1>
+            @endif
             <p class="sub-title">We have ran for the {{ $eventName[0] }}</p><br><br><br>
             <p>The winners of this event were</p>
             <div class="event-winners">
