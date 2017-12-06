@@ -16,6 +16,7 @@ class CreateScheduleTable extends Migration
       Schema::create('schedules', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('week');
+          $table->integer('set');
           $table->integer('duration_goal');
           $table->integer('distance_goal');
           $table->integer('frequency_goal');

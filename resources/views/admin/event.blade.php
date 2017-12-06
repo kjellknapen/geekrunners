@@ -30,6 +30,10 @@
             <input type="date" class="form-control" id="start-date" name="start-date" value="{{ !empty($event) ? $event->start_date : "" }}">
         </div>
         <div class="form-group">
+            <label for="distance">Distance we're training for</label>
+            <input type="number" class="form-control" id="distance" name="distance" value="{{ !empty($event) ? $event->distance : "" }}">
+        </div>
+        <div class="form-group">
             <label for="location">Location</label>
             <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{ !empty($event) ? $event->location : "" }}">
         </div>

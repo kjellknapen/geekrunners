@@ -66,7 +66,7 @@ class Calculation
             $this->end_date = false;
         }
     }
-    
+
     // Calculate the days that are left
     public function daysLeft(){
         $dt = Carbon::now();
@@ -126,9 +126,13 @@ class Calculation
     {
         $dt = Carbon::now();
         $this->setStartDate();
+        $startdate = $this->getStartDate();
         $interval = $dt->diffInWeeks($this->getStartDate());
         $weekNumber = $interval + 1;
-
+        if ($dt<$startdate) {
+          //Goshdarn time travellers
+          $weekNumber = -$weekNumber;
+        }
         return $weekNumber;
     }
 

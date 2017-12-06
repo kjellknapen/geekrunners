@@ -7,8 +7,12 @@
 @section('content')
 
   @isset($saved)
-  @if($saved)
+  @if($saved == "check")
     <p class="event-succes">The event has been updated!</p>
+  @elseif($saved == "empty")
+      <p class="event-fail">Fill in all the fields!</p>
+  @elseif($saved == "past")
+      <p class="event-fail">You can't train for something that's already over by then!</p>
   @else
     <p class="event-fail">Something went wrong, try again!</p>
   @endif
@@ -28,6 +32,10 @@
     <div class="form-group">
       <label for="start-date">The date we start training</label>
       <input type="date" class="form-control" id="start-date" name="start-date" value="{{ !empty($event) ? $event->start_date : "" }}">
+    </div>
+    <div class="form-group">
+        <label for="distance">Distance we're training for</label>
+        <input type="number" class="form-control" id="distance" name="distance" value="{{ !empty($event) ? $event->distance : "" }}">
     </div>
     <div class="form-group">
       <label for="location">Location</label>
