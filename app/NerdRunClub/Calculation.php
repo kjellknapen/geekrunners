@@ -127,7 +127,7 @@ class Calculation
         $dt = Carbon::now();
         $this->setStartDate();
         $startdate = $this->getStartDate();
-        $interval = $dt->diffInWeeks($startdate);
+        $interval = $dt->diffInWeeks($this->getStartDate());
         $weekNumber = $interval + 1;
         if ($dt<$startdate) {
           //Goshdarn time travellers
