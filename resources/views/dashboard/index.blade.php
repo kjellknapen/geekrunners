@@ -127,7 +127,12 @@
             <div style="background: linear-gradient(to right, #ff9a95 {{ ceil((200 - $event) / 200 * 100) }}%,white {{ ceil((200 - $event) / 200 * 100) }}%);" class='percentageFill'></div>
         </section>
     @endisset
+    @isset($patience)
+    <section>
+      <h2 class="sub-title">Have some patience, the training starts soon</p>
+    </section>
 
+    @endisset
     <section>
         <h1>Activity feed</h1>
         <p class="sub-title">Recent runs from your fellow geeks</p><br><br><br>

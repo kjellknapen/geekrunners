@@ -31,7 +31,7 @@ class AdminController extends Controller
     public function saveEvent(Request $request, Calculation $calculation){
         $shedules = schedules::all();
         if(!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('start-date')) && !empty($request->input('location'))) {
-          //can't start training for an event in the past!
+          //can't be training for an event in the past!
           if ($request->input('start-date')<$request->input('event-date')) {
 
             Event::updateOrCreate(['id' => 1],[
