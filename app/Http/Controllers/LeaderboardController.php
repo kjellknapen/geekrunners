@@ -17,14 +17,17 @@ class LeaderboardController extends Controller
     public function hallOfFame(Calculation $calculation){
         $topfive = [
           "first" => [
+              "place" => 1,
               "completed" => 0,
               "user" => ""
           ],
           "second" => [
+              "place" => 2,
               "completed" => 0,
               "user" => ""
           ],
           "third" => [
+              "place" => 3,
               "completed" => 0,
               "user" => ""
           ]
