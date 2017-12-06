@@ -8,7 +8,7 @@
 
 
     @isset($event)
-    @if($today->diffInDays($endDate) != 0)
+    @if($today->diffInDays($endDate) > 0)
         <div class="goal-tree">
             @foreach($weekTree as $key => $week)
                 @if($key == "1")
