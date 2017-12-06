@@ -17,22 +17,17 @@ class LeaderboardController extends Controller
     public function hallOfFame(Calculation $calculation){
         $topfive = [
           "first" => [
+              "place" => 1,
               "completed" => 0,
               "user" => ""
           ],
           "second" => [
+              "place" => 2,
               "completed" => 0,
               "user" => ""
           ],
           "third" => [
-              "completed" => 0,
-              "user" => ""
-          ],
-          "fourth" => [
-              "completed" => 0,
-              "user" => ""
-          ],
-          "fifth" => [
+              "place" => 3,
               "completed" => 0,
               "user" => ""
           ]
@@ -57,17 +52,11 @@ class LeaderboardController extends Controller
             }elseif($topfive["third"]["completed"] < $completedgoals || $topfive["third"]["completed"] == 0 && $topfive["third"]["user"] == ""){
                 $topfive["third"]["completed"] = $completedgoals;
                 $topfive["third"]["user"] = $u;
-            }elseif($topfive["fourth"]["completed"] < $completedgoals || $topfive["fourth"]["completed"] == 0 && $topfive["fourth"]["user"] == ""){
-                $topfive["fourth"]["completed"] = $completedgoals;
-                $topfive["fourth"]["user"] = $u;
-            }elseif($topfive["fifth"]["completed"] < $completedgoals || $topfive["fifth"]["completed"] == 0 && $topfive["fifth"]["user"] == ""){
-                $topfive["fifth"]["completed"] = $completedgoals;
-                $topfive["fifth"]["user"] = $u;
             }else{
 
             }
             $completedgoals = 0;
         }
-        return view("leaderboards/halloffame", ["topfive" => $topfive]);
+        return view("leaderboards/halloffame", ["topthree" => $topfive]);
     }
 }

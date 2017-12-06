@@ -42,8 +42,6 @@ Route::middleware(['notloggedin'])->group(function () {
 
         Route::post('/disablemail', 'UserController@disableMail');
 
-        Route::get('/halloffame', 'LeaderboardController@halloffame');
-
     });
 
     // Routes only for teacher
@@ -56,6 +54,9 @@ Route::middleware(['notloggedin'])->group(function () {
     });
 
 });
+
+
+Route::get('/halloffame', 'LeaderboardController@halloffame');
 
 
 // Reroute if user is loggedin

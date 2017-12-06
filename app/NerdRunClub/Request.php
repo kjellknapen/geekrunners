@@ -27,18 +27,35 @@ class Request
 
             $result = Strava::get($url, $config);
             foreach ($result as $run) {
-                if ($run->max_speed < 5.5 && $run->average_speed < 5.5) {
-                    Activity::firstOrCreate(['strava_id' => $run->id],[
-                        'name' => $run->name,
-                        'user_id' => $u->id,
-                        'map_id' => $run->map->id,
-                        'date' => new Carbon($run->start_date),
-                        'average_speed' => $run->average_speed*3.6,
-                        'max_speed' => $run->max_speed,
-                        'km' => number_format($run->distance / 1000, 2),
-                        'minutes' => floor($run->elapsed_time / 60),
-                    ]);
+                $http_request = \Illuminate\Support\Facades\Request::getHost();
+                if($http_request == "https://geekrunners-beta.weareimd.be" || $http_request == "geekrunners-beta.weareimd.be" || $http_request == "nerdrunclub.app" || $http_request == "localhost"){
+                    if ($run->average_speed < 5.5) {
+                        Activity::firstOrCreate(['strava_id' => $run->id],[
+                            'name' => $run->name,
+                            'user_id' => $u->id,
+                            'map_id' => $run->map->id,
+                            'date' => new Carbon($run->start_date),
+                            'average_speed' => $run->average_speed*3.6,
+                            'max_speed' => $run->max_speed,
+                            'km' => number_format($run->distance / 1000, 2),
+                            'minutes' => floor($run->elapsed_time / 60),
+                        ]);
+                    }
+                }else{
+                    if ($run->average_speed < 5.5 && $run->manual == false) {
+                        Activity::firstOrCreate(['strava_id' => $run->id],[
+                            'name' => $run->name,
+                            'user_id' => $u->id,
+                            'map_id' => $run->map->id,
+                            'date' => new Carbon($run->start_date),
+                            'average_speed' => $run->average_speed*3.6,
+                            'max_speed' => $run->max_speed,
+                            'km' => number_format($run->distance / 1000, 2),
+                            'minutes' => floor($run->elapsed_time / 60),
+                        ]);
+                    }
                 }
+
             }
         }
     }
