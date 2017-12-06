@@ -163,35 +163,61 @@
             @endif
             <p class="sub-title">We have ran for the {{ $eventName[0] }}</p><br><br><br>
             <p>The winners of this event were</p>
-            <div class="event-winners">
-                <div class="activity halloffame">
-                    <div class="halloffame-info">
-                        <h1>First</h1>
-                        <a href="/user/21"><h3>John Doe</h3></a>
-                    </div>
-                    <div class="img-halloffame">
-                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnDoe.png" alt="John Doe"></a>
-                    </div>
+
+
+                <div class="halloffame-winners">
+                    @foreach($topthree_dday as $key => $three)
+                        <div class="halloffame placed-{{$three["place"]}}">
+
+                            <div class="img-halloffame">
+                                <a href="#"><img class="profile-big" src="{{$three["user"]->avatar}}" alt="{{$three["user"]->firstname.' '.$three["user"]->lastname}}"></a>
+                            </div>
+                            <div class="halloffame-info">
+                                <a href="/user/{{$three["user"]->id}}"><h3>{{$three["user"]->firstname.' '.$three["user"]->lastname }}</h3></a>
+                                <p>{{ $three["completed"] }} completed</p>
+                            </div>
+                        </div>
+                    @endforeach
+                    <img src="/img/stage-01.png" class="hall-stage" alt="stage">
                 </div>
-                <div class="activity halloffame">
-                    <div class="halloffame-info">
-                        <h1>Second</h1>
-                        <a href="/user/21"><h3>John Doe</h3></a>
-                    </div>
-                    <div class="img-halloffame">
-                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/John@Doe.png" alt="John Doe"></a>
-                    </div>
-                </div>
-                <div class="activity halloffame">
-                    <div class="halloffame-info">
-                        <h1>Third</h1>
-                        <a href="/user/21"><h3>John Doe</h3></a>
-                    </div>
-                    <div class="img-halloffame">
-                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnnyDoe.png" alt="John Doe"></a>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+            {{--<div class="event-winners">--}}
+                {{--<div class="activity halloffame">--}}
+                    {{--<div class="halloffame-info">--}}
+                        {{--<h1>First</h1>--}}
+                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
+                    {{--</div>--}}
+                    {{--<div class="img-halloffame">--}}
+                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnDoe.png" alt="John Doe"></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="activity halloffame">--}}
+                    {{--<div class="halloffame-info">--}}
+                        {{--<h1>Second</h1>--}}
+                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
+                    {{--</div>--}}
+                    {{--<div class="img-halloffame">--}}
+                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/John@Doe.png" alt="John Doe"></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="activity halloffame">--}}
+                    {{--<div class="halloffame-info">--}}
+                        {{--<h1>Third</h1>--}}
+                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
+                    {{--</div>--}}
+                    {{--<div class="img-halloffame">--}}
+                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnnyDoe.png" alt="John Doe"></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+
+
+
+
         </section>
         @endif
     @endisset
