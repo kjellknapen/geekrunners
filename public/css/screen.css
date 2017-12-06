@@ -283,7 +283,6 @@ p{
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
 .halloffame{
     align-self: center;
     width:48%;
@@ -344,4 +343,8 @@ p{
     .goals{
         font-size:1.1em;
     }
+}
+
+.hall-nav{
+    justify-content: space-between;
 }
