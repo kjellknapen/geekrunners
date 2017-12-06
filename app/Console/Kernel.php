@@ -30,8 +30,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('request:activity')->everyFifteenMinutes();
+        $schedule->command('send:mail')->cron('10 10 * * 5');
+        $schedule->command('save:medals')->cron('59 23 * * 7');
     }
 
     /**
