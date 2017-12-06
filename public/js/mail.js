@@ -89,14 +89,12 @@ $(document).ready(function () {
         if ($('#cb1:checked').length > 0) {
             $.post("/enablemail", "pls").done(function (data) {
                 console.log(data);
-                $(".maillabel").text("Disable Email");
-                $(".info-text").text("If you don't want to get email notifications about your goals, turn them off right here!");
+                $(".info-text").text("Disable email notifications");
             });
         } else {
             $.post("/disablemail", "pls").done(function (data) {
                 console.log(data);
-                $(".maillabel").text("Enable Email");
-                $(".info-text").text("If you want to get email notifications about your goals, turn them on right here!");
+                $(".info-text").text("Enable email notifications");
             });
         }
     });

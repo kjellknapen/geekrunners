@@ -12,7 +12,7 @@
     @endif
 
 
-    <section class="profile-top">
+    <section class="profile-top logged-user">
         <div class="medal-profile" title="Weekly medals">
             <div><img src="/img/medals/gold-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals1.')'}}</span><br></div>
             <div><img src="/img/medals/silver-medal.png" alt="" class="medal-img"><span class="medal-counter">{{'('.$user->medals2.')'}}</span><br></div>
@@ -24,13 +24,11 @@
         <h3>{{ $user->firstname . " " . $user->lastname }}</h3>
         {{ csrf_field() }}
         @if($user->notifications == false)
-            <h4 class="maillabel">Enable Email</h4>
-            <p class="info-text">If you want to get email notifications about your goals, turn them on right here!</p>
+            <p class="info-text">Enable email notifications</p>
             <input type="checkbox" id="cb1" class="tgl tgl-light">
             <label for="cb1" class="tgl-btn"></label>
         @else
-            <h4 class="maillabel">Disable Email</h4>
-            <p class="info-text">If you don't want to get email notifications about your goals, turn them off right here!</p>
+            <p class="info-text">Disable email notifications</p>
             <input type="checkbox" id="cb1" class="tgl tgl-light" checked>
             <label for="cb1" class="tgl-btn"></label>
         @endif

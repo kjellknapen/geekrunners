@@ -101,6 +101,9 @@ section{
 .half-right{
     float: right;
 }
+a:hover{
+    text-decoration: none;
+}
 h1{
     color: #EC3C34;
     font-size:3em;
@@ -277,11 +280,13 @@ p{
 }
 
 .halloffame-winners{
-    max-height: 550px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: inline-block;
+    margin-left:50%;
+    transform: translateX(-50%);
+    position: relative;
+}
+.hall-stage{
+    margin-top:250px;
 }
 .halloffame{
     align-self: center;
@@ -289,14 +294,39 @@ p{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    display: flex;
+    flex-direction:column;
+    position: absolute;
+    left:50%;
+    text-align: center;
+}
+
+.placed-1{
+    transform: translate(-50%,70px);
+}
+
+.placed-2{
+    transform: translate(-50%,160px);
+    margin-left:-170px;
+}
+
+.placed-3{
+    transform: translate(-50%,195px);
+    margin-left:170px;
 }
 
 .halloffame .img-halloffame{
-    width: 100px;
+    width: 90px;
 }
 
 .img-halloffame .profile-big{
     width: 100%;
+}
+
+.normalize{
+    display: inline-block !important;
+    position: relative;
+    opacity: 1;
 }
 
 @media screen and (max-width: 960px) {
@@ -308,6 +338,34 @@ p{
     }
     section{
         margin-bottom:40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hall-stage{
+        margin-top:200px;
+        width:350px;
+    }
+    .halloffame h3{
+        font-size:1em;
+        max-width:120px;
+    }
+    .halloffame p{
+        font-size:.8em;
+    }
+
+    .placed-1{
+        transform: translate(-50%,10px);
+    }
+
+    .placed-2{
+        transform: translate(-50%,90px);
+        margin-left:-120px;
+    }
+
+    .placed-3{
+        transform: translate(-50%,115px);
+        margin-left:120px;
     }
 }
 @media screen and (max-width: 530px) {
