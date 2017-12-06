@@ -7,6 +7,7 @@ $factory->define(App\Schedules::class, function (Faker $faker) use ($autoIncreme
   $autoIncrement->next();
     return [
       'week'=>$autoIncrement->current(),
+      'set'=>$faker->numberBetween(1,3),
       'duration_goal'=>$faker->numberBetween(25,120),
       'distance_goal'=>$faker->numberBetween(5,16),
       'frequency_goal'=>$faker->numberBetween(1,3),

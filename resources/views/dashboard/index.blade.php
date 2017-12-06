@@ -162,7 +162,12 @@
         </section>
         @endif
     @endisset
+    @isset($patience)
+    <section>
+      <h2 class="sub-title">Have some patience, the training starts soon</p>
+    </section>
 
+    @endisset
     <section>
         <h1>Activity feed</h1>
         <p class="sub-title">Recent runs from your fellow geeks</p><br><br><br>

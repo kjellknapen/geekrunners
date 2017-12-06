@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use NerdRunClub\Calculation;
+use NerdRunClub\ScheduleCalculations;
 
 class AdminController extends Controller
 {
@@ -34,11 +35,14 @@ class AdminController extends Controller
 
         // Check that nothing is empty
         if(!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('start-date')) && !empty($request->input('location'))) {
-            // Update if event exists otherwise create an event
+          //can't be training for an event in the past
+          if ($request->input('start-date')<$request->input('event-date')) {
+            // Check if an event already exists, update if so, create otherwise
             Event::updateOrCreate(['id' => 1],[
                 'name' => $request->input('event-name'),
                 'event_date' => $request->input('event-date'),
                 'start_date' => $request->input('start-date'),
+                'distance' => $request->input('distance'),
                 'location' => $request->input('location')
             ]);
 
@@ -48,10 +52,19 @@ class AdminController extends Controller
             $calculation->setEndDate();
             // Set Startdate of event in calculations class
             $calculation->setStartDate();
-            return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => true]);
+            $calc = new ScheduleCalculations();
+            schedules::truncate();
+            $calc->create_schedule();
+            $shedules = schedules::all();
+            return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "check"]);
         }
+        else {
+          $event = Event::find(1);
+          return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "past"]);
+        }
+      }
         $event = Event::find(1);
-        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => false]);
+        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "empty"]);
     }
 
     // Load the page to choose your role
@@ -101,4 +114,6 @@ class AdminController extends Controller
             return view('admin.chooserole', ['error' => "Hmm something went wrong"]);
         }
     }
+
+
 }

@@ -7,6 +7,7 @@
  */
 
 namespace NerdRunClub;
+use Carbon\Carbon;
 
 
 class Strava
@@ -15,7 +16,7 @@ class Strava
     private $client_id;
     private $client_secret;
     private $redirect_uri;
-    
+
     public function __construct($CID, $CSCRT, $REDURI, $GZZLC)
     {
         $this->client = $GZZLC;

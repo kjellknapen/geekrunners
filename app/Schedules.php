@@ -8,6 +8,6 @@ class Schedules extends Model
 {
   public $timestamps = false;
   protected $fillable = [
-      'week', 'duration_goal', 'distance_goal', 'frequency_goal'
+      'week','set', 'duration_goal', 'distance_goal', 'frequency_goal'
   ];
 }
