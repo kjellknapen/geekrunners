@@ -54,6 +54,6 @@ class LeaderboardController extends Controller
             }
             $completedgoals = 0;
         }
-        return view("leaderboards/halloffame", ["topfive" => $topfive]);
+        return view("leaderboards/halloffame", ["topthree" => $topfive]);
     }
 }
