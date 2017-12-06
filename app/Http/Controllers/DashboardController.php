@@ -11,7 +11,6 @@ use NerdRunClub\Calculation;
 
 class DashboardController extends Controller
 {
-    //
 
     public function index(Calculation $calculations){
 
@@ -30,11 +29,14 @@ class DashboardController extends Controller
         $activityfeed = Activity::orderBy('date','DESC')->take(5)->get();
         //Check for startdate, necessary for loading in scheduletree en weekly goals.
         if ($calculations->getStartDate() == null || $calculations->getStartDate() == false) {
-          return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed]);
+          return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed,'noevent'=>true]);
         };
         //check for negative current week. Have patience young grasshopper, the training will soon commence.
         if ($calculations->currentWeek()<=0) {
-            return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed,'patience'=>true]);
+            $startdate= $calculations->getStartDate();
+            $future = $startdate->format('l d F');
+            //dd($startdate);
+          return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed,'future'=>$future]);
           }
 
         // Check if an enddate is set
