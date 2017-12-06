@@ -29,7 +29,7 @@ class Request
             foreach ($result as $run) {
                 $http_request = \Illuminate\Support\Facades\Request::getHost();
                 if($http_request == "https://geekrunners-beta.weareimd.be" || $http_request == "geekrunners-beta.weareimd.be" || $http_request == "nerdrunclub.app" || $http_request == "localhost"){
-                    if ($run->max_speed < 5.5 && $run->average_speed < 5.5) {
+                    if ($run->average_speed < 5.5) {
                         Activity::firstOrCreate(['strava_id' => $run->id],[
                             'name' => $run->name,
                             'user_id' => $u->id,
@@ -42,7 +42,7 @@ class Request
                         ]);
                     }
                 }else{
-                    if ($run->max_speed < 5.5 && $run->average_speed < 5.5 && $run->manual == false) {
+                    if ($run->average_speed < 5.5 && $run->manual == false) {
                         Activity::firstOrCreate(['strava_id' => $run->id],[
                             'name' => $run->name,
                             'user_id' => $u->id,
