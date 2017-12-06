@@ -300,6 +300,12 @@ p{
     width: 100%;
 }
 
+.normalize{
+    display: inline-block !important;
+    position: relative;
+    opacity: 1;
+}
+
 @media screen and (max-width: 960px) {
     .half{
         width:100%;
