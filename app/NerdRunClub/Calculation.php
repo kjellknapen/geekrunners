@@ -238,6 +238,7 @@ class Calculation
             $duration_goal= $schedule->duration_goal;
             $frequency_goal= $schedule->frequency_goal;
             $distance_goal= $schedule->distance_goal;
+            $distance_warmup= $schedule->distance_warmup;
         }
 
         $result = $this->userScheduleDate(Auth::user(), $distance_goal, $frequency_goal, $duration_goal);
@@ -255,6 +256,7 @@ class Calculation
             'duration_completed'=>$result['duration_progress'],
             'frequency_goal'=>$frequency_goal,
             'frequency_completed'=>$result['frequency_progress'],
+            'distance_warmup'=>$distance_warmup,
             'distance_goal'=>$distance_goal,
             'distance_completed'=>$result['distance_progress'],
             'users_completed'=>$users_completed,
