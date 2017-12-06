@@ -27,14 +27,6 @@ class LeaderboardController extends Controller
           "third" => [
               "completed" => 0,
               "user" => ""
-          ],
-          "fourth" => [
-              "completed" => 0,
-              "user" => ""
-          ],
-          "fifth" => [
-              "completed" => 0,
-              "user" => ""
           ]
         ];
 
@@ -57,12 +49,6 @@ class LeaderboardController extends Controller
             }elseif($topfive["third"]["completed"] < $completedgoals || $topfive["third"]["completed"] == 0 && $topfive["third"]["user"] == ""){
                 $topfive["third"]["completed"] = $completedgoals;
                 $topfive["third"]["user"] = $u;
-            }elseif($topfive["fourth"]["completed"] < $completedgoals || $topfive["fourth"]["completed"] == 0 && $topfive["fourth"]["user"] == ""){
-                $topfive["fourth"]["completed"] = $completedgoals;
-                $topfive["fourth"]["user"] = $u;
-            }elseif($topfive["fifth"]["completed"] < $completedgoals || $topfive["fifth"]["completed"] == 0 && $topfive["fifth"]["user"] == ""){
-                $topfive["fifth"]["completed"] = $completedgoals;
-                $topfive["fifth"]["user"] = $u;
             }else{
 
             }
