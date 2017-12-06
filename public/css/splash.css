@@ -91,6 +91,31 @@
     opacity:.3;
     width:20%;
     display: block;
-    margin:auto;    margin-bottom:30px;
+    margin:auto;
+    margin-bottom:30px;
 
+}
+.splash-halloffame{
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.splash-halloffame img{
+    width:60px;
+    transition: .1s ease;
+}
+.splash-halloffame p{
+    color: white;
+    margin-top:10px;
+    font-weight:lighter;
+    font-size:.9em;
+}
+.splash-halloffame :hover{
+    text-decoration: underline;
 }
