@@ -3,6 +3,14 @@ body{
     font-family: 'Roboto Slab', serif;
     color: #373737;
 }
+
+::selection {
+    background: #ffe4df; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+    background: #ffe4df; /* Gecko Browsers */
+}
+
 input:focus,
 select:focus,
 textarea:focus,
@@ -20,6 +28,14 @@ nav a:hover{
 }
 nav a{
     text-decoration: none;
+}
+img{
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 .wrap{
     max-width:1100px;
