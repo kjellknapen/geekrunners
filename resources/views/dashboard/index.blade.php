@@ -9,7 +9,38 @@
     @if($D_Day == false)
         <div class="goal-tree">
             @foreach($weekTree as $key => $week)
-                @if($key == "1")
+
+
+                @if($key == $scheduleData['week'])
+
+                    @if($key == "1")
+                        @if($week == "completed")
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-start-completed.svg" alt="treestart"></span>
+                        @elseif($week == "failed")
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-start-failed.svg" alt="treestart"></span>
+                        @else
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-start-grey.svg" alt="treestart"></span>
+                        @endif
+                    @elseif($key == count($weekTree))
+                        @if($week == "completed")
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-end-completed.svg" alt="treeend"></span>
+                        @elseif($week == "failed")
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-end-failed.svg" alt="treeend"></span>
+                        @else
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-end-grey.svg" alt="treeend"></span>
+                        @endif
+                    @else
+                        @if($week == "completed")
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-center-completed.svg" alt="treecenter"></span>
+                        @elseif($week == "failed")
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-center-failed.svg" alt="treecenter"></span>
+                        @else
+                            <span title="Week {{$key}}" class="tooltip currentTree normalize"><img src="img/tree-center-grey.svg" alt="treecenter"></span>
+                        @endif
+                    @endif
+
+
+                @elseif($key == "1")
                     @if($week == "completed")
                         <span title="Week {{$key}}" class="tooltip normalize"><img src="img/tree-start-completed.svg" alt="treestart"></span>
                     @elseif($week == "failed")
