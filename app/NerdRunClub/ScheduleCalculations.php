@@ -51,8 +51,9 @@ class ScheduleCalculations
           $speed = 9
           ;
         }
-        $schedule->frequency_goal = 3;
+        $schedule->frequency_goal = 2;
         $schedule->distance_goal =  round($distance/$sets * $set);
+        $distance =
         //Position inside set determines all other params
         switch ($week%3) {
 
@@ -63,7 +64,7 @@ class ScheduleCalculations
 
           case 0:
             //Only two sessions in the recuperation weeks
-            $schedule->frequency_goal = 2;
+            $schedule->frequency_goal = 1;
             break;
         }
 
