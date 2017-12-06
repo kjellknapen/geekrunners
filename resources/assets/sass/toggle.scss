@@ -8,6 +8,7 @@
   font-size: 0.8em;
   font-style: italic;
   color: #999;
+  margin-top:20px;
 }
 
 .tgl {
@@ -62,7 +63,7 @@
 // themes
 .tgl-light {
   + .tgl-btn {
-    background: #f0f0f0;
+    background-color: #ffc3be;
     border-radius: 2em;
     padding: 2px;
     transition: all .4s ease;

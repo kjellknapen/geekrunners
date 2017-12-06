@@ -65,6 +65,15 @@ strong {
   font-size: 1.25em;
 }
 
+.logged-user .medal-profile {
+  position: absolute;
+  -webkit-transform: translate(100px, -105%);
+          transform: translate(100px, -105%);
+  left: 50%;
+  top: 50%;
+  font-size: 1.25em;
+}
+
 .medal-profile div {
   padding: 5px 0;
 }
