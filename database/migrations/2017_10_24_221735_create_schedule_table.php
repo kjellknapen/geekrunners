@@ -19,6 +19,7 @@ class CreateScheduleTable extends Migration
           $table->integer('set');
           $table->integer('duration_goal');
           $table->integer('distance_goal');
+          $table->integer('distance_warmup');
           $table->integer('frequency_goal');
       });
     }

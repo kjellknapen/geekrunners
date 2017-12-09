@@ -6,7 +6,7 @@
 
 @section('content')
     @isset($event)
-    @if($D_Day == false)
+      @if($D_Day == false)
         <div class="goal-tree">
             @foreach($weekTree as $key => $week)
 
@@ -70,6 +70,7 @@
         <section class="half half-left">
             <h1>Weekly goals</h1>
             <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
+            <p> This week we'll run a {{ $scheduleData['distance_warmup']}} km session to warm up!</p>
             <ul class="goals">
                 @if($scheduleData['distance_completed'] >= 100)
                     <li class="goal-completed">&#10003; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
@@ -163,43 +164,104 @@
             @endif
             <p class="sub-title">We have ran for the {{ $eventName[0] }}</p><br><br><br>
             <p>The winners of this event were</p>
-            <div class="event-winners">
-                <div class="activity halloffame">
-                    <div class="halloffame-info">
-                        <h1>First</h1>
-                        <a href="/user/21"><h3>John Doe</h3></a>
+
+
+
+
+                <div class="halloffame-winners">
+                    {{--@foreach($topthreedday as $key => $three)--}}
+                        {{--<div class="halloffame placed-{{$three["place"]}}">--}}
+
+                            {{--<div class="img-halloffame">--}}
+                                {{--<a href="#"><img class="profile-big" src="{{$three["user"]->avatar}}" alt="{{$three["user"]->firstname.' '.$three["user"]->lastname}}"></a>--}}
+                            {{--</div>--}}
+                            {{--<div class="halloffame-info">--}}
+                                {{--<a href="/user/{{$three["user"]->id}}"><h3>{{$three["user"]->firstname.' '.$three["user"]->lastname }}</h3></a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endforeach--}}
+
+
+                    <div class="halloffame placed-1">
+
+                        <div class="img-halloffame">
+                            <a href="#"><img class="profile-big" src="http://cdn1-www.craveonline.com/assets/uploads/2015/04/HideoKojima.jpg"></a>
+                        </div>
+                        <div class="halloffame-info">
+                            <a href="#"><h3>John Doe</h3></a>
+                        </div>
                     </div>
-                    <div class="img-halloffame">
-                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnDoe.png" alt="John Doe"></a>
+                    <div class="halloffame placed-2">
+
+                        <div class="img-halloffame">
+                            <a href="#"><img class="profile-big" src="http://cdn1-www.craveonline.com/assets/uploads/2015/04/HideoKojima.jpg"></a>
+                        </div>
+                        <div class="halloffame-info">
+                            <a href="#"><h3>John Doi</h3></a>
+                        </div>
                     </div>
+                    <div class="halloffame placed-3">
+
+                        <div class="img-halloffame">
+                            <a href="#"><img class="profile-big" src="http://cdn1-www.craveonline.com/assets/uploads/2015/04/HideoKojima.jpg"></a>
+                        </div>
+                        <div class="halloffame-info">
+                            <a href="#"><h3>John Doeo</h3></a>
+                        </div>
+                    </div>
+
+
+                    <img src="/img/stage-01.png" class="hall-stage" alt="stage">
                 </div>
-                <div class="activity halloffame">
-                    <div class="halloffame-info">
-                        <h1>Second</h1>
-                        <a href="/user/21"><h3>John Doe</h3></a>
-                    </div>
-                    <div class="img-halloffame">
-                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/John@Doe.png" alt="John Doe"></a>
-                    </div>
-                </div>
-                <div class="activity halloffame">
-                    <div class="halloffame-info">
-                        <h1>Third</h1>
-                        <a href="/user/21"><h3>John Doe</h3></a>
-                    </div>
-                    <div class="img-halloffame">
-                        <a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnnyDoe.png" alt="John Doe"></a>
-                    </div>
-                </div>
-            </div>
+
+
+
+            {{--<div class="event-winners">--}}
+                {{--<div class="activity halloffame">--}}
+                    {{--<div class="halloffame-info">--}}
+                        {{--<h1>First</h1>--}}
+                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
+                    {{--</div>--}}
+                    {{--<div class="img-halloffame">--}}
+                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnDoe.png" alt="John Doe"></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="activity halloffame">--}}
+                    {{--<div class="halloffame-info">--}}
+                        {{--<h1>Second</h1>--}}
+                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
+                    {{--</div>--}}
+                    {{--<div class="img-halloffame">--}}
+                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/John@Doe.png" alt="John Doe"></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="activity halloffame">--}}
+                    {{--<div class="halloffame-info">--}}
+                        {{--<h1>Third</h1>--}}
+                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
+                    {{--</div>--}}
+                    {{--<div class="img-halloffame">--}}
+                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnnyDoe.png" alt="John Doe"></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+
+
+
+
         </section>
         @endif
     @endisset
-    @isset($patience)
-    <section>
-      <h2 class="sub-title">Have some patience, the training starts soon</p>
-    </section>
-
+    @isset($future)
+      <section>
+          <h2 class="sub-title">Have some patience, the training starts at {{$future}}</p>
+      </section>
+    @endisset
+    @isset($noevent)
+      <section>
+          <h2 class="sub-title">We're not training for an event right now, but you can still compete with your friends!</p>
+      </section>
     @endisset
     <section>
         <h1>Activity feed</h1>

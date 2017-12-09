@@ -82,18 +82,26 @@
 <h1 class="admin-title">Goals</h1>
 <div class="current_shedule">
   <div class="shedule-week schedule-head">
-    <p class="shedule-part col-xs-3">Week</p>
-    <p class="shedule-part col-xs-3">Duration (total)</p>
-    <p class="shedule-part col-xs-3">Distance (session)</p>
+    <p class="shedule-part col-xs-1">Week</p>
+    <p class="shedule-part col-xs-2">Duration (total)</p>
+    <p class="shedule-part col-xs-3">Distance (warm up)</p>
+    <p class="shedule-part col-xs-3">Distance (goal)</p>
     <p class="shedule-part col-xs-3">Frequency goal</p>
   </div>
   @foreach($shedules as $shedule)
+    @if($shedule['week']%3 == 1)
+      <section class="set">
+    @endif
     <div class="shedule-week">
-      <p class="shedule-part col-xs-3">{{$shedule['week']}}</p>
-      <p class="shedule-part col-xs-3">{{$shedule['duration_goal']}} minutes</p>
+      <p class="shedule-part col-xs-1">{{$shedule['week']}}</p>
+      <p class="shedule-part col-xs-2">{{$shedule['duration_goal']}} minutes</p>
+      <p class="shedule-part col-xs-3">{{$shedule['distance_warmup']}} km</p>
       <p class="shedule-part col-xs-3">{{$shedule['distance_goal']}} km</p>
       <p class="shedule-part col-xs-3">{{$shedule['frequency_goal']}} times this week</p>
     </div>
+    @if($shedule['week']%3 == 0)
+  </section>
+    @endif
   @endforeach
 </div>
 
