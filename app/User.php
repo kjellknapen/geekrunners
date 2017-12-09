@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function activities(){
         return $this->hasMany('App\Activity');
     }
+
+    public function eventwinners(){
+        return $this->hasOne('App\EventWinners');
+    }
 }

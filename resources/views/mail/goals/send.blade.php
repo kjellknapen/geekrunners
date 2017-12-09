@@ -9,7 +9,7 @@ You still need to complete these goals:
 
 Check it out.
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => env('APP_URL'))])
 Keep Running
 @endcomponent
 

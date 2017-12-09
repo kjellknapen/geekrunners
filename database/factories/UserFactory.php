@@ -26,6 +26,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'gender' => $gender,
         'role' => 'Student',
         'avatar' => "https://api.adorable.io/avatars/285/" . $mail,
+        'noavatar' => true,
         'email' => $mail,
         'strava_id'=> str_random(10),
         'token' => str_random(10),
