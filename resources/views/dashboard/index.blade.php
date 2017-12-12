@@ -186,41 +186,6 @@
                 </div>
 
 
-
-            {{--<div class="event-winners">--}}
-                {{--<div class="activity halloffame">--}}
-                    {{--<div class="halloffame-info">--}}
-                        {{--<h1>First</h1>--}}
-                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
-                    {{--</div>--}}
-                    {{--<div class="img-halloffame">--}}
-                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnDoe.png" alt="John Doe"></a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="activity halloffame">--}}
-                    {{--<div class="halloffame-info">--}}
-                        {{--<h1>Second</h1>--}}
-                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
-                    {{--</div>--}}
-                    {{--<div class="img-halloffame">--}}
-                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/John@Doe.png" alt="John Doe"></a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="activity halloffame">--}}
-                    {{--<div class="halloffame-info">--}}
-                        {{--<h1>Third</h1>--}}
-                        {{--<a href="/user/21"><h3>John Doe</h3></a>--}}
-                    {{--</div>--}}
-                    {{--<div class="img-halloffame">--}}
-                        {{--<a href="/user/21"><img class="profile-big" src="https://api.adorable.io/avatars/285/JohnnyDoe.png" alt="John Doe"></a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-
-
-
-
         </section>
         @endif
     @endisset
@@ -237,20 +202,24 @@
     <section>
         <h1>Activity feed</h1>
         <p class="sub-title">Recent runs from your fellow geeks</p><br><br><br>
+        <div class="activity-container">
         @foreach($activityfeed as $activity)
-            <div class="activity">
-                <p><strong>{{$activity->km}} km</strong></p>
-                <p>{{$activity->minutes}} minutes</p>
-                <p>{{$activity->average_speed}} km/u on average</p>
-                <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($activity->date))->diffForHumans()}}</p>
-                <div class="activity-user-info">
-                    <a href="/user/{{$activity->user['id']}}"><p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p></a>
-                    <div class="img-container">
-                        <a href="/user/{{$activity->user['id']}}"><img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}"></a>
+
+                <div class="activity activity--grid">
+                    <p><strong>{{$activity->km}} km</strong></p>
+                    <p>{{$activity->minutes}} minutes</p>
+                    <p>{{$activity->average_speed}} km/u on average</p>
+                    <p class="time-ago">{{\Carbon\Carbon::createFromTimeStamp(strtotime($activity->date))->diffForHumans()}}</p>
+                    <div class="activity-user-info">
+                        <a href="/user/{{$activity->user['id']}}"><p>{{$activity->user['firstname'] . ' ' . $activity->user['lastname']}}</p></a>
+                        <div class="img-container">
+                            <a href="/user/{{$activity->user['id']}}"><img src="{{$activity->user['avatar']}}" alt="{{$activity->user['firstname'].' '.$activity->user['lastname']}}"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
+
         @endforeach
+        </div>
     </section>
 
 @endsection
