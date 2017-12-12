@@ -114,28 +114,9 @@
                         <p>Run {{ $scheduleData['frequency_goal'] }} times this week </p>
                     </li>
                 @endif
-                @if($scheduleData['duration_completed'] >= 100)
-                    <li class="goal-completed">&#10003; Run at least {{ $scheduleData['avg_duration'] }} minutes this week</li>
-                @elseif($scheduleData['duration_completed'] <= 0)
-                    <li>&#10007; Run at least {{ $scheduleData['avg_duration'] }} minutes this week</li>
-                @else
-                    <li>
-                        <div class="radial-progress" data-progress="{{ $scheduleData['duration_completed'] }}">
-                            <div class="circle">
-                                <div class="mask full">
-                                    <div class="fill"></div>
-                                </div>
-                                <div class="mask half">
-                                    <div class="fill"></div>
-                                    <div class="fill fix"></div>
-                                </div>
-                            </div>
-                            <div class="inset"></div>
-                        </div>
-                        <p>Run at least {{ $scheduleData['avg_duration'] }} minutes this week</p>
-                    </li>
-                @endif
+
             </ul>
+            <p class="time-ago"> If you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>
             <div class="completed-users">
                 <p>{{ count($scheduleData['users_completed']) }} others completed this</p>
                 <ul class="ul-users">
