@@ -115,9 +115,9 @@
                     </li>
                 @endif
                 @if($scheduleData['duration_completed'] >= 100)
-                    <li class="goal-completed">&#10003; Run at least {{ $scheduleData['duration_goal'] }} minutes this week</li>
+                    <li class="goal-completed">&#10003; Run at least {{ $scheduleData['avg_duration'] }} minutes this week</li>
                 @elseif($scheduleData['duration_completed'] <= 0)
-                    <li>&#10007; Run at least {{ $scheduleData['duration_goal'] }} minutes this week</li>
+                    <li>&#10007; Run at least {{ $scheduleData['avg_duration'] }} minutes this week</li>
                 @else
                     <li>
                         <div class="radial-progress" data-progress="{{ $scheduleData['duration_completed'] }}">
@@ -132,7 +132,7 @@
                             </div>
                             <div class="inset"></div>
                         </div>
-                        <p>Run at least {{ $scheduleData['duration_goal'] }} minutes this week</p>
+                        <p>Run at least {{ $scheduleData['avg_duration'] }} minutes this week</p>
                     </li>
                 @endif
             </ul>

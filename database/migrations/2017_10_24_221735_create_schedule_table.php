@@ -17,7 +17,7 @@ class CreateScheduleTable extends Migration
           $table->increments('id');
           $table->integer('week');
           $table->integer('set');
-          $table->integer('duration_goal');
+          $table->integer('avg_duration');
           $table->integer('distance_goal');
           $table->integer('distance_warmup');
           $table->integer('frequency_goal');
