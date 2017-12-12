@@ -87,6 +87,7 @@ class AdminController extends Controller
                             'distance' => $event->distance,
                         ]
                     ];
+                    
                     $client = new Client();
                     $res = $client->post($url, $config);
 

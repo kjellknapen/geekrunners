@@ -56,7 +56,9 @@ class ScheduleController extends Controller
 
             $calc = new ScheduleCalculations($startdate, $enddate, $distance);
             $schedules = $calc->create_schedule();
-            
+
+            dd($schedules);
+
             foreach($schedules as $schedule){
 
                 $response['Schedules'][] = [
