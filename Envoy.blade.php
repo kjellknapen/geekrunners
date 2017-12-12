@@ -31,3 +31,19 @@ cd /home/deploybot/NerdRunClub-beta
 php artisan migrate:refresh --seed
 
 @endtask
+
+@task('refresh-live', ['on' => 'web'])
+
+cd /home/deploybot/NerdRunClub
+
+php artisan migrate:refresh
+
+@endtask
+
+@task('refresh-beta', ['on' => 'web'])
+
+cd /home/deploybot/NerdRunClub-beta
+
+php artisan migrate:refresh
+
+@endtask
