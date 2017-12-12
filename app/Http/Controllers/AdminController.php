@@ -80,8 +80,11 @@ class AdminController extends Controller
                     Schedules::truncate();
                     $http_request = \Illuminate\Support\Facades\Request::getHost();
 
-
-                    $url = env('APP_URL') . '/api/schedules/calculate';
+                    if($http_request == "https://geekrunners-beta.weareimd.be" || $http_request == "geekrunners-beta.weareimd.be" || $http_request == "https://geekrunners.weareimd.be" || $http_request == "geekrunners.weareimd.be") {
+                        $url = "https://" . env('APP_URL') . '/api/schedules/calculate';
+                    }else{
+                        $url = env('APP_URL') . '/api/schedules/calculate';
+                    }
                     $config = [
                         'form_params' => [
                             '_token' => csrf_token(),
