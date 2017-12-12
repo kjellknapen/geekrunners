@@ -84,15 +84,16 @@ class ScheduleController extends Controller
             ];
 
             $schedule = Schedules::find($id);
-            $response['Schedule'][] = [
-                    'id' => $schedule->id,
+	    if(!empty($schedule)){
+            	$response['Schedule'][] = [
                     'week' => $schedule->week,
                     'set' => $schedule->set,
                     'duration_goal' => $schedule->duration_goal,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
-                    'frequency_goal' => $schedule->frequency_goal,
-            ];
+               	    'frequency_goal' => $schedule->frequency_goal,
+            	];
+	    }
 
         }catch (\Exception $e){
             $statusCode = 400;

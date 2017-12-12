@@ -78,7 +78,8 @@ class AdminController extends Controller
                     $enddate = $calculation->getEndDate()->timestamp;
 
                     Schedules::truncate();
-                    $url = env('APP_URL') . '/api/schedules/calculate';
+                    $url = "https://" . env('APP_URL') . '/api/schedules/calculate';
+		    
                     $config = [
                         'form_params' => [
                             '_token' => csrf_token(),
@@ -93,7 +94,7 @@ class AdminController extends Controller
 
                     $fullres = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
-                    foreach ($fullres->Schedules as $s){
+		    foreach ($fullres->Schedules as $s){
                         Schedules::create((array)$s);
                     }
 
