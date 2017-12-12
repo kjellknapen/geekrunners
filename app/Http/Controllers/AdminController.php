@@ -87,11 +87,13 @@ class AdminController extends Controller
                             'distance' => $event->distance,
                         ]
                     ];
+                    
                     $client = new Client();
                     $res = $client->post($url, $config);
 
                     $fullres = \GuzzleHttp\json_decode($res->getBody()->getContents());
-                    foreach ($fullres as $s){
+
+                    foreach ($fullres->Schedules as $s){
                         Schedules::create((array)$s);
                     }
 
