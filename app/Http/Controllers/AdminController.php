@@ -18,23 +18,21 @@ class AdminController extends Controller
 {
     private $user;
 
-    public function index()
-    {
+    public function index() {
         // Show all schedules on the admin page
         $shedules = Schedules::all();
 
         // Get the current event
         $event = Event::find(1);
 
-        // Get all users
-        $users = User::all()->sortBy('firstname');
-
-        // Get the winners if they are set
-        $first = EventWinners::find(1);
-        $second = EventWinners::find(2);
-        $third = EventWinners::find(3);
         // Show the index
-        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'allusers' => $users, 'first' => $first, 'second' => $second, 'third' => $third]);
+        return view('admin.index', ['shedules' => $shedules, 'event' => $event]);
+    }
+
+    public function event(Request $request, Calculation $calculation){
+        $shedules = Schedules::all();
+        $event = Event::find(1);
+        return view('admin.event', ['shedules' => $shedules, 'event' => $event, 'saved => "new"']);
     }
 
     // Set or Change event
@@ -43,17 +41,6 @@ class AdminController extends Controller
         $shedules = Schedules::all();
         $users = User::all()->sortBy('firstname');
 
-        if(!empty($request->input('setwinners'))){
-            EventWinners::updateOrCreate(['id' => 1],[
-                    'user_id' => $request->input('first-place')
-                ]);
-            EventWinners::updateOrCreate(['id' => 2],[
-                    'user_id' => $request->input('second-place')
-                ]);
-            EventWinners::updateOrCreate(['id' => 3],[
-                    'user_id' => $request->input('third-place')
-                ]);
-        }else {
             // Check that nothing is empty
             if (!empty($request->input('event-name')) && !empty($request->input('event-date')) && !empty($request->input('start-date')) && !empty($request->input('location'))) {
                 //can't be training for an event in the past
@@ -93,31 +80,29 @@ class AdminController extends Controller
                             'distance' => $event->distance,
                         ]
                     ];
-                    
+
                     $client = new Client();
                     $res = $client->post($url, $config);
 
                     $fullres = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
-		    foreach ($fullres->Schedules as $s){
+		                foreach ($fullres->Schedules as $s){
                         Schedules::create((array)$s);
                     }
 
                     $shedules = Schedules::all();
-                    return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "check", 'allusers' => $users]);
+                    return view('admin.event', ['shedules' => $shedules, 'event' => $event, 'saved' => "check", 'allusers' => $users]);
                 } else {
                     $event = Event::find(1);
-                    return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "past", 'allusers' => $users]);
+                    return view('admin.event', ['shedules' => $shedules, 'event' => $event, 'saved' => "past", 'allusers' => $users]);
                 }
             }
             $event = Event::find(1);
-            return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "empty", 'allusers' => $users]);
-        }
+            return view('admin.event', ['shedules' => $shedules, 'event' => $event, 'saved' => "empty", 'allusers' => $users]);
+
         $event = Event::find(1);
-        $first = EventWinners::find(1);
-        $second = EventWinners::find(2);
-        $third = EventWinners::find(3);
-        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'allusers' => $users, 'first' => $first, 'second' => $second, 'third' => $third]);
+
+        return view('admin.event', ['shedules' => $shedules, 'event' => $event, 'saved => "new"']);
     }
 
     // Load the page to choose your role
@@ -175,5 +160,33 @@ class AdminController extends Controller
         }
     }
 
+    public function saveWinners(Request $request) {
 
+      $first = EventWinners::find(1);
+      $second = EventWinners::find(2);
+      $third = EventWinners::find(3);
+
+      $users = User::all()->sortBy('firstname');
+      if(!empty($request->input('setwinners'))){
+          EventWinners::updateOrCreate(['id' => 1],[
+                  'user_id' => $request->input('first-place')
+              ]);
+          EventWinners::updateOrCreate(['id' => 2],[
+                  'user_id' => $request->input('second-place')
+              ]);
+          EventWinners::updateOrCreate(['id' => 3],[
+                  'user_id' => $request->input('third-place')
+              ]);
+      } else {
+        $first = EventWinners::find(1);
+        $second = EventWinners::find(2);
+        $third = EventWinners::find(3);
+    }
+        return view('admin.winner', ['allusers'=>$users, 'first'=>$first, 'second'=>$second, 'third'=>$third]);
+  }
+
+
+      public function savePassword(Request $request) {
+      return view('admin.password');
+    }
 }

@@ -49,8 +49,18 @@ Route::middleware(['notloggedin'])->group(function () {
 
         Route::get('/admin', 'AdminController@index');
 
-        Route::post('/admin', 'AdminController@saveEvent');
-        
+        Route::get('/admin/event', 'AdminController@event');
+
+        Route::post('/admin/event', 'AdminController@saveEvent');
+
+        Route::get('/admin/password', 'AdminController@savePassword');
+
+        Route::post('/admin/password', 'AdminController@savePassword');
+
+        Route::get('/admin/winners', 'AdminController@saveWinners');
+
+        Route::post('/admin/winners', 'AdminController@saveWinners');
+
     });
 
 });
