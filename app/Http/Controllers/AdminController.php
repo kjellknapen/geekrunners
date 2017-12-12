@@ -7,6 +7,7 @@ use App\Event;
 use App\EventWinners;
 use App\Schedules;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class AdminController extends Controller
     public function index()
     {
         // Show all schedules on the admin page
-        $shedules = schedules::all();
+        $shedules = Schedules::all();
 
         // Get the current event
         $event = Event::find(1);
@@ -28,28 +29,29 @@ class AdminController extends Controller
         // Get all users
         $users = User::all()->sortBy('firstname');
 
+        // Get the winners if they are set
+        $first = EventWinners::find(1);
+        $second = EventWinners::find(2);
+        $third = EventWinners::find(3);
         // Show the index
-        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'allusers' => $users]);
+        return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'allusers' => $users, 'first' => $first, 'second' => $second, 'third' => $third]);
     }
 
     // Set or Change event
     public function saveEvent(Request $request, Calculation $calculation){
         // Get all schedules to load page afterwords
-        $shedules = schedules::all();
+        $shedules = Schedules::all();
         $users = User::all()->sortBy('firstname');
 
         if(!empty($request->input('setwinners'))){
-            EventWinners::updateOrCreate(['id' => 1],
-                [
-                    'user_id' => $request->input('first_place')
+            EventWinners::updateOrCreate(['id' => 1],[
+                    'user_id' => $request->input('first-place')
                 ]);
-            EventWinners::updateOrCreate(['id' => 2],
-                [
-                    'user_id' => $request->input('second_place')
+            EventWinners::updateOrCreate(['id' => 2],[
+                    'user_id' => $request->input('second-place')
                 ]);
-            EventWinners::updateOrCreate(['id' => 3],
-                [
-                    'user_id' => $request->input('third_place')
+            EventWinners::updateOrCreate(['id' => 3],[
+                    'user_id' => $request->input('third-place')
                 ]);
         }else {
             // Check that nothing is empty
@@ -71,10 +73,29 @@ class AdminController extends Controller
                     $calculation->setEndDate();
                     // Set Startdate of event in calculations class
                     $calculation->setStartDate();
-                    $calc = new ScheduleCalculations();
-                    schedules::truncate();
-                    $calc->create_schedule();
-                    $shedules = schedules::all();
+
+                    $startdate = $calculation->getStartDate()->timestamp;
+                    $enddate = $calculation->getEndDate()->timestamp;
+
+                    Schedules::truncate();
+                    $url = env('APP_URL') . '/api/schedules/calculate';
+                    $config = [
+                        'form_params' => [
+                            '_token' => csrf_token(),
+                            'startdate' => $startdate,
+                            'enddate' => $enddate,
+                            'distance' => $event->distance,
+                        ]
+                    ];
+                    $client = new Client();
+                    $res = $client->post($url, $config);
+
+                    $fullres = \GuzzleHttp\json_decode($res->getBody()->getContents());
+                    foreach ($fullres as $s){
+                        Schedules::create((array)$s);
+                    }
+
+                    $shedules = Schedules::all();
                     return view('admin.index', ['shedules' => $shedules, 'event' => $event, 'saved' => "check", 'allusers' => $users]);
                 } else {
                     $event = Event::find(1);

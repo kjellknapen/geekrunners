@@ -54,8 +54,9 @@ class DashboardController extends Controller
             }else{
                 $event = $calculations->daysLeft();
                 $eventName = Event::take(1)->pluck('name');
+                $winners = App\EventWinners::all();
                 return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event, 'D_Day' => true, 'diff' => $diff,
-                    'topRunners' => $topRunners['Kilometers']]);
+                    'topRunners' => $topRunners['Kilometers'], 'topthreedday' => $winners]);
             }
         }
 

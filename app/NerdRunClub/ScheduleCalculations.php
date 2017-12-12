@@ -2,19 +2,23 @@
 
 namespace NerdRunClub;
 
-use App\schedules;
+use App\Schedules;
 use App\Event;
 
 class ScheduleCalculations
 {
 
-  public function __construct(){
+  public function __construct($startdate, $enddate, $distance){
+    $this->startdate = $startdate;
+    $this->enddate = $enddate;
+    $this->distance = $distance;
+    $this->allschedules = [];
      $this->calculations = app()->make("Calculation");
   }
 
     public function calculate_weeks(){
-    $startdate = $this->calculations->getStartDate();
-    $enddate = $this->calculations->getEndDate();
+    $startdate = $this->startdate;
+    $enddate = $this->enddate;
     $weeks = $enddate->diffInWeeks($startdate);
     return $weeks;
     }
@@ -28,11 +32,11 @@ class ScheduleCalculations
     public function create_schedule(){
       $weeks =  $this->calculate_weeks();
       $sets = $this->calculate_sets();
-      $event = event::find(1);
-      $distance = $event->distance;
+      $event = Event::find(1);
+      $distance = $this->distance;
       //1) Create a DB entry per week
       for ($i=0; $i < $weeks; $i++) {
-        $schedule = new schedules;
+        $schedule = new Schedules;
         //Determine week
         $week = $i+1;
         $schedule->week = $week;
@@ -48,8 +52,7 @@ class ScheduleCalculations
           $speed = 8;
         }
         else {
-          $speed = 9
-          ;
+          $speed = 9;
         }
         //standard frequency is 2;
         $schedule->frequency_goal = 2;
@@ -94,7 +97,8 @@ class ScheduleCalculations
 
           $duration = $schedule->duration_goal;
 
-        $schedule->save();
+        array_push($this->allschedules, $schedule);
       }
+        return (object)$this->allschedules;
     }
 }

@@ -7,5 +7,6 @@
     "/css/toggle.css": "/css/toggle.css",
     "/js/password.js": "/js/password.js",
     "/js/mail.js": "/js/mail.js",
-    "/js/leaderboardsfilter.js": "/js/leaderboardsfilter.js"
+    "/js/leaderboardsfilter.js": "/js/leaderboardsfilter.js",
+    "/js/PushNotifications.js": "/js/PushNotifications.js"
 }

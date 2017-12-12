@@ -49,7 +49,7 @@
   <h1 class="admin-title">Set Winners</h1>
   <form class="admin-form" action="{{ action('AdminController@saveEvent') }}" method="post">
     {{ csrf_field() }}
-    <input type="hidden" name="setwinners" id="setwinners" value="true" disabled>
+    <input type="hidden" name="setwinners" id="setwinners" value="true">
     <div class="form-group">
       <label for="first-place">First place</label>
       <select class="form-control" id="first-place" name="first-place">
