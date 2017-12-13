@@ -65,8 +65,8 @@ class ScheduleCalculations
         //warm up ramps up in relation to the goal with a factor of 1/3th
         $schedule->distance_warmup = $distance_goal * (1/3);
 
-        //duration is calculated on avg speed and distance -> not too fast, because you might burn yourself out;
-        $schedule->duration_goal = 60/($speed/$distance_goal) + 60/($speed/$schedule->distance_warmup);
+        //avg duration is calculated on avg speed and distance -> not too fast, because you might burn yourself out;
+        $schedule->avg_duration = 60/($speed/$distance_goal) + 60/($speed/$schedule->distance_warmup);
         if (round($schedule->distance_warmup) == 0) {
           $schedule->distance_warmup = 1;
         }
@@ -83,7 +83,7 @@ class ScheduleCalculations
             //Only one session in the recuperation weeks, no warm-up;
             $schedule->frequency_goal = 1;
             $schedule->distance_warmup = 0;
-            $schedule->duration_goal = 60/($speed/$distance_goal);
+            $schedule->avg_duration = 60/($speed/$distance_goal);
             break;
         }
 
@@ -91,11 +91,8 @@ class ScheduleCalculations
         if ($week == $weeks) {
           $schedule->frequency_goal = 1;
           $schedule->distance_warmup = 0;
-          $schedule->duration_goal = 60/($speed/$distance_goal);
+          $schedule->avg_duration = 60/($speed/$distance_goal);
         }
-
-
-          $duration = $schedule->duration_goal;
 
         array_push($this->allschedules, $schedule);
       }

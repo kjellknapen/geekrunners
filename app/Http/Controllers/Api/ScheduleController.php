@@ -27,7 +27,7 @@ class ScheduleController extends Controller
                     'id' => $schedule->id,
                     'week' => $schedule->week,
                     'set' => $schedule->set,
-                    'duration_goal' => $schedule->duration_goal,
+                    'avg_duration' => $schedule->avg_duration,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
                     'frequency_goal' => $schedule->frequency_goal,
@@ -56,13 +56,11 @@ class ScheduleController extends Controller
 
             $calc = new ScheduleCalculations($startdate, $enddate, $distance);
             $schedules = $calc->create_schedule();
-            
             foreach($schedules as $schedule){
-
                 $response['Schedules'][] = [
                     'week' => $schedule->week,
                     'set' => $schedule->set,
-                    'duration_goal' => $schedule->duration_goal,
+                    'avg_duration' => $schedule->avg_duration,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
                     'frequency_goal' => $schedule->frequency_goal,
@@ -86,15 +84,16 @@ class ScheduleController extends Controller
             ];
 
             $schedule = Schedules::find($id);
-            $response['Schedule'][] = [
-                    'id' => $schedule->id,
+	    if(!empty($schedule)){
+            	$response['Schedule'][] = [
                     'week' => $schedule->week,
                     'set' => $schedule->set,
-                    'duration_goal' => $schedule->duration_goal,
+                    'avg_duration' => $schedule->avg_duration,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
-                    'frequency_goal' => $schedule->frequency_goal,
-            ];
+               	    'frequency_goal' => $schedule->frequency_goal,
+            	];
+	    }
 
         }catch (\Exception $e){
             $statusCode = 400;

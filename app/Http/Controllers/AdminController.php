@@ -78,7 +78,13 @@ class AdminController extends Controller
                     $enddate = $calculation->getEndDate()->timestamp;
 
                     Schedules::truncate();
-                    $url = env('APP_URL') . '/api/schedules/calculate';
+                    $http_request = \Illuminate\Support\Facades\Request::getHost();
+
+                    if($http_request == "https://geekrunners-beta.weareimd.be" || $http_request == "geekrunners-beta.weareimd.be" || $http_request == "https://geekrunners.weareimd.be" || $http_request == "geekrunners.weareimd.be") {
+                        $url = "https://" . env('APP_URL') . '/api/schedules/calculate';
+                    }else{
+                        $url = env('APP_URL') . '/api/schedules/calculate';
+                    }
                     $config = [
                         'form_params' => [
                             '_token' => csrf_token(),
@@ -87,12 +93,13 @@ class AdminController extends Controller
                             'distance' => $event->distance,
                         ]
                     ];
+                    
                     $client = new Client();
                     $res = $client->post($url, $config);
 
                     $fullres = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
-                    foreach ($fullres->Schedules as $s){
+		    foreach ($fullres->Schedules as $s){
                         Schedules::create((array)$s);
                     }
 

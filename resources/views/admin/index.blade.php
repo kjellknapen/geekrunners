@@ -83,7 +83,7 @@
 <div class="current_shedule">
   <div class="shedule-week schedule-head">
     <p class="shedule-part col-xs-1">Week</p>
-    <p class="shedule-part col-xs-2">Duration (total)</p>
+    <p class="shedule-part col-xs-2">Average duration</p>
     <p class="shedule-part col-xs-3">Distance (warm up)</p>
     <p class="shedule-part col-xs-3">Distance (goal)</p>
     <p class="shedule-part col-xs-3">Frequency goal</p>
@@ -94,7 +94,7 @@
     @endif
     <div class="shedule-week">
       <p class="shedule-part col-xs-1">{{$shedule['week']}}</p>
-      <p class="shedule-part col-xs-2">{{$shedule['duration_goal']}} minutes</p>
+      <p class="shedule-part col-xs-2">{{$shedule['avg_duration']}} minutes</p>
       <p class="shedule-part col-xs-3">{{$shedule['distance_warmup']}} km</p>
       <p class="shedule-part col-xs-3">{{$shedule['distance_goal']}} km</p>
       <p class="shedule-part col-xs-3">{{$shedule['frequency_goal']}} times this week</p>
