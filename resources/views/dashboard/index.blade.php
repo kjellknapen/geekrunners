@@ -116,7 +116,7 @@
                 @endif
 
             </ul>
-            <p class="time-ago"> If you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>
+            <p class="time-ago tip">Tip: if you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>
             <div class="completed-users">
                 <p>{{ count($scheduleData['users_completed']) }} others completed this</p>
                 <ul class="ul-users">

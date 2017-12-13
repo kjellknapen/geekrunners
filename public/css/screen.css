@@ -29,6 +29,11 @@ nav a:hover{
 nav a{
     text-decoration: none;
 }
+.tip{
+    font-size:.9em;
+    font-style: italic;
+    
+}
 img{
     user-drag: none;
     user-select: none;
