@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->integer('medals3')->default(0);
             $table->string('role')->nullable();
             $table->boolean('notifications')->default(false);
-            $table->string('gender');
             $table->string('avatar');
             $table->boolean('noavatar')->default(false);
             $table->string('email')->unique();

@@ -184,6 +184,8 @@ class Calculation
             $totaltime = 0;
             $fastesttime = 0;
             $longestrun = 0;
+            $idAndWeeklyKmArray[$user->id] = 0;
+            $idAndWeeklyTimeArray[$user->id] = 0;
             foreach ($user->activities as $activity){
                 $Date = mb_substr($activity->date, 0, 10);
                 $FirstDay = new Carbon('sunday last week');
@@ -192,10 +194,9 @@ class Calculation
                 if($Date > $FirstDay && $Date < $LastDay) {
                     $totalkm += $activity->km;
                     $totaltime += $activity->minutes;
-
-                    $idAndWeeklyKmArray[$user->id] = $totalkm;
-                    $idAndWeeklyTimeArray[$user->id] = $totaltime;
                 }
+                $idAndWeeklyKmArray[$user->id] = $totalkm;
+                $idAndWeeklyTimeArray[$user->id] = $totaltime;
             }
         }
 
