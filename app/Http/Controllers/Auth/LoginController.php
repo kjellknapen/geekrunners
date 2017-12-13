@@ -86,7 +86,7 @@ class LoginController extends Controller
         User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
-            'gender' => $gender,
+            'gender' => "undefined",
             'avatar' => $avatar,
             'noavatar' => $noavatar,
             'strava_id' => $userID,
