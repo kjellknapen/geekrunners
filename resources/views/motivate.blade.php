@@ -27,17 +27,19 @@
         <p>{{ count($scheduleData['users_completed']) }} completed this</p>
         <ul class="ul-users">
           @foreach($scheduleData['users_completed'] as $key => $cuser)
-            @if($key <= 9)
               <a href="/user/{{$cuser->id}}"><li class="img-completed tooltip" title="{{$cuser->firstname  . ' '  . $cuser->lastname}}"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
-            @elseif($key == 10)
-              <a href="/user/{{$cuser->id}}"><li class="img-completed"><img src="/img/Other-users-icon.png" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
-            @endif
           @endforeach
         </ul>
       </div>
+      <a class="motivate-link" href="https://geekrunners.weareimd.be/">Join us @ <span>geekrunners.weareimd.be</span></a>
 
     </section>
   @endisset
 
 
+@endsection
+@section('scripts')
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/tooltipster.bundle.min.js"></script>
+  <script src="/js/dashboard.js"></script>
 @endsection

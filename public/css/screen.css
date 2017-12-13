@@ -366,10 +366,64 @@ p{
 }
 
 .motivate{
+    max-width: 600px;
+    display: block;
+    margin:auto;
+    margin-top:-20px;
+}
+
+.motivate .completed-users{
+    margin-top:30px;
+    flex-direction:column;
 }
 
 .goal-motivate{
     font-size:1.2em;
+}
+
+.motivate .completed-users p{
+    font-size:1.2em;
+    width:100%;
+    margin-top:20px;
+}
+.motivate .ul-users{
+    width:100%;
+    clear: both;
+    margin-top:15px;
+}
+.motivate .ul-users a li{
+    width:50px;
+    height:50px;
+    margin-right:17px;
+}
+.motivate .ul-users a img{
+    width:100%;
+}
+
+.motivate-link{
+    width:100%;
+    display: block;
+    margin-top:60px;
+}
+.motivate-link span{
+    font-weight:bold;
+}
+
+.sweat{
+    animation: MoveUpDown 2.5s ease infinite;
+
+}
+
+@keyframes MoveUpDown {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, 6px);
+    }
+    100% {
+        transform: translate(-50%, 0);
+    }
 }
 
 @media screen and (max-width: 960px) {
