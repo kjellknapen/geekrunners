@@ -75,7 +75,7 @@ class LoginController extends Controller
         }
 
         // Check if the user exits otherwise create it
-        User::firstOrCreate(['email' => $user->athlete->email],[
+        User::updateOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
             'avatar' => $avatar,
