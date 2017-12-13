@@ -353,6 +353,24 @@ p{
     position: relative;
     opacity: 1;
 }
+.motivate-logo{
+    position: relative;
+    display: block;
+    margin:auto;
+    height:260px;
+}
+.motivate-logo img{
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.motivate{
+}
+
+.goal-motivate{
+    font-size:1.2em;
+}
 
 @media screen and (max-width: 960px) {
     .half{

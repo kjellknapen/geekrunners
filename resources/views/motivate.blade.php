@@ -5,19 +5,22 @@
 @endsection
 
 @section('content')
-
   @isset($empty)
     <section>
-
+      <p class="emptystate-error">The event hasn't started yet!</p>
     </section>
   @else
+    <div class="motivate-logo">
+      <img class="glasses" src="img/motivation/glasses.png" alt="logo-glasses">
+      <img class="sweat" src="img/motivation/sweat.png" alt="logo-sweat">
+    </div>
     <section class="motivate">
       <h1>This week's goals</h1>
 
       {{--<p> This week we'll run a {{ $scheduleData['distance_warmup']}} km session to warm up!</p>--}}
       <ul class="goals">
-        <li class="goal-motivate"> Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
-        <li class="goal-motivate"> Run {{ $scheduleData['frequency_goal'] }} times this week</li>
+        <li class="goal-motivate">&#8594; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
+        <li class="goal-motivate">&#8594; Run {{ $scheduleData['frequency_goal'] }} times this week</li>
       </ul>
       {{--<p class="time-ago tip">Tip: if you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>--}}
       <div class="completed-users">
