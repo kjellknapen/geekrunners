@@ -5,10 +5,11 @@
 @endsection
 
 @section('content')
-    @if($user->noavatar)
-    <section>
-        <p>Looks like you don't have a profile picture? Upload one on Strava <a href="https://www.strava.com/settings/profile" target="_blank" class="leaderboards-filter">here!</a></p>
-    </section>
+
+    @if($user->noavatar == true ||  $user->noavatar == "true" )
+        <section>
+            <p>Looks like you don't have a profile picture? Upload one on Strava <a href="https://www.strava.com/settings/profile" target="_blank" class="leaderboards-filter">here!</a></p>
+        </section>
     @endif
 
 

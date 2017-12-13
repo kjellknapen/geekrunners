@@ -68,6 +68,7 @@ Route::middleware(['notloggedin'])->group(function () {
 
 Route::get('/halloffame', 'LeaderboardController@halloffame');
 
+Route::get('/motivate', 'MotivateController@index');
 
 // Reroute if user is loggedin
 Route::middleware(['guest'])->group(function () {
