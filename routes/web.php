@@ -53,7 +53,7 @@ Route::middleware(['notloggedin'])->group(function () {
 
         Route::post('/admin/event', 'AdminController@saveEvent');
 
-        Route::get('/admin/password', 'AdminController@savePassword');
+        Route::get('/admin/password', 'AdminController@passwordIndex');
 
         Route::post('/admin/password', 'AdminController@savePassword');
 

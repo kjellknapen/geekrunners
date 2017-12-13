@@ -185,8 +185,30 @@ class AdminController extends Controller
         return view('admin.winner', ['allusers'=>$users, 'first'=>$first, 'second'=>$second, 'third'=>$third]);
   }
 
+      public function passwordIndex(){
+          return view('admin.password');
+      }
 
       public function savePassword(Request $request) {
-      return view('admin.password');
+        // CHeck if no field is left empty
+        if (!empty($request->input('current_pw')) && !empty($request->input('new_pw')) && !empty($request->input('repeat_pw'))) {
+          // If it's all filled in, make sure the current pw is the correct one
+          // Get Password from database
+          $hashed = AdminPassword::find(1)->password;
+          // Check if passwords match and make sure the repeat matches the new password
+          if(Hash::check($request->input('current_pw'), $hashed) && $request->input('new_pw') == $request->input('repeat_pw')){
+
+                    $newpass = $request->input('new_pw');
+                    $hashedpass = \Illuminate\Support\Facades\Hash::make($newpass, [
+                        'rounds' => 12
+                    ]);
+                    AdminPassword::updateOrCreate(['id' => 1], ['password'=>$hashedpass]);
+
+                    return view('admin.password', ['saved'=>'check']);
+
+                }return view('admin.password', ['saved'=>'error']);
+        }
+        return view('admin.password', ['saved'=>'empty']);
+
     }
 }
