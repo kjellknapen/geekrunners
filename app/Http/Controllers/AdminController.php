@@ -123,7 +123,7 @@ class AdminController extends Controller
     // Load the page to choose your role
     public function chooseRole(){
 
-        $hashedpass = \Illuminate\Support\Facades\Hash::make('WeAreIMD', [
+        $hashedpass = \Illuminate\Support\Facades\Hash::make(env('APP_ADMIN_PASS'), [
             'rounds' => 12
         ]);
         AdminPassword::firstOrCreate([
