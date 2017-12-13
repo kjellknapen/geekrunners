@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\User;
 use NerdRunClub\Calculation;
 
@@ -15,6 +16,12 @@ class LeaderboardController extends Controller
     }
 
     public function hallOfFame(Calculation $calculation){
+
+        $eventisset = Event::find(1);
+        if($eventisset == null || !isset($eventisset) || $eventisset == "" || \App\User::count()<3){
+            return view("leaderboards/halloffame", ["eventisset"=> $eventisset]);
+        }
+
         $topfive = [
           "first" => [
               "place" => 1,
@@ -57,6 +64,9 @@ class LeaderboardController extends Controller
             }
             $completedgoals = 0;
         }
-        return view("leaderboards/halloffame", ["topthree" => $topfive]);
+
+
+
+        return view("leaderboards/halloffame", ["topthree" => $topfive, "eventisset"=> $eventisset]);
     }
 }

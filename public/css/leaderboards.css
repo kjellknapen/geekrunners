@@ -35,6 +35,10 @@
     margin-right:3px;
     -webkit-user-drag: none;
 }
+.emptystate-error{
+    color: #EC3C34;
+    font-weight:bold;
+}
 
 @media screen and (max-width: 530px) {
     .leaderboards-data{
