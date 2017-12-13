@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'firstname', 'lastname', 'email', 'avatar', 'gender', 'strava_id', 'token', 'notifications'
+        'id', 'firstname', 'lastname', 'email', 'avatar',  'strava_id', 'token', 'notifications'
     ];
 
     /**
