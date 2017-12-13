@@ -76,11 +76,17 @@ class LoginController extends Controller
             $noavatar = true;
         }
 
+        if($user->athlete->sex == null || $user->athlete->sex == "" || empty($user->athlete->sex)){
+            $gender = "undefined";
+        }else{
+            $gender = $user->athlete->sex;
+        }
+
         // Check if the user exits otherwise create it
         User::firstOrCreate(['email' => $user->athlete->email],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
-            'gender' => $user->athlete->sex,
+            'gender' => $gender,
             'avatar' => $avatar,
             'noavatar' => $noavatar,
             'strava_id' => $userID,
