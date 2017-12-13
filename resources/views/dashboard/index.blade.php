@@ -70,7 +70,7 @@
         <section class="half half-left">
             <h1>Weekly goals</h1>
             <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
-            <p> This week we'll run a {{ $scheduleData['distance_warmup']}} km session to warm up!</p>
+            {{--<p> This week we'll run a {{ $scheduleData['distance_warmup']}} km session to warm up!</p>--}}
             <ul class="goals">
                 @if($scheduleData['distance_completed'] >= 100)
                     <li class="goal-completed">&#10003; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
@@ -116,7 +116,7 @@
                 @endif
 
             </ul>
-            <p class="time-ago tip">Tip: if you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>
+            {{--<p class="time-ago tip">Tip: if you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>--}}
             <div class="completed-users">
                 <p>{{ count($scheduleData['users_completed']) }} others completed this</p>
                 <ul class="ul-users">
