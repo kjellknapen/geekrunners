@@ -15,15 +15,11 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
-
-    $mOrF = ['male', 'female'];
-    $rand = rand(0,1);
-    $gender = $mOrF[$rand];
+    
     $mail = $faker->unique()->safeEmail;
     return [
         'firstname' => $faker->firstName($gender),
         'lastname'=> $faker->lastName,
-        'gender' => $gender,
         'role' => 'Student',
         'avatar' => "https://api.adorable.io/avatars/285/" . $mail,
         'noavatar' => true,
