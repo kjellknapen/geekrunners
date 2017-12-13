@@ -8,9 +8,9 @@
 
 <h2>Looking to update something?</h2>
 <div class="navbar">
-  <a href="./admin/event" class="btn btn-default">Event info</a>
-  <a href="./admin/password" class="btn btn-default">Admin password</a>
-  <a href="./admin/winners" class="btn btn-default">Declare top three</a>
+  <a href="./admin/event" class="btn btn-default btn-lg">Event info</a>
+  <a href="./admin/password" class="btn btn-default btn-lg">Admin password</a>
+  <a href="./admin/winners" class="btn btn-default btn-lg">Declare top three</a>
 </div>
 <hr>
 
