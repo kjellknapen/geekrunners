@@ -27,8 +27,8 @@ class Request
 
             $result = Strava::get($url, $config);
             foreach ($result as $run) {
-                $http_request = \Illuminate\Support\Facades\Request::getHost();
-                if($http_request == "https://geekrunners-beta.weareimd.be" || $http_request == "geekrunners-beta.weareimd.be" || $http_request == "nerdrunclub.app" || $http_request == "localhost"){
+                $appurl = env("APP_URL");
+                if($appurl == "https://geekrunners-beta.weareimd.be" || $appurl == "geekrunners-beta.weareimd.be" || $appurl == "nerdrunclub.app" || $appurl == "http://nerdrunclub.app"){
                     if ($run->average_speed < 5.5) {
                         Activity::firstOrCreate(['strava_id' => $run->id],[
                             'name' => $run->name,
