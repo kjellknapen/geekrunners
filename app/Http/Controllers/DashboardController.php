@@ -26,7 +26,7 @@ class DashboardController extends Controller
         // Get leaderboard stats
         $topRunners = $calculations->getLeaderboardStats();
         // Activities voor activity feed
-        $activityfeed = Activity::orderBy('date','DESC')->take(5)->get();
+        $activityfeed = Activity::orderBy('date','DESC')->take(8)->get();
         //Check for startdate, necessary for loading in scheduletree en weekly goals.
         if ($calculations->getStartDate() == null || $calculations->getStartDate() == false) {
           return view('dashboard.index', ['topRunners' => $topRunners['Kilometers'],'activityfeed' => $activityfeed,'noevent'=>true]);

@@ -27,7 +27,7 @@ class ScheduleController extends Controller
                     'id' => $schedule->id,
                     'week' => $schedule->week,
                     'set' => $schedule->set,
-                    'duration_goal' => $schedule->duration_goal,
+                    'avg_duration' => $schedule->avg_duration,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
                     'frequency_goal' => $schedule->frequency_goal,
@@ -60,7 +60,7 @@ class ScheduleController extends Controller
                 $response['Schedules'][] = [
                     'week' => $schedule->week,
                     'set' => $schedule->set,
-                    'duration_goal' => $schedule->duration_goal,
+                    'avg_duration' => $schedule->avg_duration,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
                     'frequency_goal' => $schedule->frequency_goal,
@@ -88,7 +88,7 @@ class ScheduleController extends Controller
             	$response['Schedule'][] = [
                     'week' => $schedule->week,
                     'set' => $schedule->set,
-                    'duration_goal' => $schedule->duration_goal,
+                    'avg_duration' => $schedule->avg_duration,
                     'distance_goal' => $schedule->distance_goal,
                     'distance_warmup' => $schedule->distance_warmup,
                	    'frequency_goal' => $schedule->frequency_goal,
