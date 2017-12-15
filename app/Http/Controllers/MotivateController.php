@@ -32,5 +32,42 @@ class MotivateController extends Controller
 
         return view('motivate', ['empty' => true]);
     }
+    
+    public function motivate(Calculation $calculations){
+        try{
+            $statusCode = 200;
+            $response = [
+                'week' => "",
+                'avg_duration' => "",
+                'frequency_goal' => "",
+                'distance_warmup' => "",
+                'distance_goal' => "",
+                'users_completed' => [],
+            ];
+
+            if($calculations->getEndDate() != false || $calculations->getEndDate() != null) {
+                $currentWeek = $calculations->currentWeek();
+                if ($currentWeek < count(Schedules::all())) {
+                    $scheduleData = $calculations->getScheduleData($currentWeek);
+                    $response = [
+                        'week' => $scheduleData['week'],
+                        'avg_duration' => $scheduleData['avg_duration'],
+                        'frequency_goal' => $scheduleData['frequency_goal'],
+                        'distance_warmup' => $scheduleData['distance_warmup'],
+                        'distance_goal' => $scheduleData['distance_goal'],
+                        'users_completed' => $scheduleData['users_completed'],
+                    ];
+                }
+            }
+
+
+
+        }catch (\Exception $e){
+            $statusCode = 400;
+            $response = $e;
+        }finally{
+            return response($response, $statusCode);
+        }
+    }
 
 }

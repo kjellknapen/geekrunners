@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/schedules/calculate', 'Api\ScheduleController@calculate');
+
+Route::get('/motivate', 'MotivateController@motivate');

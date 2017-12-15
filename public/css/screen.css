@@ -373,8 +373,10 @@ p{
 }
 
 .motivate .completed-users{
+    max-width: 100%;
     margin-top:30px;
     flex-direction:column;
+    flex-wrap: wrap;
 }
 
 .goal-motivate{

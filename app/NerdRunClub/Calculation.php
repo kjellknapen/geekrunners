@@ -242,7 +242,9 @@ class Calculation
             $distance_warmup= $schedule->distance_warmup;
         }
 
-        $result = $this->userScheduleDate(Auth::user(), $distance_goal, $frequency_goal, $avg_duration);
+        if(!empty(Auth::user())) {
+            $result = $this->userScheduleDate(Auth::user(), $distance_goal, $frequency_goal, $avg_duration);
+        }
         $users_completed = [];
         foreach (User::all() as $user){
             $usersresults = $this->userScheduleDate($user, $distance_goal, $frequency_goal, $avg_duration);
@@ -251,16 +253,27 @@ class Calculation
             }
         }
 
-        $scheduleData = [
-            'week'=>$week,
-            'avg_duration'=>$avg_duration,
-            'frequency_goal'=>$frequency_goal,
-            'frequency_completed'=>$result['frequency_progress'],
-            'distance_warmup'=>$distance_warmup,
-            'distance_goal'=>$distance_goal,
-            'distance_completed'=>$result['distance_progress'],
-            'users_completed'=>$users_completed,
-        ];
+        if(!empty(Auth::user())) {
+            $scheduleData = [
+                'week' => $week,
+                'avg_duration' => $avg_duration,
+                'frequency_goal' => $frequency_goal,
+                'frequency_completed' => $result['frequency_progress'],
+                'distance_warmup' => $distance_warmup,
+                'distance_goal' => $distance_goal,
+                'distance_completed' => $result['distance_progress'],
+                'users_completed' => $users_completed,
+            ];
+        }else{
+            $scheduleData = [
+                'week' => $week,
+                'avg_duration' => $avg_duration,
+                'frequency_goal' => $frequency_goal,
+                'distance_warmup' => $distance_warmup,
+                'distance_goal' => $distance_goal,
+                'users_completed' => $users_completed,
+            ];
+        }
 
         return $scheduleData;
     }

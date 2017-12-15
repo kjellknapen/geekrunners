@@ -19,12 +19,12 @@
 
       {{--<p> This week we'll run a {{ $scheduleData['distance_warmup']}} km session to warm up!</p>--}}
       <ul class="goals">
-        <li class="goal-motivate">&#8594; Reach {{ $scheduleData['distance_goal'] }} km in 1 session</li>
-        <li class="goal-motivate">&#8594; Run {{ $scheduleData['frequency_goal'] }} times this week</li>
+        <li class="goal-motivate">&#8594; <span id="distance">Reach {{ $scheduleData['distance_goal'] }} km in 1 session</span></li>
+        <li class="goal-motivate">&#8594; <span id="frequency">Run {{ $scheduleData['frequency_goal'] }} times this week</span></li>
       </ul>
       {{--<p class="time-ago tip">Tip: if you can run your warm-up and goal in under {{ $scheduleData['avg_duration'] }} minutes, you're right on track!</p>--}}
       <div class="completed-users">
-        <p>{{ count($scheduleData['users_completed']) }} completed this</p>
+        <p id="amount-completed">{{ count($scheduleData['users_completed']) }} completed this</p>
         <ul class="ul-users">
           @foreach($scheduleData['users_completed'] as $key => $cuser)
               <a href="/user/{{$cuser->id}}"><li class="img-completed tooltip" title="{{$cuser->firstname  . ' '  . $cuser->lastname}}"><img src="{{ $cuser->avatar }}" alt="{{$cuser->firstname  . ' '  . $cuser->lastname }}"></li></a>
@@ -41,5 +41,6 @@
 @section('scripts')
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/js/tooltipster.bundle.min.js"></script>
+  <script src="/js/motivatecall.js"></script>
   <script src="/js/dashboard.js"></script>
 @endsection
