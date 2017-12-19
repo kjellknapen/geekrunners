@@ -23,7 +23,7 @@ class MotivateController extends Controller
             $diff = $today->diffInDays($enddate);
             //load the weektree & weekly goals
             $currentWeek = $calculations->currentWeek();
-            if($currentWeek < count(Schedules::all())){
+            if($currentWeek < count(Schedules::all()) && $currentWeek > 0){
                 
                 return view('motivate', ['userStats' => $calculations->getUserStats(), 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
             }
