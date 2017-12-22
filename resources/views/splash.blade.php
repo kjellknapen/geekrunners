@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-
+@section('content')
 <div class="splash">
     <div class="center">
             <div class="splash-panel">
@@ -17,3 +17,4 @@
         </a>
     </div>
 </div>
+@endsection
