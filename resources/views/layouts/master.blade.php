@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:title"              content="GeekRunners" />
     <meta property="og:description"        content="IMD's very own training platform" />
-    <meta property="og:image"              content="https://geekrunners.weareimd.be/public/img/og-image.jpg" />
+    <meta property="og:image"              content="https://geekrunners.weareimd.be/img/og-image.jpg" />
     <title>GeekRunners</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
