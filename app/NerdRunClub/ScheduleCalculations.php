@@ -17,10 +17,10 @@ class ScheduleCalculations
   }
 
     public function calculate_weeks(){
-    $startdate = $this->startdate;
-    $enddate = $this->enddate;
+    $startdate = $this->startdate->startOfWeek();
+    $enddate = $this->enddate->endOfWeek();
     $weeks = $enddate->diffInWeeks($startdate);
-    return $weeks;
+    return $weeks + 1;
     }
 
     public function calculate_sets(){

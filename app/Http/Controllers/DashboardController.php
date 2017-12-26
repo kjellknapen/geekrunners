@@ -43,10 +43,11 @@ class DashboardController extends Controller
         if($calculations->getEndDate() != false || $calculations->getEndDate() != null){
               $today = Carbon::now();
               $enddate = $calculations->getEndDate();
+              $endOfWeek = $enddate->copy()->endOfWeek();
               $diff = $today->diffInDays($enddate);
               //load the weektree & weekly goals
               $currentWeek = $calculations->currentWeek();
-            if($currentWeek < count(App\Schedules::all())){
+            if($currentWeek <= count(App\Schedules::all()) && $enddate->diffInDays($endOfWeek) < $today->diffInDays($endOfWeek)){
               $event = $calculations->daysLeft();
               $eventName = Event::take(1)->pluck('name');
               return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event,'weekTree' => $calculations->weeklyGoalsTree(Auth::user(), $currentWeek),  'userStats' => $calculations->getUserStats(), 'D_Day' => false,
