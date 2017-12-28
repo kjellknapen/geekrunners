@@ -19,6 +19,10 @@ section {
 .profile-big {
   border-radius: 100%;
   max-width: 180px;
+  width: 180px;
+  max-height: 180px;
+  height: 180px;
+  object-fit: cover;
 }
 
 .profile-top {

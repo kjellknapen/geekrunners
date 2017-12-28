@@ -247,9 +247,13 @@ class Calculation
         }
         $users_completed = [];
         foreach (User::all() as $user){
-            $usersresults = $this->userScheduleDate($user, $distance_goal, $frequency_goal, $avg_duration);
-            if($usersresults['frequency_progress'] >= 100 && $usersresults['distance_progress'] >= 100){
-                array_push($users_completed, $user);
+            if(!empty(Auth::user()) && $user->email == Auth::user()->email){
+                //Do Nothing
+            }else{
+                $usersresults = $this->userScheduleDate($user, $distance_goal, $frequency_goal, $avg_duration);
+                if($usersresults['frequency_progress'] >= 100 && $usersresults['distance_progress'] >= 100){
+                    array_push($users_completed, $user);
+                }
             }
         }
 
