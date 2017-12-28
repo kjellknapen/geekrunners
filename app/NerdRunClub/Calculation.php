@@ -154,7 +154,7 @@ class Calculation
             $FirstDay = new Carbon('sunday last week');
             $LastDay = new Carbon('sunday this week');
 
-            if($Date > $FirstDay && $Date < $LastDay) {
+            if($Date > $FirstDay && $Date <= $LastDay) {
                 $weeklyDone += $activity->km;
             }
         }
@@ -191,7 +191,7 @@ class Calculation
                 $FirstDay = new Carbon('sunday last week');
                 $LastDay = new Carbon('sunday this week');
 
-                if($Date > $FirstDay && $Date < $LastDay) {
+                if($Date > $FirstDay && $Date <= $LastDay) {
                     $totalkm += $activity->km;
                     $totaltime += $activity->minutes;
                 }
@@ -286,7 +286,7 @@ class Calculation
             $Date = mb_substr($activity->date, 0, 10);
             $FirstDay = new Carbon('sunday last week');
             $LastDay = new Carbon('sunday this week');
-            if($Date > $FirstDay && $Date < $LastDay) {
+            if($Date > $FirstDay && $Date <= $LastDay) {
                 $runs += 1;
                 $minutes += $activity->minutes;
                 if($activity->km > $longest){
@@ -322,7 +322,7 @@ class Calculation
 
         // Loop true schedules
         $weekTree = [];
-        $startdate = $carbonStartDate->startOfWeek()->subDay(1);
+        $startdate = $carbonStartDate->startOfWeek();
         $enddate = $carbonEndDate->endOfWeek();
         $addDaysStart = 0;
         $addDaysEnd = 0;
@@ -341,7 +341,7 @@ class Calculation
                 foreach ($activities as $activity){
                     $activityDate = new Carbon($activity->date);
 
-                    if($activityDate > $startdate && $activityDate < $enddate){
+                    if($activityDate > $startdate && $activityDate <= $enddate){
                         $runs += 1;
                         $minutes += $activity->minutes;
                         if($activity->km > $longest){
