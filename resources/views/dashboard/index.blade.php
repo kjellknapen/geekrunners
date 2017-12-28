@@ -69,7 +69,7 @@
         </div>
         <section class="half half-left">
             <h1>Weekly goals</h1>
-            <p class="sub-title"> We're at week {{ $scheduleData['week'] }} now </p>
+            <p class="sub-title"> {{ $todayDiff }} days left to complete week {{ $scheduleData['week'] }}'s goals </p>
             {{--<p> This week we'll run a {{ $scheduleData['distance_warmup']}} km session to warm up!</p>--}}
             <ul class="goals">
                 @if($scheduleData['distance_completed'] >= 100)
