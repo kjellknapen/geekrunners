@@ -134,7 +134,7 @@
         <section class="half half-right">
             <h1>{{ $event }} days</h1>
             <p class="sub-title">Left until '{{$eventName[0]}}'</p>
-            <div style="background: linear-gradient(to right, #ff9a95 {{ ceil((200 - $event) / 200 * 100) }}%,white {{ ceil((200 - $event) / 200 * 100) }}%);" class='percentageFill'></div>
+            <div style="background: linear-gradient(to right, #ff9a95 {{ ceil(($diff - $event) / $diff * 100) }}%,white {{ ceil(($diff - $event) / $diff * 100) }}%);" class='percentageFill'></div>
         </section>
         @else
         <section>

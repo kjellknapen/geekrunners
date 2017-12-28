@@ -49,8 +49,9 @@ class DashboardController extends Controller
               $currentWeek = $calculations->currentWeek();
             if($currentWeek <= count(App\Schedules::all()) && $enddate->diffInDays($endOfWeek) < $today->diffInDays($endOfWeek)){
               $event = $calculations->daysLeft();
+              $diff = $calculations->getStartDate()->diffInDays($endOfWeek);
               $eventName = Event::take(1)->pluck('name');
-              return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed,'event' => $event,'weekTree' => $calculations->weeklyGoalsTree(Auth::user(), $currentWeek),  'userStats' => $calculations->getUserStats(), 'D_Day' => false,
+              return view('dashboard/index', ['eventName'=> $eventName, 'activityfeed' => $activityfeed, 'diff' => $diff,'event' => $event,'weekTree' => $calculations->weeklyGoalsTree(Auth::user(), $currentWeek),  'userStats' => $calculations->getUserStats(), 'D_Day' => false,
              'topRunners' => $topRunners['Kilometers'], 'scheduleData' => $calculations->getScheduleData($currentWeek)]);
             }else{
                 $event = $calculations->daysLeft();
