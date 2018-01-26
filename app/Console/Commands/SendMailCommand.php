@@ -51,16 +51,14 @@ class SendMailCommand extends Command
                 $week = $calculation->currentWeek();
                 $schedules = Schedules::all()->where('id', $week);
 
-                foreach ($schedules as $schedule) {
-                    $duration_goal= $schedule->duration_goal;
+                foreach ($schedules as $schedule) {;
                     $frequency_goal= $schedule->frequency_goal;
                     $distance_goal= $schedule->distance_goal;
                 }
-                $calcs = $calculation->userScheduleDate($u, $distance_goal, $frequency_goal, $duration_goal);
-                $duration = $calcs['duration_progress'];
+                $calcs = $calculation->userScheduleDate($u, $distance_goal, $frequency_goal);
                 $distance = $calcs['distance_progress'];
                 $frequency = $calcs['frequency_progress'];
-                if($duration < 100 || $frequency < 100 || $distance < 100) {
+                if($frequency < 100 || $distance < 100) {
                     $u->notify(new WeeklyGoalMail($u->email, $calcs));
                 }
             }

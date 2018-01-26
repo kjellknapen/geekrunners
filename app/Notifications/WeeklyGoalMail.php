@@ -44,7 +44,7 @@ class WeeklyGoalMail extends Notification
      */
     public function toMail($notifiable)
     {
-        $goalstocomplete = $this->calcs['duration_progress'] < 100 ? 1 : 0;
+        $goalstocomplete = 0;
         $goalstocomplete += $this->calcs['distance_progress'] < 100 ? 1 : 0;
         $goalstocomplete += $this->calcs['frequency_progress'] < 100 ? 1 : 0;
 
