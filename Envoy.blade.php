@@ -1,49 +1,51 @@
-@servers(["web" => 'deploybot@172.104.159.118'])
+@setup
+$server = "142.93.130.220";
+$project = "geekrunners.knapenkjell.com";
+$repo = "git@github.com:kjellknapen/geekrunners.git";
+$branch = "master";
+$userAndServer = 'deploybot@'. $server;
+$baseDir = "/home/deploybot/{$project}";
 
-@task('deploy-beta', ['on' => 'web'])
-cd /home/deploybot/NerdRunClub-beta
-git reset HEAD
+function logMessage($message) {
+return "echo '\033[32m" .$message. "\033[0m';\n";
+}
+@endsetup
+
+@servers(['local' => '127.0.0.1', 'remote' => $userAndServer])
+
+@story('deploy')
+pushLocal
+checkRepo
+deployment
+@endstory
+
+@task('pushLocal',['on' => 'local'])
+{{ logMessage("Pushing to git...") }}
+git add .
+git commit -m "{{ $commit }}"
+git push
+@endtask
+
+@task('checkRepo',['on' => 'remote'])
+{{ logMessage("Checking repository...") }}
+if [ ! -d {{ $baseDir }} ]
+then
+git clone {{ $repo }} {{ $project }}
+git checkout {{ $branch }}
+chmod 770 -R {{ $baseDir }}/storage
+fi
+@endtask
+
+@task('deployment',['on' => 'remote'])
+{{ logMessage("💻  Deploying code changes...") }}
+cd {{ $baseDir }}
+git stash
 git pull
-php artisan migrate
-@endtask
-
-@task('deploy-live', ['on' => 'web'])
-
-cd /home/deploybot/NerdRunClub
-git reset HEAD
-git pull
-php artisan migrate
-@endtask
-
-
-@task('seed-live', ['on' => 'web'])
-
-cd /home/deploybot/NerdRunClub
-
-php artisan migrate:refresh --seed
-
-@endtask
-
-@task('seed-beta', ['on' => 'web'])
-
-cd /home/deploybot/NerdRunClub-beta
-
-php artisan migrate:refresh --seed
-
-@endtask
-
-@task('refresh-live', ['on' => 'web'])
-
-cd /home/deploybot/NerdRunClub
-
-php artisan migrate:refresh
-
-@endtask
-
-@task('refresh-beta', ['on' => 'web'])
-
-cd /home/deploybot/NerdRunClub-beta
-
-php artisan migrate:refresh
-
+composer install
+yarn
+yarn run dev
+php artisan config:clear
+php artisan cache:clear
+php artisan config:cache
+sudo apachectl restart
 @endtask
