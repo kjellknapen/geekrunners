@@ -31,6 +31,7 @@ git push
 if [ ! -d {{ $baseDir }} ]
 then
 git clone {{ $repo }} {{ $project }}
+cd {{ $baseDir }}
 git checkout {{ $branch }}
 chmod 770 -R {{ $baseDir }}/storage
 fi
