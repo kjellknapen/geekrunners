@@ -45,7 +45,7 @@ git pull
 composer install
 yarn
 yarn run prod
-php artisan migrate
+php artisan migrate --force
 php artisan config:clear
 php artisan cache:clear
 php artisan config:cache
