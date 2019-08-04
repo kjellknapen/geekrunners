@@ -111,7 +111,7 @@ class AdminController extends Controller
         $hashedpass = \Illuminate\Support\Facades\Hash::make(env('APP_ADMIN_PASS'), [
             'rounds' => 12
         ]);
-        AdminPassword::firstOrCreate([
+        AdminPassword::firstOrCreate(['id' => 1],[
             'password' => $hashedpass
         ]);
         return view('admin.chooserole');
