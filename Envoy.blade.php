@@ -45,6 +45,8 @@ git pull
 composer install
 yarn
 yarn run prod
+chmod 770 -R storage
+php artisan migrate
 php artisan config:clear
 php artisan cache:clear
 php artisan config:cache
