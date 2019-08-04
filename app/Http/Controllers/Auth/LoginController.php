@@ -78,6 +78,7 @@ class LoginController extends Controller
         User::updateOrCreate(['strava_id' => $userID],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
+            'email' => '',
             'avatar' => $avatar,
             'noavatar' => $avatar == "https://api.adorable.io/avatars/285/" . $user->athlete->username ? true : false,
             'token' => $user->access_token,
