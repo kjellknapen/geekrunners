@@ -71,16 +71,15 @@ class LoginController extends Controller
             $avatar = $user->athlete->profile;
         }else{
             // Generate an avatar that always stays the same but is differnt for every user
-            $avatar = "https://api.adorable.io/avatars/285/" . $user->athlete->email;
+            $avatar = "https://api.adorable.io/avatars/285/" . $user->athlete->username;
         }
 
         // Check if the user exits otherwise create it
-        User::updateOrCreate(['email' => $user->athlete->email],[
+        User::updateOrCreate(['strava_id' => $userID],[
             'firstname' => $user->athlete->firstname,
             'lastname' => $user->athlete->lastname,
             'avatar' => $avatar,
-            'noavatar' => $avatar == "https://api.adorable.io/avatars/285/" . $user->athlete->email ? true : false,
-            'strava_id' => $userID,
+            'noavatar' => $avatar == "https://api.adorable.io/avatars/285/" . $user->athlete->username ? true : false,
             'token' => $user->access_token,
         ]);
 
